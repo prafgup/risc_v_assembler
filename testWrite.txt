@@ -1,0 +1,5 @@
+.data
+a : .word 1 2 3
+.text
+li x1 1
+sw x3 0(x4)
