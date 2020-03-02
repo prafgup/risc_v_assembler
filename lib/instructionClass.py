@@ -1,4 +1,4 @@
-InstructionTable = [['addi', '#################000#####0010011', 'I']]
+from lookup1 import *
 
 def numberToBinary(number, bits):
     binaryString = ""

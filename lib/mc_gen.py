@@ -1,6 +1,7 @@
 from  instructionClass import *
+from  lookup1 import *
 
-def main():
+def main1():
     inputFile = open('testWrite.asm', 'r')
     outputFile = open('machine_code.mc', 'w')
     allInstructions = inputFile.readlines()
@@ -66,4 +67,4 @@ def LookUpInstruction(instructionParts, lineNo):
     print ("Instruction at line number", lineNo,"not recognized")           
 
 if(__name__=="__main__"):
-    main()
+    main1()
