@@ -5,3 +5,10 @@ a : .word 1,2,3
 li x1,1   #lol
 #gg
 sw 	x3,0(x4)
+
+.data
+b: .byte 10,20,30
+
+.text
+li x1 10
+add x1 x1 x1
