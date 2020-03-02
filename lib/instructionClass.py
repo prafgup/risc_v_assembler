@@ -25,7 +25,7 @@ class R:
             if(i[0] != instr):
                 continue
             else:
-                mCode = i[1][:8] + numberToBinary(srcReg2, 5) + numberToBinary(srcReg1, 5) + i[1][17:20] + numberToBinary(destReg, 5) + i[1][25:]
+                mCode = i[1][:7] + numberToBinary(srcReg2, 5) + numberToBinary(srcReg1, 5) + i[1][17:20] + numberToBinary(destReg, 5) + i[1][25:]
                 return mCode
         return ""
 
@@ -42,7 +42,7 @@ class S:
             if(i[0] != instr):
                 continue
             else:
-                mCode = numberToBinary(immediate, 12)[:8] + numberToBinary(
+                mCode = numberToBinary(immediate, 12)[:7] + numberToBinary(
                     srcReg2, 5) + numberToBinary(srcReg1, 5) + i[1][17:20] + numberToBinary(immediate, 12)[8:] + i[1][25:]
                 return mCode
         return ""
