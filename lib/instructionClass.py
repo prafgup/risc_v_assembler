@@ -12,7 +12,7 @@ class S:
 # To be Completed By Rishabh
 class I:
     opcode = rd = func3 = rs1 = immediate = ""
-    def numberToBinary(number, bits):
+    def numberToBinary(self, number, bits):
         binaryString = ""
         while(number>0):
             binaryString = binaryString + str(number%2)
@@ -23,7 +23,7 @@ class I:
             binaryString = zeros + binaryString
         return binaryString
 
-    def machineCode(instr, destReg, srcReg, immediate):
+    def machineCode(self, instr, destReg, srcReg, immediate):
         for i in table:
             if(i[0]!=instr):
                 continue
@@ -43,3 +43,5 @@ class SB:
 # To be Completed By Rishabh
 class U:
     pass
+
+
