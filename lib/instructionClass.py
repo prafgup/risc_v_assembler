@@ -17,6 +17,7 @@ class I:
         while(number>0):
             binaryString = binaryString + str(number%2)
             number = number//2
+        binaryString = binaryString[::-1]
         if(len(binaryString)<bits):
             extraLength = bits - len(binaryString)
             zeros = '0'*extraLength
@@ -28,7 +29,7 @@ class I:
             if(i[0]!=instr):
                 continue
             else:
-                mCode = numberToBinary(immediate, 12) + numberToBinary(srcReg, 5) + i[1][17:20] + numberToBinary(destReg, 5) + i[1][24:]
+                mCode = self.numberToBinary(immediate, 12) + self.numberToBinary(srcReg, 5) + i[1][17:20] + self.numberToBinary(destReg, 5) + i[1][25:]
                 return mCode
         return ""
 
@@ -45,3 +46,6 @@ class U:
     pass
 
 
+i_object = I()
+machineCode = i_object.machineCode("addi", 5, 6, 8)
+print(machineCode)
