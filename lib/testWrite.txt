@@ -1,12 +1,8 @@
-.dat
-
-.tex
-li x1,1   #lo
-#g
-sw 	x3,0(x4
-
-.dat
-
-.tex
+.data
+.text
 li x1 1
-add x1 x1 x
+sw x3 x4 0
+.data
+.text
+li x1 10
+add x1 x1 x1
