@@ -1,6 +1,6 @@
-table = [['addi', '#################000#####0010011', 'I']]
+InstructionTable = [['addi', '#################000#####0010011', 'I']]
 
-def numberToBinary(self, number, bits):
+def numberToBinary(number, bits):
     binaryString = ""
     while(number>0):
         binaryString = binaryString + str(number%2)
@@ -14,7 +14,14 @@ def numberToBinary(self, number, bits):
 
 class R:
     def machineCode(self, instr, destReg, srcReg1, srcReg2):
-        for i in table:
+        """
+        instr: Name of Instruction to be Encoded
+        immediate: 12 bit Immediate value. Given as Decimal.
+        srcReg1: rs1
+        srcReg2: rs2
+        destReg: rd
+        """
+        for i in InstructionTable:
             if(i[0] != instr):
                 continue
             else:
@@ -25,7 +32,13 @@ class R:
 
 class S:
     def machineCode(self, instr, immediate, func3, srcReg1, srcReg2):
-        for i in table:
+        """
+        instr: Name of Instruction to be Encoded
+        immediate: 12 bit Immediate value. Given as Decimal.
+        srcReg1: rs1
+        srcReg2: rs2
+        """
+        for i in InstructionTable:
             if(i[0] != instr):
                 continue
             else:
@@ -36,7 +49,13 @@ class S:
 
 class I:
     def machineCode(self, instr, destReg, srcReg, immediate):
-        for i in table:
+        """
+        instr: Name of Instruction to be Encoded
+        immediate: 12 bit Immediate value. Given as Decimal.
+        srcReg: rs1
+        destReg: rd
+        """
+        for i in InstructionTable:
             if(i[0]!=instr):
                 continue
             else:
@@ -45,7 +64,12 @@ class I:
         return ""
 class UJ:
     def machineCode(self, instr, destReg, immediate):
-        for i in table:
+        """
+        instr: Name of Instruction to be Encoded
+        immediate: 20 bit Immediate value. Given as Decimal.
+        destReg: rd
+        """
+        for i in InstructionTable:
             if(i[0]!=instr):
                 continue
             else:
@@ -57,13 +81,29 @@ class UJ:
 
 class SB:
     def machineCode(self, instr, immediate, srcReg1, srcReg2):
-        for i in table:
+        """
+        instr: Name of Instruction to be Encoded
+        immediate: 20 bit Immediate value. Given as Decimal.
+        srcReg1: rs1
+        srcReg2: rs2
+        """
+        for i in InstructionTable:
             if(i[0]!=instr):
                 continue
             else:
                 mCode = numberToBinary(immediate, 13)[0] + numberToBinary(immediate, 13)[2:8] + numberToBinary(srcReg2, 5) + numberToBinary(srcReg1, 5) + i[1][17:20] + numberToBinary(immediate, 13)[8:12] + numberToBinary(immediate, 13)[1] + i[1][25:]
                 return mCode
 
-# To be Completed By Rishabh
 class U:
-    def machineCode(self, instr, )
+    def machineCode(self, instr, immediate, destReg):
+        """
+        instr: Name of Instruction to be Encoded
+        immediate: 20 bit Immediate value. Given as Decimal.
+        destReg: Number of destination Register
+        """   
+        for i in InstructionTable:
+            if(i[0]!=instr):
+                continue
+            else:
+                mCode = numberToBinary(immediate, 20) + numberToBinary(destReg, 5) + i[1][25:]
+                return mCode
