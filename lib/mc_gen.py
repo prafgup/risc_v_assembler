@@ -8,7 +8,6 @@ def main1():
     lineNo = 0
     for instruction in allInstructions:
         lineNo=lineNo+1
-        i
         if (instruction[-1] == '\n'):
             instruction = instruction[0:-1]
         instructionParts = instruction.split(' ')
