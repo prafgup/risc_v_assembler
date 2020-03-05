@@ -1,14 +1,14 @@
 class Memory:
-    def __init__ (self):
-        self.value = 0
-
-    def __init__ (self, _value):
-        self.value = _value
+    def __init__ (self, _value=None):
+        if _value == None:
+            self.value = 0
+        else:
+            self.value = _value
 
 class MemoryTable:
-    textMemory = [Memory(0)] * 1000
-    dataMemory = [Memory(0)] * 1000
-    stackMemory = [Memory(0)] * 1000
+    textMemory = [Memory()] * 1000
+    dataMemory = [Memory()] * 1000
+    stackMemory = [Memory()] * 1000
 
     baseAddressText = '0x0000000'
     baseAddressData = '0x1000000'

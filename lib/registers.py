@@ -2,9 +2,12 @@
 
 class Register:
 
-    def __init__ (self, _name, _value):
+    def __init__ (self, _name, _value = None):
         self.name = _name
-        self.value = _value
+        if (_value == None):
+            self.value = 0
+        else:
+            self.value = _value
 
 class RegisterTable:
     registers = [None]*32
@@ -15,14 +18,14 @@ class RegisterTable:
             if (i == 2):
                 RegisterTable.registors[i] = Register('x2', 2147483632)
             else:
-                RegisterTable.registers[i] = Register('x'+str(i), 0)
+                RegisterTable.registers[i] = Register('x'+str(i))
         return
 
     @staticmethod
     def StoreInFile ():
         outputFile = open('register_table.txt', 'w')
         for i in range(32):
-            outputFile.write('x'+str(i)+' '+str(RegisterTable.registors[i].value)+'\n')
+            outputFile.write('x'+str(i)+' '+str(RegisterTable.registers[i].value)+'\n')
         outputFile.close()
         return
 
