@@ -20,15 +20,40 @@ class initParser:
 		for st in f1:
 			no_comment = self.remove_comments(st,"#")
 			if(len(no_comment)>0):
-				final.append(re.sub("\s+|,"," ",no_comment).strip())
+				pre_arr = re.sub("\s+|,"," ",no_comment).strip().split()
+				pos_arr=[]
+				for el in pre_arr:
+					if "(" in el:
+						print("foundddddddddddddddddddddddddddddd")
+						st = el[:el.find("(")]
+						sn = el[el.find("(")+1:el.find(")")]
+						pos_arr.append(sn + " " + st)
+					else:
+						pos_arr.append(el)
+				final.append(" ".join(pos_arr).strip())
 		print(final)
 		return final
 	def write_to_file(self,name,li):
 		f = open(name,"w+")
 		for el in li:
 			f.write(el+"\n")
-	
+	def generate_labels_and_list(self,name):
+		f = open(name, "r")
+		lis = f.readlines()
+		dic = {}
+		label_count =0
+		new_lis = []
+		for elem in lis:
+			if ":" in elem:
+				dic[elem.split(":")[0]] = lis.index(elem) - label_count
+				label_count+=1
+			else:
+				new_lis.append(re.sub("\s+|,"," ",elem).strip())
+		return dic,new_lis
 
 gg = initParser("test.txt")
 lis = gg.preprocess_file()
 gg.write_to_file("testWrite.txt",lis)
+dic,no_label_list = gg.generate_labels_and_list("testWrite.txt")
+print(dic)
+gg.write_to_file("testWrite.txt",no_label_list)

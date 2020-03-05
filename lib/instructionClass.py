@@ -31,7 +31,7 @@ class R:
 
 
 class S:
-    def machineCode(self, instr, immediate, func3, srcReg1, srcReg2):
+    def machineCode(self, instr, immediate, srcReg1, srcReg2):
         """
         instr: Name of Instruction to be Encoded
         immediate: 12 bit Immediate value. Given as Decimal.
@@ -43,7 +43,7 @@ class S:
                 continue
             else:
                 mCode = numberToBinary(immediate, 12)[:7] + numberToBinary(
-                    srcReg2, 5) + numberToBinary(srcReg1, 5) + i[1][17:20] + numberToBinary(immediate, 12)[8:] + i[1][25:]
+                    srcReg2, 5) + numberToBinary(srcReg1, 5) + i[1][17:20] + numberToBinary(immediate, 12)[7:] + i[1][25:]
                 return mCode
         return ""
 
