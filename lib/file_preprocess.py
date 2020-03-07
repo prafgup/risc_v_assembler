@@ -24,7 +24,6 @@ class initParser:
 				pos_arr=[]
 				for el in pre_arr:
 					if "(" in el:
-						print("foundddddddddddddddddddddddddddddd")
 						st = el[:el.find("(")]
 						sn = el[el.find("(")+1:el.find(")")]
 						pos_arr.append(sn + " " + st)
@@ -49,11 +48,16 @@ class initParser:
 				label_count+=1
 			else:
 				new_lis.append(re.sub("\s+|,"," ",elem).strip())
+
+		for key in dic.keys():
+			for id in range(len(new_lis)):
+				if key in elem:
+					new_lis[id] = new_lis[id].replace(key,dic[key])
 		return dic,new_lis
 
-gg = initParser("test.txt")
-lis = gg.preprocess_file()
-gg.write_to_file("testWrite.txt",lis)
-dic,no_label_list = gg.generate_labels_and_list("testWrite.txt")
-print(dic)
-gg.write_to_file("testWrite.txt",no_label_list)
+#gg = initParser("test.txt")
+#lis = gg.preprocess_file()
+#gg.write_to_file("testWrite.txt",lis)
+#dic,no_label_list = gg.generate_labels_and_list("testWrite.txt")
+#print(dic)
+#gg.write_to_file("testWrite.txt",no_label_list)
