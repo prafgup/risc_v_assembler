@@ -1,6 +1,8 @@
-from LookupForDecode import type_of_instruction
-# from lib.lookup1 import InstructionTable
-from ..lib.lookup1 import InstructionTable
+from LookupForDecode import *
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__),'..'))
+from lookup1 import InstructionTable
 
 class Decode:
     def __init__(self,_machineCode):
@@ -10,6 +12,10 @@ class Decode:
     def find_instruction_format(self):
         opCode=self.machineCode[-7:]
         return type_of_instruction[opCode]
+
+    def identify_R(self,machineCode):
+        
+        pass
 
     def perform_hash(self):
         if(self.instructionFormat=='R'):
