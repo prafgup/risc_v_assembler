@@ -55,9 +55,9 @@ class initParser:
 					new_lis[id] = new_lis[id].replace(key,dic[key])
 		return dic,new_lis
 
-#gg = initParser("test.txt")
-#lis = gg.preprocess_file()
-#gg.write_to_file("testWrite.txt",lis)
-#dic,no_label_list = gg.generate_labels_and_list("testWrite.txt")
-#print(dic)
-#gg.write_to_file("testWrite.txt",no_label_list)
+gg = initParser("test1.txt")
+lis = gg.preprocess_file()
+gg.write_to_file("testWrite.txt",lis)
+dic,no_label_list = gg.generate_labels_and_list("testWrite.txt")
+print(dic)
+gg.write_to_file("testWrite.txt",no_label_list)
