@@ -26,16 +26,31 @@ class Fetch:
         return
 
     def updatePCRegister(self):
+        ''' Update PC Register Text File 
+        --------------------------------------
+        Utility Function to Update the Value of PC Register
+        '''
         self.pc_file = open("./Files/PC_Register", "w+")
         self.pc_file.write(self.currentPCH)
         self.pc_file.close()
+
+    def updateIRRegister(self, instruction):
+        ''' Update IR Register Text File
+        ---------------------------------------
+        Utilty Function to Update the value of IR Register File
+        '''
+        self.ir_file = open("./Files/IR_Register", "w+")
+        self.ir_file.write(instruction)
+        self.ir_file.close()
 
     def fetchInstruction(self):
         """Return Instruction According to the current PC
         """
         if(self.lineNo>len(self.Instruction)-1):
             raise Exception("Reached End Of File While Parsing the Machine Code")
-        return self.Instruction[self.lineNo].rstrip()
+        instruction = self.Instruction[self.lineNo].rstrip()
+        self.updateIRRegister(instruction)
+        return instruction
 
 
     def updatePC(self, sequential=True, RA = 0, offsetJ = 0):
