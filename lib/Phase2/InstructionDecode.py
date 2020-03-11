@@ -94,6 +94,19 @@ class Decode:
             raise Exception("Instruction not supported. It is of unknown format.")
             return None
 
+        if(self.rd!=None):
+            self.rd=int(self.rd,2)
+        if(self.rs1!=None):
+            self.rs1=int(self.rs1,2)
+        if(self.rs2!=None):
+            self.rs2=int(self.rs2,2)
+        if(self.imm!=None):
+            self.imm=int(self.imm,2)
+            if(self.instructionFormat=='SB' or self.instructionFormat=='UJ'):
+                self.imm=self.imm*2
+            elif(self.instructionFormat=='U'):
+                self.imm=self.imm<<12
+        
         return [self.instructionFormat,self.instruction,self.rd,self.rs1,self.rs2,self.imm]
     
     
