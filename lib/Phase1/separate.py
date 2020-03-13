@@ -1,9 +1,10 @@
-
+import os
 
 def text_data_seperator(cf,df,tf):
-	input_file=open(cf,'r+')
-	data_file=open(df,'w+')
-	text_file=open(tf,'w+')
+	d = os.getcwd() + "/Files/"
+	input_file=open(d+cf,'r+')
+	data_file=open(d+df,'w+')
+	text_file=open(d+tf,'w+')
 
 	dataWrite=False
 	textWrite=False

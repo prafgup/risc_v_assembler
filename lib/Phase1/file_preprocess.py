@@ -1,5 +1,5 @@
 import re
-
+import os
 class initParser:
 	def __init__(self,file_name):
 		self.file_name = file_name
@@ -14,7 +14,8 @@ class initParser:
 
 	def preprocess_file(self):
 		final = []
-		f = open(self.file_name, "r")
+		d = os.getcwd() + "/Files/"
+		f = open(d+self.file_name, "r")
 		f1 = f.readlines()
 		print(f1)
 		for st in f1:
@@ -33,7 +34,8 @@ class initParser:
 		print(final)
 		return final
 	def write_to_file(self,name,li):
-		f = open(name,"w+")
+		d = os.getcwd()
+		f = open(d+"/Files/"+name,"w+")
 		for el in li:
 			f.write(el+"\n")
 	def generate_labels_and_list(self,name):
@@ -55,9 +57,9 @@ class initParser:
 					new_lis[id] = new_lis[id].replace(key,dic[key])
 		return dic,new_lis
 
-gg = initParser("test1.txt")
-lis = gg.preprocess_file()
-gg.write_to_file("testWrite.txt",lis)
-dic,no_label_list = gg.generate_labels_and_list("testWrite.txt")
-print(dic)
-gg.write_to_file("testWrite.txt",no_label_list)
+# gg = initParser("test1.txt")
+# lis = gg.preprocess_file()
+# gg.write_to_file("testWrite1.txt",lis)
+# dic,no_label_list = gg.generate_labels_and_list("testWrite1.txt")
+# print(dic)
+# gg.write_to_file("testWrite.txt",no_label_list)
