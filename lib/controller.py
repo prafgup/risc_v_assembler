@@ -13,4 +13,5 @@ preProcessObj.write_to_file('assemblyCodeProcessed.asm', li)
 # Differentiating .data and .text segment
 separateObj = text_data_seperator('assemblyCodeProcessed.asm', 'assemblyCodeData.asm', 'assemblyCodeText.asm')
 
-# Creating Label Map
+# Creating Label Map - Removes label and add corresponding line number in another file
+# Also replace all occurences of labels with corresponding number
