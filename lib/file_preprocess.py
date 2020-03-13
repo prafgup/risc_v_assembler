@@ -44,15 +44,15 @@ class initParser:
 		new_lis = []
 		for elem in lis:
 			if ":" in elem:
-				dic[elem.split(":")[0]] = lis.index(elem) - label_count
+				dic[elem.split(":")[0].strip()] = lis.index(elem) - label_count
 				label_count+=1
 			else:
 				new_lis.append(re.sub("\s+|,"," ",elem).strip())
 
 		for key in dic.keys():
 			for id in range(len(new_lis)):
-				if key in elem:
-					new_lis[id] = new_lis[id].replace(key,dic[key])
+				if key in new_lis[id]:
+					new_lis[id] = new_lis[id].replace(key,str(dic[key]))
 		return dic,new_lis
 
 #gg = initParser("test.txt")

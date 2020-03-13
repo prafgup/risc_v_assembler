@@ -7,7 +7,7 @@ from separate import text_data_seperator
 from file_preprocess import initParser
 
 
-base = "../lib"
+base = "../lib/"
 data_file = base + "data_file.txt"
 text_file = base + "text_file.txt"
 code_file = base + "code_file.txt"
@@ -37,16 +37,17 @@ def file_process(self):
 
 	text_parser = initParser(text_file)
 	text_list_with_labels = text_parser.preprocess_file()
-	text_parser.write_to_file(text_file,text_list)
-	label_dict,text_without_label_list = text_parser.generate_labels_and_list("testWrite.txt")
+	text_parser.write_to_file(text_file,text_list_with_labels)
+	label_dict,text_without_label_list = text_parser.generate_labels_and_list(text_file)
 	text_parser.write_to_file(text_file,text_without_label_list)
+	print(label_dict)
 
 	data_parser = initParser(data_file)
 	data_list_with_labels = data_parser.preprocess_file()
-	data_parser.write_to_file(data_file,data_list)
+	data_parser.write_to_file(data_file,data_list_with_labels)
 
 
-	
+file_process(1)
 
 	
 

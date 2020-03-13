@@ -1,0 +1,15 @@
+.data
+a: .word abcd #hello
+#helloooo
+.text
+
+
+label1:
+label2:
+beq x0 x0 label3 #gg
+
+
+label3:
+####boi
+addi x5 x0 10
+
