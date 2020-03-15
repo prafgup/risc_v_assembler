@@ -1,4 +1,4 @@
-from lookup1 import *
+from Phase1.lookup1 import *
 
 def numberToBinary(number, bits):
     binaryString = ""

@@ -1,1 +1,1 @@
-rishabh: .word 56
+name: .asciiz "Rishabh Agarwal"

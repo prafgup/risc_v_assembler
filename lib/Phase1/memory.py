@@ -1,11 +1,4 @@
-class Memory:
-    def __init__ (self, _value=None):
-        if _value == None:
-            self.value = 0
-        else:
-            self.value = _value
-
-
+import os
 class MemoryTable:
     memory = {}
 
@@ -92,10 +85,16 @@ class MemoryTable:
 
     @staticmethod
     def StoreInFile():
-        outputFile1 = open('machine_code.mc', 'w')
-        outputFile2 = open('data_memory_table.txt', 'w')
-        outputFile3 = open('stack_memory_table.txt', 'w')
-        for i in MemoryTable.memory:
+        d = os.getcwd() + "/Files/"
+        outputFile1 = open(d+'machine_code.mc', 'w')
+        outputFile2 = open(d+'data_memory_table.txt', 'w')
+        outputFile3 = open(d+'stack_memory_table.txt', 'w')
+        addList = []
+        for key in MemoryTable.memory:
+            addList.append(int(key, 16))
+        addList.sort()
+        for j in range(0, len(addList)):
+            i = hex(addList[j])
             if (int(i, 16) < int(MemoryTable.baseAddressStack, 16) and int(i, 16) >= int(MemoryTable.baseAddressData, 16)):
                 outputFile2.write(i+' '+str(MemoryTable.memory[i])+'\n')
             elif (int(i, 16) < int(MemoryTable.baseAddressData, 16) and int(i, 16) >= int(MemoryTable.baseAddressText, 16) and int(i, 16) % 4 == 0):

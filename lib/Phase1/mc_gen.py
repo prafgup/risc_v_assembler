@@ -1,10 +1,12 @@
-from instructionClass import *
-from lookup1 import *
-from memory import *
-
+from Phase1.instructionClass import *
+from Phase1.lookup1 import *
+from Phase1.memory import *
+from Phase1.data_lookup import Data_table
+import os
 
 def main1():
-    inputFile = open('testWrite.asm', 'r')
+    d = os.getcwd() + "/Files/"
+    inputFile = open(d+'assemblyCodeFinal.asm', 'r')
     allInstructions = inputFile.readlines()
     lineNo = 0
     address = hex(int(MemoryTable.baseAddressText, 16))
@@ -37,7 +39,53 @@ def main1():
     MemoryTable.WriteToMemory(address, 255, 'b')
     address = hex(int(address, 16) + 1)
     MemoryTable.WriteToMemory(address, 255, 'b')
+    inputFile = open(d+'assemblyCodeData.asm', 'r')
+    lines = inputFile.readlines()
+    address = MemoryTable.baseAddressData
+    for line in lines:
+        i = 0
+        while line[i] != ':':
+            i += 1
+        Data_table[line[0:i]] = address
+        i += 3
+        j = i
+        while line[i] != ' ':
+            i += 1
+        if (line[j:i] == 'word'):
+            i += 1
+            value = line[i:]
+            value = int(value)
+            MemoryTable.WriteToMemory(address, value, 'w')
+            address = hex(int(address, 16)+4)
+        elif (line[j:i] == "byte"):
+            i += 1
+            value = line[i:]
+            value = int(value)
+            MemoryTable.WriteToMemory(address, value, 'b')
+            address = hex(int(address, 16)+1)
+        elif (line[j:i] == "half"):
+            i += 1
+            value = line[i:]
+            value = int(value)
+            MemoryTable.WriteToMemory(address, value, 'h')
+            address = hex(int(address, 16)+2)
+        elif (line[j:i] == "double"):
+            i += 1
+            value = line[i:]
+            value = int(value)
+            MemoryTable.WriteToMemory(address, value, 'd')
+            address = hex(int(address, 16)+8)
+        elif (line[j:i] == 'asciiz'):
+            i += 2
+            while line[i] != '"':
+                value = line[i]
+                value = ord(value)
+                MemoryTable.WriteToMemory(address, value, 'b')
+                address = hex(int(address, 16)+1)
+                i += 1
+    inputFile.close()
     MemoryTable.StoreInFile()
+    return
 
 
 def DecodeInstruction(instructionParts, instructionTemplate):

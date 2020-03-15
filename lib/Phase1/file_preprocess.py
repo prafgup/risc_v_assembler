@@ -38,24 +38,26 @@ class initParser:
 		f = open(d+"/Files/"+name,"w+")
 		for el in li:
 			f.write(el+"\n")
-	def generate_labels_and_list(self,name):
-		f = open(name, "r")
+
+	def generate_labels_and_list(self, name):
+		d = os.getcwd() + "/Files/"
+		f = open(d+name, "r")
 		lis = f.readlines()
 		dic = {}
-		label_count =0
+		label_count = 0
 		new_lis = []
 		for elem in lis:
 			if ":" in elem:
-				dic[elem.split(":")[0]] = lis.index(elem) - label_count
-				label_count+=1
+				dic[elem.split(":")[0].strip()] = lis.index(elem) - label_count
+				label_count += 1
 			else:
-				new_lis.append(re.sub("\s+|,"," ",elem).strip())
+				new_lis.append(re.sub("\s+|,", " ", elem).strip())
 
 		for key in dic.keys():
 			for id in range(len(new_lis)):
-				if key in elem:
-					new_lis[id] = new_lis[id].replace(key,dic[key])
-		return dic,new_lis
+				if key in new_lis[id]:
+					new_lis[id] = new_lis[id].replace(key, str(dic[key]))
+		return dic, new_lis
 
 # gg = initParser("test1.txt")
 # lis = gg.preprocess_file()
