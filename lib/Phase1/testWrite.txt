@@ -1,0 +1,2 @@
+label: add x0 x0 x0
+beq x0 x0 label

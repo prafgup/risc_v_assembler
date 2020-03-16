@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>942</width>
-    <height>734</height>
+    <width>1041</width>
+    <height>864</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,6 +24,9 @@
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMaximumSize</enum>
+     </property>
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="sizePolicy">
@@ -101,7 +104,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>942</width>
+     <width>1041</width>
      <height>26</height>
     </rect>
    </property>

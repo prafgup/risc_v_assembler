@@ -1,0 +1,2 @@
+label1: add x0 x0 x0
+label2: jal x1 label1

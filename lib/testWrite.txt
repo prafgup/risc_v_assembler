@@ -1,8 +1,0 @@
-.data
-.text
-li x1 1
-sw x3 x4 0
-.data
-.text
-li x1 10
-add x1 x1 x1
