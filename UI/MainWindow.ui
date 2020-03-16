@@ -36,7 +36,7 @@
         <enum>QTabWidget::Triangular</enum>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <property name="iconSize">
         <size>
@@ -59,7 +59,7 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <widget class="CodeEditor" name="plainTextEdit">
+           <widget class="CodeEditor" name="codeEditor">
             <property name="plainText">
              <string/>
             </property>
@@ -67,7 +67,7 @@
           </item>
          </layout>
         </widget>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="uploadButton">
          <property name="geometry">
           <rect>
            <x>10</x>

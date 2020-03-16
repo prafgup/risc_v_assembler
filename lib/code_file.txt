@@ -10,6 +10,8 @@ beq x0 x0 label3 #gg
 
 
 label3:
+beq x0 x0 label2 #gg
+beq x0 x0 label3 #gg
 ####boi
 addi x5 x0 10
 
