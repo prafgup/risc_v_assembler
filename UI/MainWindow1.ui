@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>820</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1200</width>
+    <height>800</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="tabShape">
+       <enum>QTabWidget::Triangular</enum>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Editor</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Upload Code</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="CodeEditor" name="plainTextEdit"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Simulator</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QWidget" name="widget" native="true">
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <widget class="QWidget" name="horizontalWidget" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>20</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>75</height>
+              </size>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QPushButton" name="pushButton_5">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Run</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_4">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Step</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_3">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Prev</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_2">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Reset</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QTableWidget" name="tableWidget">
+               <property name="gridStyle">
+                <enum>Qt::DashDotLine</enum>
+               </property>
+               <attribute name="horizontalHeaderCascadingSectionResizes">
+                <bool>true</bool>
+               </attribute>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>200</number>
+               </attribute>
+               <attribute name="horizontalHeaderMinimumSectionSize">
+                <number>100</number>
+               </attribute>
+               <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                <bool>false</bool>
+               </attribute>
+               <attribute name="horizontalHeaderStretchLastSection">
+                <bool>true</bool>
+               </attribute>
+               <attribute name="verticalHeaderVisible">
+                <bool>false</bool>
+               </attribute>
+               <attribute name="verticalHeaderCascadingSectionResizes">
+                <bool>true</bool>
+               </attribute>
+               <attribute name="verticalHeaderHighlightSections">
+                <bool>true</bool>
+               </attribute>
+               <attribute name="verticalHeaderStretchLastSection">
+                <bool>true</bool>
+               </attribute>
+               <row>
+                <property name="text">
+                 <string>New Row</string>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>New Row</string>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>New Row</string>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>New Row</string>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>New Row</string>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>New Row</string>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>New Row</string>
+                </property>
+               </row>
+               <column>
+                <property name="text">
+                 <string>Machine Code</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignCenter</set>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Basic Code</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignCenter</set>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Original Code</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignCenter</set>
+                </property>
+               </column>
+               <item row="0" column="0">
+                <property name="text">
+                 <string>0x11000000</string>
+                </property>
+               </item>
+               <item row="0" column="1">
+                <property name="text">
+                 <string>addi x1 x1 10</string>
+                </property>
+               </item>
+               <item row="0" column="2">
+                <property name="text">
+                 <string>addi x1 x1 10</string>
+                </property>
+               </item>
+               <item row="1" column="0">
+                <property name="text">
+                 <string>0x10101100</string>
+                </property>
+               </item>
+               <item row="1" column="1">
+                <property name="text">
+                 <string>hjf fd fe fe </string>
+                </property>
+               </item>
+               <item row="1" column="2">
+                <property name="text">
+                 <string>fref fe f</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widget_2" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>500</width>
+            <height>0</height>
+           </size>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QComboBox" name="comboBox">
+             <item>
+              <property name="text">
+               <string>Hex</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Decimal</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Unsigned</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Ascii</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTabWidget" name="tabWidget_2">
+             <property name="tabShape">
+              <enum>QTabWidget::Rounded</enum>
+             </property>
+             <property name="currentIndex">
+              <number>1</number>
+             </property>
+             <widget class="QWidget" name="tab_4">
+              <attribute name="title">
+               <string>Registers</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_2">
+               <item row="0" column="0">
+                <widget class="QTableWidget" name="tableWidget_2">
+                 <property name="gridStyle">
+                  <enum>Qt::DashLine</enum>
+                 </property>
+                 <attribute name="horizontalHeaderCascadingSectionResizes">
+                  <bool>true</bool>
+                 </attribute>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>150</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderMinimumSectionSize">
+                  <number>80</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderStretchLastSection">
+                  <bool>true</bool>
+                 </attribute>
+                 <attribute name="verticalHeaderCascadingSectionResizes">
+                  <bool>false</bool>
+                 </attribute>
+                 <attribute name="verticalHeaderDefaultSectionSize">
+                  <number>37</number>
+                 </attribute>
+                 <attribute name="verticalHeaderStretchLastSection">
+                  <bool>false</bool>
+                 </attribute>
+                 <row>
+                  <property name="text">
+                   <string>zero(x0)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>ra(x1)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>sp(x2)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>gp(x3)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>tp(x4)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>t0(x5)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>t1(x6)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>t2(x7)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>s0(x8)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>s1(x9)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>a0(x10)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>a1(x11)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>a2(x12)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>a3(x13)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>a4(x14)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>a5(x15)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>a6(x16)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>a7(x17)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>s2(x18)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>s3(x19)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>s4(x20)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>s5(x21)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>s6(x22)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>s7(x23)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>s8(x24)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>s9(x25)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>s10(x26)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>s11(x27)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>t3(x28)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>t4(x29)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>t5(x30)</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>t6(x31)</string>
+                  </property>
+                 </row>
+                 <column>
+                  <property name="text">
+                   <string>Values</string>
+                  </property>
+                 </column>
+                 <item row="0" column="0">
+                  <property name="text">
+                   <string>0</string>
+                  </property>
+                 </item>
+                 <item row="1" column="0">
+                  <property name="text">
+                   <string>12</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tab_5">
+              <attribute name="title">
+               <string>Memory</string>
+              </attribute>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Our Team</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CodeEditor</class>
+   <extends>QPlainTextEdit</extends>
+   <header location="global">codeeditor</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
