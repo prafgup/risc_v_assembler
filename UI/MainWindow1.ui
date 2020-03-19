@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1200</width>
+    <width>1417</width>
     <height>820</height>
    </rect>
   </property>
@@ -297,40 +297,59 @@
         <item>
          <widget class="QWidget" name="widget_2" native="true">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
           <property name="minimumSize">
            <size>
-            <width>500</width>
+            <width>550</width>
             <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>600</width>
+            <height>16777215</height>
            </size>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
-            <widget class="QComboBox" name="comboBox">
-             <item>
+            <widget class="QSplitter" name="splitter">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <widget class="QLabel" name="label_2">
               <property name="text">
-               <string>Hex</string>
+               <string>Display Setting </string>
               </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Decimal</string>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
               </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Unsigned</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Ascii</string>
-              </property>
-             </item>
+             </widget>
+             <widget class="QComboBox" name="comboBox">
+              <item>
+               <property name="text">
+                <string>Hex</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Decimal</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Unsigned</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Ascii</string>
+               </property>
+              </item>
+             </widget>
             </widget>
            </item>
            <item>
@@ -555,6 +574,104 @@
               <attribute name="title">
                <string>Memory</string>
               </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_4">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_4">
+                 <item>
+                  <widget class="QLabel" name="label">
+                   <property name="text">
+                    <string>Jump To</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="comboBox_2">
+                   <item>
+                    <property name="text">
+                     <string>Text</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Data</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Heap</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Stack</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_6">
+                   <property name="text">
+                    <string>Up</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_7">
+                   <property name="text">
+                    <string>Down</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QTableWidget" name="tableWidget_3">
+                 <property name="alternatingRowColors">
+                  <bool>true</bool>
+                 </property>
+                 <attribute name="horizontalHeaderCascadingSectionResizes">
+                  <bool>true</bool>
+                 </attribute>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>100</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderStretchLastSection">
+                  <bool>true</bool>
+                 </attribute>
+                 <attribute name="verticalHeaderCascadingSectionResizes">
+                  <bool>true</bool>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string>Address</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>+0</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>+1</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>+2</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>+3</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </widget>
            </item>
