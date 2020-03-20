@@ -4,9 +4,9 @@ from Phase1.memory import *
 from Phase1.data_lookup import Data_table
 import os
 
-def main1():
+def main1(fileName):
     d = os.getcwd() + "/Files/"
-    inputFile = open(d+'assemblyCodeFinal.asm', 'r')
+    inputFile = open(d+fileName, 'r')
     allInstructions = inputFile.readlines()
     lineNo = 0
     address = hex(int(MemoryTable.baseAddressText, 16))
@@ -85,7 +85,7 @@ def main1():
                 i += 1
     inputFile.close()
     MemoryTable.StoreInFile()
-    return
+    return Data_table
 
 
 def DecodeInstruction(instructionParts, instructionTemplate):
