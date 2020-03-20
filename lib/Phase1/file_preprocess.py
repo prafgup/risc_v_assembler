@@ -3,6 +3,9 @@ import os
 class initParser:
 	def __init__(self,file_name):
 		self.file_name = file_name
+		self.registerdict = {"zero":"x0","ra":"x1","sp":"x2","gp":"x3","tp":"x4","t0":"x5","t1":"x6","t2":"x7"
+,"s0":"x8","s1":"x9","a0":"x10","a1":"x11","a2":"x12","a3":"x13","a4":"x14","a5":"x15","a6":"x16","a7":"x17","s2":"x18","s3":"x19","s4":"x20"
+,"s5":"x21","s6":"x22","s7":"x23","s8":"x24","s9":"x25","s10":"x26","s11":"x27","t3":"x28","t4":"x29","t5":"x30","t6":"x31"}
 
 	def remove_comments(self,line, sep):
 		for s in sep:
@@ -15,7 +18,7 @@ class initParser:
 	def preprocess_file(self):
 		final = []
 		d = os.getcwd() + "/Files/"
-		f = open(d+self.file_name, "r")
+		f = open(d+self.file_name, "r+")
 		f1 = f.readlines()
 		print(f1)
 		for st in f1:
@@ -41,17 +44,31 @@ class initParser:
 
 	def generate_labels_and_list(self, name):
 		d = os.getcwd() + "/Files/"
-		f = open(d+name, "r")
+		f = open(d+name, "r+")
 		lis = f.readlines()
 		dic = {}
 		label_count = 0
 		new_lis = []
 		for elem in lis:
 			if ":" in elem:
-				dic[elem.split(":")[0].strip()] = lis.index(elem) - label_count
+				spl = elem.split(":")
+				cnt=0
+				print("insidelol" + elem )
+				print(spl)
+
+				while cnt<len(spl)-1:
+					dic[spl[cnt].strip()] = lis.index(elem) - label_count
+					cnt+=1
+				if spl[-1]!="\n":
+					new_lis.append(re.sub("\s+|,", " ", spl[-1]).strip())
 				label_count+=1
 			else:
-				new_lis.append(re.sub("\s+|,", " ", elem).strip())
+				appele = re.sub("\s+|,", " ", elem).strip()
+				elemli  = appele.split(" ")
+				for id in range(len(elemli)):
+					if(elemli[id] in self.registerdict.keys()):
+						elemli[id] = self.registerdict[elemli[id]]
+				new_lis.append(" ".join(elemli))
 
 		for key in dic.keys():
 			for id in range(len(new_lis)):

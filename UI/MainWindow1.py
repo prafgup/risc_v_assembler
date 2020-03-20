@@ -477,9 +477,11 @@ class Ui_MainWindow(object):
 	def showProcessedCode(self):
 		ori = open("../lib/Files/assemblyCodeFinal.asm")
 		mac = open("../lib/Files/machine_code.mc")
+		bas = open("../lib/Files/assemblyCodeFinal_BasicVersion.asm")
 		
 		ori = ori.readlines()
 		mac = mac.readlines()
+		bas = bas.readlines()
 		self.codeTable.setRowCount(len(ori)+1)
 		
 		for ind in range(len(ori)):
@@ -497,7 +499,7 @@ class Ui_MainWindow(object):
 			item = self.codeTable.item(ind, 1)
 			item.setText(self.translate("MainWindow", ori[ind]))
 			item = self.codeTable.item(ind, 2)
-			item.setText(self.translate("MainWindow", ori[ind]))
+			item.setText(self.translate("MainWindow", bas[ind]))
 
 
 		
