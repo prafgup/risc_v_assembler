@@ -8,6 +8,7 @@ from Phase1.separate import *
 from Phase1.mc_gen import *
 from Phase1.memory import *
 from Phase1.mergeDataText import *
+from Phase1.breakToBasic import *
 # Removing Comments and Cleaning the Assembly Code File
 preProcessObj = initParser('assemblyCode.asm') 
 li = preProcessObj.preprocess_file()
@@ -25,7 +26,9 @@ preProcessObj.write_to_file('assemblyCodeFinal.asm', no_label_list)
 # Converting into assmeblyCodeFinal.asm and assemblyCodeData.asm into machine_code.mc and
 # data_memory_table.txt
 # Calling mc_gen.py file
-main1()
+dataDictionary = main1('emptyFile.asm')
+breakToBasicCode(dataDictionary)
+main1('assemblyCodeFinal_BasicVersion.asm')
 
 # Merging The Two File two get the final output of the Phase 1
 merge()
