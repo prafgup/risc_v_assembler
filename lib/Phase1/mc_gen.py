@@ -116,7 +116,7 @@ def DecodeInstruction(instructionParts, instructionTemplate):
             instructionParts[1]), int(instructionParts[2]))
     elif (instructionTemplate[2] == 'U'):
         UObj = U()
-        instructionParts[2] = instructionParts[2][1:]
+        instructionParts[1] = instructionParts[1][1:]
         machineCode = UObj.machineCode(instructionParts[0], int(
             instructionParts[1]), int(instructionParts[2]))
     elif (instructionTemplate[2] == 'SB'):
