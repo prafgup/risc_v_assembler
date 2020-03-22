@@ -53,14 +53,12 @@ class initParser:
 			if ":" in elem:
 				spl = elem.split(":")
 				cnt=0
-				print("insidelol" + elem )
-				print(spl)
-
 				while cnt<len(spl)-1:
 					dic[spl[cnt].strip()] = lis.index(elem) - label_count
 					cnt+=1
 				if spl[-1]!="\n":
 					new_lis.append(re.sub("\s+|,", " ", spl[-1]).strip())
+					label_count-=1
 				label_count+=1
 			else:
 				appele = re.sub("\s+|,", " ", elem).strip()
@@ -69,11 +67,18 @@ class initParser:
 					if(elemli[id] in self.registerdict.keys()):
 						elemli[id] = self.registerdict[elemli[id]]
 				new_lis.append(" ".join(elemli))
-
+		print(dic)
 		for key in dic.keys():
+			ln =0
 			for id in range(len(new_lis)):
+				ln+=1
+				if ":" in new_lis[id]:
+					spl = new_lis[id].split(":")
+					if spl[-1]=="\n":
+						ln-=1
 				if key in new_lis[id]:
-					new_lis[id] = new_lis[id].replace(key,str(dic[key]))
+					new_lis[id] = new_lis[id].replace(key,str(-4*(ln-1 - int(str(dic[key])))))
+
 		return dic,new_lis
 
 # gg = initParser("test1.txt")
