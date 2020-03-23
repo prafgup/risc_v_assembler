@@ -22,7 +22,7 @@ for line in F1:
     llist[1]=llist[1].strip()
     # if llist[1][lenk-1]=="\n":
     #     llist[1]=llist[1][:lenk-1]
-    MemoryTable.WriteToMemory(llist[0],llist[1],"b")
+    MemoryTable.WriteToMemory(llist[0],int(llist[1]),"b")
 
 # Initialising RegisterTable
 RegisterTable.Initialize()
@@ -42,7 +42,6 @@ File1.convertInstructionToList()
 
 Instr = File1.fetchInstruction()
 while Instr != "-1":
-    File1.updatePC()
     decoded_instr = Decode(Instr)
     midway = decoded_instr.get_decoded()
     
@@ -61,6 +60,8 @@ while Instr != "-1":
         midway[3] = RegisterTable.registers[midway[3]].value
         midway[4] = RegisterTable.registers[midway[4]].value
 
+    if (midway[1] == "auipc"):
+        midway[3] = int(File1.currentPCD)
 
     '''
     midway[2] = RegisterTable.registers[midway[2]].value
@@ -78,7 +79,7 @@ while Instr != "-1":
         else:
             #print("ALU gives"+str(opt_of_alu[0]))
             opt_of_alu[0]=hex(opt_of_alu[0])
-            RegisterTable.registers[opt_of_alu[2]].value=MemoryTable.ReadMemory(opt_of_alu[0],midway[1][1])
+            RegisterTable.registers[opt_of_alu[2]].value = MemoryTable.ReadMemory(opt_of_alu[0],midway[1][1])
     
     if midway[0]=="S":
         opt_of_alu[0]=hex(opt_of_alu[0])
@@ -93,16 +94,15 @@ while Instr != "-1":
 
     if midway[0]=="U":
         RegisterTable.registers[opt_of_alu[2]].value=opt_of_alu[0]
-        
     
     if midway[0]=="UJ":
         return_address=File1.currentPCH
         File1.updatePC(sequential=False,RA=(opt_of_alu[0])//4,offsetJ=0)
         RegisterTable.registers[opt_of_alu[2]].value=return_address    
     
+    File1.updatePC()
     Instr = File1.fetchInstruction()
 
-#print(MemoryTable.memory)
 RegisterTable.StoreInFile()
 MemoryTable.StoreInFile(False)
 
