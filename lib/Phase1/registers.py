@@ -16,7 +16,7 @@ class RegisterTable:
     def Initialize():
         for i in range (32):
             if (i == 2):
-                RegisterTable.registors[i] = Register('x2', 2147483632)
+                RegisterTable.registers[i] = Register('x2', 2147483632)
             else:
                 RegisterTable.registers[i] = Register('x'+str(i))
         return

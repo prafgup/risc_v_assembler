@@ -3,9 +3,19 @@ from InstructionDecode import *
 import LookupForDecode
 from alu import get_alu_opt
 from memory import MemoryTable
-from registers import Register,RegisterTable
+from registers import Register, RegisterTable
+from getMC import *
+import os
 
-F1=open("data_memory_table.txt","r")
+''' Change 1: Changing The Path of data_memory_table.txt
+              Now the file is directly accesible from Files Section
+'''
+os.chdir("..")
+d = os.getcwd()
+print("d -> ", d)
+F1=open(d+"/Files/"+"data_memory_table.txt","r")
+# From the data_memory_table.txt File Generated from Phase 1
+# The data is stored into the memory for Phase 2
 for line in F1:
     llist=line.split(" ")
     llist[0]=llist[0][2:]
@@ -15,18 +25,24 @@ for line in F1:
     #     llist[1]=llist[1][:lenk-1]
     MemoryTable.WriteToMemory(llist[0],llist[1],"b")
 
+# Initialising RegisterTable
 RegisterTable.Initialize()
 
-File1=Fetch("machinecode.mc")
+# Converting Hexadecimal Machine Code Obtained from Phase 1 and Storing it in 
+# binary format.
+os.chdir("Phase2")
+d = os.getcwd()
+getMachineCode()
+File1=Fetch(d + "/Files/" + "machineCode.mc")
 File1.convertInstructionToList()
-'''for i in range (0,32):
-    print(RegisterTable.registers[i].value)
-'''
+# for i in range (0,32):
+#     print(RegisterTable.registers[i].value)
+
 #updatePC
 #fetchInstruction
 
 Instr = File1.fetchInstruction()
-while Instr != -1:
+while Instr != "-1":
     File1.updatePC()
     decoded_instr = Decode(Instr)
     midway = decoded_instr.get_decoded()
@@ -79,14 +95,12 @@ while Instr != -1:
     if midway[0]=="UJ":
         return_address=File1.currentPCH
         File1.updatePC(sequential=False,RA=(opt_of_alu[0])//4,offsetJ=0)
-        RegisterTable.registers[opt_of_alu[2]].value=return_address
-        
-    
-    
-    
-    
+        RegisterTable.registers[opt_of_alu[2]].value=return_address    
     
     Instr = File1.fetchInstruction()
+
+RegisterTable.StoreInFile()
+MemoryTable.StoreInFile(False)
 
 '''
 for i in range (0,32):

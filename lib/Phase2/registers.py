@@ -1,4 +1,4 @@
-#Uses RegisterTable.Initialize to initialize all registers to 0 initially and RegisterTable.StoreToFile to store them in register_table.txt
+#Use RegisterTable.Initialize to initialize all registers to 0 initially and RegisterTable.StoreToFile to store them in register_table.txt
 
 class Register:
 
@@ -23,11 +23,11 @@ class RegisterTable:
 
     @staticmethod
     def StoreInFile ():
-        outputFile = open('register_table.txt', 'w')
+        outputFile = open('Files/register_table.txt', 'w')
         for i in range(32):
             outputFile.write('x'+str(i)+' '+str(RegisterTable.registers[i].value)+'\n')
         outputFile.close()
         return
 
-# RegisterTable.Initialize()
-# RegisterTable.StoreInFile()
+#RegisterTable.Initialize()
+#RegisterTable.StoreInFile()

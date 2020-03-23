@@ -14,7 +14,7 @@ class Fetch:
             ------------------------------------------------------------------------
             machineCodeFile: Name of File in Machine Code Stored in the folder Files
         """
-        self.fileName = "./Files/" + machineCodeFile
+        self.fileName =  machineCodeFile
         self.updatePCRegister()
         
     def convertInstructionToList(self):
@@ -46,9 +46,11 @@ class Fetch:
     def fetchInstruction(self):
         """Return Instruction According to the current PC
         """
-        if(self.lineNo>len(self.Instruction)-1):
-            raise Exception("Reached End Of File While Parsing the Machine Code")
+        # if(self.lineNo>len(self.Instruction)-1):
+        #     return -1
         instruction = self.Instruction[self.lineNo].rstrip()
+        if (instruction == "11111111111111111111111111111111"):
+            return "-1"
         self.updateIRRegister(instruction)
         return instruction
 

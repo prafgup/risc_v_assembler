@@ -501,7 +501,9 @@ class Ui_MainWindow(object):
 		bas = bas.readlines()
 		self.codeTable.setRowCount(len(ori)+1)
 		
-		for ind in range(len(ori)):
+		auipc_count = 0		
+
+		for ind in range(len(bas)):
 			# print(ind)
 			# item = self.codeTable.verticalHeaderItem(ind)
 			item = QtWidgets.QTableWidgetItem()
@@ -524,7 +526,9 @@ class Ui_MainWindow(object):
 			item = self.codeTable.item(ind, 2)
 			item.setText(self.translate("MainWindow", bas[ind].strip()))
 			item = self.codeTable.item(ind, 3)
-			item.setText(self.translate("MainWindow", ori[ind].strip()))
+			item.setText(self.translate("MainWindow", ori[ind-auipc_count].strip()))
+			if bas[ind].split()[0] == "auipc":
+				auipc_count +=1
 
 	def displayTypeChange(self,i):
 		self.doRegisterUpdate()
