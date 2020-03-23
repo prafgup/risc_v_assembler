@@ -43,11 +43,11 @@ class MemoryTable:
             MemoryTable.memory[hex(int(address, 16)+1)] = data2
             MemoryTable.memory[hex(int(address, 16)+2)] = data3
             MemoryTable.memory[hex(int(address, 16)+3)] = data4
-        for i in range(1, 11):
+        for i in range(1, 9+(int(address, 16))%4):
             add = hex(int(address, 16)-i)
             if (int(add, 16) >= int(MemoryTable.baseAddressData, 16) and not add in MemoryTable.memory):
                 MemoryTable.memory[add] = 0
-        for i in range(1, 11):
+        for i in range(1, 12-(int(address, 16))%4):
             add = hex(int(address, 16)+i)
             if int(add, 16) >= int(MemoryTable.baseAddressData, 16) and not add in MemoryTable.memory:
                 MemoryTable.memory[add] = 0

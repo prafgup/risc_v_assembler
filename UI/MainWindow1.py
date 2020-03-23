@@ -579,7 +579,6 @@ class Ui_MainWindow(object):
 
 	def doMemoryUpdate(self):
 		memList = self.selectMemory(self.memJumpDropDown.currentIndex()).readlines()
-		print(memList)
 		self.memoryTable.setRowCount((len(memList)+3)//4)
 		for ind in range(0,len(memList)//4):
 			print("inside"+str(ind))
