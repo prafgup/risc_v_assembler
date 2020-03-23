@@ -1,10 +1,10 @@
-from InstructionFetch import *
-from InstructionDecode import *
-import LookupForDecode
-from alu import get_alu_opt
-from memory import MemoryTable
-from registers import Register, RegisterTable
-from getMC import *
+from Phase2.InstructionFetch import *
+from Phase2.InstructionDecode import *
+import Phase2.LookupForDecode
+from Phase2.alu import get_alu_opt
+from Phase2.memory import MemoryTable
+from Phase2.registers import Register, RegisterTable
+from Phase2.getMC import *
 import os
 
 ''' Change 1: Changing The Path of data_memory_table.txt

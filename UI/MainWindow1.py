@@ -331,6 +331,7 @@ class Ui_MainWindow(object):
 		self.runButton.clicked.connect(self.runCode)
 		# self.regMemDisplayTypeDrop.currentIndexChanged.connect(self.displayTypeChange)
 		self.regMemDisplayTypeDrop.activated[str].connect(self.displayTypeChange)
+		self.memJumpDropDown.activated[str].connect(self.memoryTypeChange)
 
 		self.retranslateUi(MainWindow)
 		self.tabs.setCurrentIndex(0)
@@ -533,6 +534,38 @@ class Ui_MainWindow(object):
 	def displayTypeChange(self,i):
 		self.doRegisterUpdate()
 		self.doMemoryUpdate()
+	def memoryTypeChange(self,i):
+		self.doMemoryUpdate()
+	
+	def getVal(self,val):
+		print(val)
+		if(self.regMemDisplayTypeDrop.currentIndex()==0):
+			val=(val & 0xffffffff)
+			val=hex(val)
+		elif(self.regMemDisplayTypeDrop.currentIndex()==1):
+			pass
+		elif(self.regMemDisplayTypeDrop.currentIndex()==2):
+			val=(val & 0xffffffff)
+		elif(self.regMemDisplayTypeDrop.currentIndex()==3):
+			try:
+				val=chr(val)
+			except:
+				val=chr(1)
+		return val
+	
+	def selectMemory(self,index):
+		if(index==0):
+			dmt = open('../lib/Files/data_memory_table.txt','r+')
+			return dmt
+		if(index==1):
+			dmt = open('../lib/Files/data_memory_table.txt','r+')
+			return dmt
+		if(index==2):
+			dmt = open('../lib/Files/data_memory_table.txt','r+')
+			return dmt
+		if(index==3):
+			dmt = open('../lib/Files/data_memory_table.txt','r+')
+			return dmt
 
 	def doRegisterUpdate(self):
 		rt=open('../lib/Phase2/Files/register_table.txt','r')
@@ -540,23 +573,42 @@ class Ui_MainWindow(object):
 		for ind in range(len(rt)):
 			item=QtWidgets.QTableWidgetItem()
 			val=int(rt[ind].strip())
-			if(self.regMemDisplayTypeDrop.currentIndex()==0):
-				val=(val & 0xffffffff)
-				val=hex(val)
-			elif(self.regMemDisplayTypeDrop.currentIndex()==1):
-				pass
-			elif(self.regMemDisplayTypeDrop.currentIndex()==2):
-				val=(val & 0xffffffff)
-			elif(self.regMemDisplayTypeDrop.currentIndex()==3):
-				try:
-					val=chr(val)
-				except:
-					val=chr(1)
+			val = self.getVal(val)
 			item.setText(str(val))
 			self.registerTable.setItem(ind,0,item)
 
 	def doMemoryUpdate(self):
-		pass
+		memList = self.selectMemory(self.memJumpDropDown.currentIndex()).readlines()
+		self.memoryTable.setRowCount((len(memList)+3)//4)
+		for ind in range(0,len(memList)//4):
+			print("inside"+str(ind))
+			item = QtWidgets.QTableWidgetItem()
+			item.setTextAlignment(QtCore.Qt.AlignHCenter)
+			self.memoryTable.setItem(ind, 0, item)
+			item = QtWidgets.QTableWidgetItem()
+			item.setTextAlignment(QtCore.Qt.AlignHCenter)
+			self.memoryTable.setItem(ind, 1, item)
+			item = QtWidgets.QTableWidgetItem()
+			item.setTextAlignment(QtCore.Qt.AlignHCenter)
+			self.memoryTable.setItem(ind, 2, item)
+			item = QtWidgets.QTableWidgetItem()
+			item.setTextAlignment(QtCore.Qt.AlignHCenter)
+			self.memoryTable.setItem(ind, 3, item)
+			item = QtWidgets.QTableWidgetItem()
+			item.setTextAlignment(QtCore.Qt.AlignHCenter)
+			self.memoryTable.setItem(ind, 4, item)
+			item.setText("New Row")
+			item = self.memoryTable.item(ind, 0)
+			item.setText(memList[ind*4].strip().split()[0])
+			item = self.memoryTable.item(ind, 1)
+			item.setText(str(self.getVal(int(memList[ind*4].strip().split()[1]))))
+			item = self.memoryTable.item(ind, 2)
+			item.setText(str(self.getVal(int(memList[ind*4+1].strip().split()[1]))))
+			item = self.memoryTable.item(ind, 3)
+			item.setText(str(self.getVal(int(memList[ind*4+2].strip().split()[1]))))
+			item = self.memoryTable.item(ind, 4)
+			item.setText(str(self.getVal(int(memList[ind*4+3].strip().split()[1]))))
+		
 
 	def runCode(self):
 		mydir = os.getcwd()
