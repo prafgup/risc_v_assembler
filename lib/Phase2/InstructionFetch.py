@@ -14,7 +14,11 @@ class Fetch:
             ------------------------------------------------------------------------
             machineCodeFile: Name of File in Machine Code Stored in the folder Files
         """
+<<<<<<< HEAD
+        self.fileName = machineCodeFile
+=======
         self.fileName =  machineCodeFile
+>>>>>>> ffef8e12df42c58413e3d3144c2730b9901c6a74
         self.updatePCRegister()
         
     def convertInstructionToList(self):
@@ -23,6 +27,7 @@ class Fetch:
         """
         self.file = open(self.fileName, "r+")
         self.Instruction = self.file.readlines()
+        print(self.Instruction)
         return
 
     def updatePCRegister(self):

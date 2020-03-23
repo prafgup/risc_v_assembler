@@ -7,7 +7,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__),'..'))
 class Decode:
     def __init__(self,_machineCode):
         self.machineCode=_machineCode
-        self.instructionFormat=find_instruction_format()
+        self.instructionFormat=self.find_instruction_format()
 
     def find_instruction_format(self):
         opCode=self.machineCode[-7:]

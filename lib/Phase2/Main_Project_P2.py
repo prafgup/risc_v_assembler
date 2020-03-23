@@ -3,7 +3,7 @@ from InstructionDecode import *
 import LookupForDecode
 from alu import get_alu_opt
 from memory import MemoryTable
-from registers import Register,RegisterTable
+from registers import Register, RegisterTable
 from getMC import *
 import os
 
@@ -26,8 +26,10 @@ for line in F1:
     #     llist[1]=llist[1][:lenk-1]
     MemoryTable.WriteToMemory(llist[0],llist[1],"b")
 
-# Initialising RegisterTable Object
+# Initialising RegisterTable
 RegisterTable.Initialize()
+
+print(MemoryTable.memory)
 
 # Converting Hexadecimal Machine Code Obtained from Phase 1 and Storing it in 
 # binary format.
