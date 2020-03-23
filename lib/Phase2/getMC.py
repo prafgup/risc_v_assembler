@@ -22,7 +22,8 @@ def getMachineCode():
         instructionD = int(instructionH, 16)
         instructionB = bin(instructionD).replace("0b", "")
         instructionB = instructionB.zfill(32)
-        pointerCF.write(instructionB + "\n")
+        if (instructionB != "11111111111111111111111111111111"):
+            pointerCF.write(instructionB + "\n")
     pointerCF.close()
     pointerOF.close()
 

@@ -1,4 +1,4 @@
-#Uses RegisterTable.Initialize to initialize all registers to 0 initially and RegisterTable.StoreToFile to store them in register_table.txt
+#Use RegisterTable.Initialize to initialize all registers to 0 initially and RegisterTable.StoreToFile to store them in register_table.txt
 
 class Register:
 
@@ -29,5 +29,5 @@ class RegisterTable:
         outputFile.close()
         return
 
-# RegisterTable.Initialize()
-# RegisterTable.StoreInFile()
+#RegisterTable.Initialize()
+#RegisterTable.StoreInFile()

@@ -1,3 +1,4 @@
+import os
 class MemoryTable:
     memory = {}
 
@@ -8,18 +9,16 @@ class MemoryTable:
     @staticmethod
     def WriteToMemory(address, data, type):
         if (type == 'b'):
-            if (int(address, 16) < int(MemoryTable.baseAddressData, 16)):
-                return False
             MemoryTable.memory[address] = data
         elif (type == 'h'):
-            if (data >= 65536 or int(address, 16) < int(MemoryTable.baseAddressData, 16)):
+            if (data >= 65536):
                 return False
             data2 = data // 256
             data1 = data - data2*256
-            MemoryTable.memory[address] = data1   
+            MemoryTable.memory[address] = data1
             MemoryTable.memory[hex(int(address, 16)+1)]
-        elif (type == 'w'):           
-            if (data >= 4294967296 or int(address, 16) < int(MemoryTable.baseAddressData, 16)):
+        elif (type == 'w'):
+            if (data >= 4294967296):
                 return False
             data4 = data // 16777216
             data = data - data4*16777216
@@ -28,12 +27,10 @@ class MemoryTable:
             data2 = data // 256
             data1 = data - data2*256
             MemoryTable.memory[address] = data1
-            MemoryTable.memory[hex(int(address, 16)+1)] = data2 
+            MemoryTable.memory[hex(int(address, 16)+1)] = data2
             MemoryTable.memory[hex(int(address, 16)+2)] = data3
             MemoryTable.memory[hex(int(address, 16)+3)] = data4
         elif (type == 'd'):
-            if (int(address, 16) < int(MemoryTable.baseAddressData, 16)):
-                return False
             data4 = data // 16777216
             data = data - data4*16777216
             data3 = data // 65536
@@ -41,16 +38,16 @@ class MemoryTable:
             data2 = data // 256
             data1 = data - data2*256
             MemoryTable.memory[address] = data1
-            MemoryTable.memory[hex(int(address, 16)+1)] = data2 
+            MemoryTable.memory[hex(int(address, 16)+1)] = data2
             MemoryTable.memory[hex(int(address, 16)+2)] = data3
             MemoryTable.memory[hex(int(address, 16)+3)] = data4
         for i in range(1, 11):
             add = hex(int(address, 16)-i)
-            if not add in MemoryTable.memory:
+            if (int(add, 16) >= int(MemoryTable.baseAddressData, 16) and not add in MemoryTable.memory):
                 MemoryTable.memory[add] = 0
         for i in range(1, 11):
             add = hex(int(address, 16)+i)
-            if not add in MemoryTable.memory:
+            if int(add, 16) >= int(MemoryTable.baseAddressData, 16) and not add in MemoryTable.memory:
                 MemoryTable.memory[add] = 0
         return True
 
@@ -88,14 +85,21 @@ class MemoryTable:
 
     @staticmethod
     def StoreInFile():
-        outputFile1 = open('text_memory_table.txt', 'w')
-        outputFile2 = open('data_memory_table.txt', 'w')
-        outputFile3 = open('stack_memory_table.txt', 'w')
-        for i in MemoryTable.memory:
+        d = os.getcwd() + "/Files/"
+        outputFile1 = open(d+'machine_code.mc', 'w')
+        outputFile2 = open(d+'data_memory_table.txt', 'w')
+        outputFile3 = open(d+'stack_memory_table.txt', 'w')
+        addList = []
+        for key in MemoryTable.memory:
+            addList.append(int(key, 16))
+        addList.sort()
+        for j in range(0, len(addList)):
+            i = hex(addList[j])
             if (int(i, 16) < int(MemoryTable.baseAddressStack, 16) and int(i, 16) >= int(MemoryTable.baseAddressData, 16)):
                 outputFile2.write(i+' '+str(MemoryTable.memory[i])+'\n')
-            elif (int(i, 16) < int(MemoryTable.baseAddressData, 16) and int(i, 16) >= int(MemoryTable.baseAddressText, 16)):
-                outputFile1.write(i+' '+str(MemoryTable.memory[i])+'\n')
+            elif (int(i, 16) < int(MemoryTable.baseAddressData, 16) and int(i, 16) >= int(MemoryTable.baseAddressText, 16) and int(i, 16) % 4 == 0):
+                value = MemoryTable.ReadMemory(i, 'w')
+                outputFile1.write(i+' '+hex(value)+'\n')
             elif (int(i, 16) >= int(MemoryTable.baseAddressStack, 16)):
                 outputFile3.write(i+' '+str(MemoryTable.memory[i])+'\n')
         outputFile1.close()
@@ -103,6 +107,6 @@ class MemoryTable:
         outputFile3.close()
         return
 
-MemoryTable.WriteToMemory('0x10000000', 6754278, 'w')
-print(MemoryTable.ReadMemory('0x10000000', 'w'))
-MemoryTable.StoreInFile()
+# MemoryTable.WriteToMemory('0x10000000', 6754278, 'w')
+# print(MemoryTable.ReadMemory('0x10000000', 'w'))
+# MemoryTable.StoreInFile()
