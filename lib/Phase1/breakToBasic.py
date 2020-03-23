@@ -51,7 +51,7 @@ def breakToBasicCode(dataDictionary):
                         basicCode.append(
                             "auipc "+components[1]+" "+(str)(pcOffset)+"\n")
                         basicCode.append(
-                            "lb "+components[1] + " " + components[1] + " " + str(immediateValue) + "\n")
+                            components[0]+" "+components[1] + " " + components[1] + " " + str(immediateValue) + "\n")
                     except:
                         print("Error While Converting To Basic Code")
                     
