@@ -14,7 +14,6 @@ os.chdir("..")
 d = os.getcwd()
 print("d -> ", d)
 F1=open(d+"/Files/"+"data_memory_table.txt","r")
-
 # From the data_memory_table.txt File Generated from Phase 1
 # The data is stored into the memory for Phase 2
 for line in F1:
@@ -29,8 +28,6 @@ for line in F1:
 # Initialising RegisterTable
 RegisterTable.Initialize()
 
-print(MemoryTable.memory)
-
 # Converting Hexadecimal Machine Code Obtained from Phase 1 and Storing it in 
 # binary format.
 os.chdir("Phase2")
@@ -38,17 +35,18 @@ d = os.getcwd()
 getMachineCode()
 File1=Fetch(d + "/Files/" + "machineCode.mc")
 File1.convertInstructionToList()
-'''for i in range (0,32):
-    print(RegisterTable.registers[i].value)
-'''
+# for i in range (0,32):
+#     print(RegisterTable.registers[i].value)
+
 #updatePC
 #fetchInstruction
 
 Instr = File1.fetchInstruction()
-while Instr != -1:
+while Instr != "-1":
     File1.updatePC()
     decoded_instr = Decode(Instr)
     midway = decoded_instr.get_decoded()
+    print(midway)
     
     if midway[0]=="R":
         midway[3] = RegisterTable.registers[midway[3]].value
@@ -98,14 +96,11 @@ while Instr != -1:
     if midway[0]=="UJ":
         return_address=File1.currentPCH
         File1.updatePC(sequential=False,RA=(opt_of_alu[0])//4,offsetJ=0)
-        RegisterTable.registers[opt_of_alu[2]].value=return_address
-        
-    
-    
-    
-    
+        RegisterTable.registers[opt_of_alu[2]].value=return_address    
     
     Instr = File1.fetchInstruction()
+
+RegisterTable.StoreInFile()
 
 '''
 for i in range (0,32):
