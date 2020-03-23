@@ -14,11 +14,7 @@ class Fetch:
             ------------------------------------------------------------------------
             machineCodeFile: Name of File in Machine Code Stored in the folder Files
         """
-<<<<<<< HEAD
-        self.fileName = machineCodeFile
-=======
         self.fileName =  machineCodeFile
->>>>>>> ffef8e12df42c58413e3d3144c2730b9901c6a74
         self.updatePCRegister()
         
     def convertInstructionToList(self):
@@ -27,7 +23,6 @@ class Fetch:
         """
         self.file = open(self.fileName, "r+")
         self.Instruction = self.file.readlines()
-        print(self.Instruction)
         return
 
     def updatePCRegister(self):
@@ -51,9 +46,11 @@ class Fetch:
     def fetchInstruction(self):
         """Return Instruction According to the current PC
         """
-        if(self.lineNo>len(self.Instruction)-1):
-            return -1
+        # if(self.lineNo>len(self.Instruction)-1):
+        #     return -1
         instruction = self.Instruction[self.lineNo].rstrip()
+        if (instruction == "11111111111111111111111111111111"):
+            return "-1"
         self.updateIRRegister(instruction)
         return instruction
 
