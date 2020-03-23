@@ -48,6 +48,7 @@ def breakToBasicCode(dataDictionary):
                         # numberToBeAddedToPC = pcOffset >> 12
                         # immediateValue = dataAddressDecimal - \
                             # (numberToBeAddedToPC << 12)
+                        programCounterValue = programCounterValue + 4
                         basicCode.append(
                             "auipc "+components[1]+" "+(str)(pcOffset)+"\n")
                         basicCode.append(
