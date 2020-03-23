@@ -47,7 +47,7 @@ class Fetch:
         """Return Instruction According to the current PC
         """
         if(self.lineNo>len(self.Instruction)-1):
-            raise Exception("Reached End Of File While Parsing the Machine Code")
+            return -1
         instruction = self.Instruction[self.lineNo].rstrip()
         self.updateIRRegister(instruction)
         return instruction
