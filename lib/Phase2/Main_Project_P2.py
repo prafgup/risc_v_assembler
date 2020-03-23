@@ -18,12 +18,12 @@ F1=open(d+"/Files/"+"data_memory_table.txt","r")
 # The data is stored into the memory for Phase 2
 for line in F1:
     llist=line.split(" ")
-    llist[0]=llist[0][2:]
+    llist[0]=llist[0]
     # lenk=len(llist[1])
     llist[1]=llist[1].strip()
     # if llist[1][lenk-1]=="\n":
     #     llist[1]=llist[1][:lenk-1]
-    MemoryTable.WriteToMemory(llist[0],llist[1],"b")
+    MemoryTable.WriteToMemory(llist[0],int(llist[1]),"b")
 
 # Initialising RegisterTable
 RegisterTable.Initialize()
@@ -43,16 +43,18 @@ File1.convertInstructionToList()
 
 Instr = File1.fetchInstruction()
 while Instr != "-1":
-    File1.updatePC()
+    updated = False
     decoded_instr = Decode(Instr)
     midway = decoded_instr.get_decoded()
-    
+    print("Printing Here = ", midway)
+
     if midway[0]=="R":
         midway[3] = RegisterTable.registers[midway[3]].value
         midway[4] = RegisterTable.registers[midway[4]].value
 
     if midway[0]=="I":
         midway[3] = RegisterTable.registers[midway[3]].value
+        print("Midway -> ", midway)
 
     if midway[0]=="S":
         midway[3] = RegisterTable.registers[midway[3]].value
@@ -62,6 +64,9 @@ while Instr != "-1":
         midway[3] = RegisterTable.registers[midway[3]].value
         midway[4] = RegisterTable.registers[midway[4]].value
 
+    if midway[1]=='auipc':
+        midway[3] = int(File1.currentPCD)
+        print("Updated midway", midway)
 
     '''
     midway[2] = RegisterTable.registers[midway[2]].value
@@ -69,6 +74,7 @@ while Instr != "-1":
     midway[4] = RegisterTable.registers[midway[4]].value
     '''
     opt_of_alu = get_alu_opt(midway)
+    print("Output of ALU -> ", opt_of_alu)
     
     if midway[0]=="R":
         RegisterTable.registers[opt_of_alu[2]].value=opt_of_alu[0]
@@ -79,26 +85,40 @@ while Instr != "-1":
         else:
             #print("ALU gives"+str(opt_of_alu[0]))
             opt_of_alu[0]=hex(opt_of_alu[0])
+            print("Address -> ", opt_of_alu[0])
             RegisterTable.registers[opt_of_alu[2]].value=MemoryTable.ReadMemory(opt_of_alu[0],midway[1][1])
     
     if midway[0]=="S":
         opt_of_alu[0]=hex(opt_of_alu[0])
+        print(midway)
+        print(opt_of_alu[0])
+        print(opt_of_alu[1])
+        print(midway[1][1])
         MemoryTable.WriteToMemory(opt_of_alu[0],opt_of_alu[1],midway[1][1])
     
     if midway[0]=="SB":
         File1.updatePC(sequential=False,RA=(opt_of_alu[0])//4,offsetJ=0)
+        updated = True
+
+    print("Midway = ", midway)  
+
 
     if midway[0]=="U":
+        print("Midway U -> ", midway)
+        print("opt_of_alu -> ", opt_of_alu)
         RegisterTable.registers[opt_of_alu[2]].value=opt_of_alu[0]
         
     
     if midway[0]=="UJ":
         return_address=File1.currentPCH
         File1.updatePC(sequential=False,RA=(opt_of_alu[0])//4,offsetJ=0)
+        updated = True
         RegisterTable.registers[opt_of_alu[2]].value=return_address    
-    
+    if(updated==False):
+        File1.updatePC()
     Instr = File1.fetchInstruction()
 
+#print(MemoryTable.memory)
 RegisterTable.StoreInFile()
 MemoryTable.StoreInFile(False)
 

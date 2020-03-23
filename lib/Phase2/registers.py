@@ -25,7 +25,7 @@ class RegisterTable:
     def StoreInFile ():
         outputFile = open('Files/register_table.txt', 'w')
         for i in range(32):
-            outputFile.write('x'+str(i)+' '+str(RegisterTable.registers[i].value)+'\n')
+            outputFile.write(str(RegisterTable.registers[i].value)+'\n')
         outputFile.close()
         return
 

@@ -1,1 +1,1 @@
-lol: .word 10
+rishabh: .word 56
