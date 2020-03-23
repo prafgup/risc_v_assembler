@@ -559,7 +559,11 @@ class Ui_MainWindow(object):
 		pass
 
 	def runCode(self):
-		exec(open("../lib/Phase2/Main_Project_P2.py").read())
+		mydir = os.getcwd()
+		mydir_tmp = "../lib/Phase2"
+		mydir_new = os.chdir(mydir_tmp)
+		exec(open("Main_Project_P2.py").read())
+		mydir = os.chdir(mydir)
 		self.doRegisterUpdate()
 		self.doMemoryUpdate()
 
