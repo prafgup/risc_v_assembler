@@ -2,15 +2,19 @@ from Phase1.lookup1 import *
 
 def numberToBinary(number, bits):
     binaryString = ""
-    while(number>0):
-        binaryString = binaryString + str(number%2)
-        number = number//2
-    binaryString = binaryString[::-1]
-    if(len(binaryString)<bits):
-        extraLength = bits - len(binaryString)
-        zeros = '0'*extraLength
-        binaryString = zeros + binaryString
-    return binaryString
+    if(number>=0):
+        while(number>0):
+            binaryString = binaryString + str(number%2)
+            number = number//2
+        binaryString = binaryString[::-1]
+        if(len(binaryString)<bits):
+            extraLength = bits - len(binaryString)
+            zeros = '0'*extraLength
+            binaryString = zeros + binaryString
+        return binaryString
+    else:
+        twosCompliment = (2**bits) + number
+        return numberToBinary(twosCompliment, bits)
 
 class R:
     def machineCode(self, instr, destReg, srcReg1, srcReg2):
