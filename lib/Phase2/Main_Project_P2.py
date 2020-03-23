@@ -46,7 +46,6 @@ while Instr != "-1":
     File1.updatePC()
     decoded_instr = Decode(Instr)
     midway = decoded_instr.get_decoded()
-    print(midway)
     
     if midway[0]=="R":
         midway[3] = RegisterTable.registers[midway[3]].value
@@ -101,6 +100,7 @@ while Instr != "-1":
     Instr = File1.fetchInstruction()
 
 RegisterTable.StoreInFile()
+MemoryTable.StoreInFile(False)
 
 '''
 for i in range (0,32):

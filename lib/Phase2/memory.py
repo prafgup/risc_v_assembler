@@ -84,9 +84,10 @@ class MemoryTable:
         return None
 
     @staticmethod
-    def StoreInFile():
+    def StoreInFile(toWriteMC = True):
         d = os.getcwd() + "/Files/"
-        outputFile1 = open(d+'machine_code.mc', 'w')
+        if (toWriteMC):
+            outputFile1 = open(d+'machine_code.mc', 'w')
         outputFile2 = open(d+'data_memory_table.txt', 'w')
         outputFile3 = open(d+'stack_memory_table.txt', 'w')
         addList = []
@@ -97,12 +98,13 @@ class MemoryTable:
             i = hex(addList[j])
             if (int(i, 16) < int(MemoryTable.baseAddressStack, 16) and int(i, 16) >= int(MemoryTable.baseAddressData, 16)):
                 outputFile2.write(i+' '+str(MemoryTable.memory[i])+'\n')
-            elif (int(i, 16) < int(MemoryTable.baseAddressData, 16) and int(i, 16) >= int(MemoryTable.baseAddressText, 16) and int(i, 16) % 4 == 0):
+            elif (toWriteMC and int(i, 16) < int(MemoryTable.baseAddressData, 16) and int(i, 16) >= int(MemoryTable.baseAddressText, 16) and int(i, 16) % 4 == 0):
                 value = MemoryTable.ReadMemory(i, 'w')
                 outputFile1.write(i+' '+hex(value)+'\n')
             elif (int(i, 16) >= int(MemoryTable.baseAddressStack, 16)):
                 outputFile3.write(i+' '+str(MemoryTable.memory[i])+'\n')
-        outputFile1.close()
+        if (toWriteMC):
+            outputFile1.close()
         outputFile2.close()
         outputFile3.close()
         return
