@@ -149,19 +149,19 @@ def I_format(B):
 def S_format(B):
 	
 	if B[0]=="sb":
-		Rval=[int(B[1]),int(B[2])+int(B[3]),-1]
+		Rval=[int(B[1])+int(B[3]), int(B[2]), -1]
 		return Rval
 	
 	if B[0]=="sw":
-		Rval=[int(B[1]),int(B[2])+int(B[3]),-1]
+		Rval=[int(B[2]),int(B[1])+int(B[3]),-1]
 		return Rval
 
 	if B[0]=="sd":
-		Rval=[int(B[1]),int(B[2])+int(B[3]),-1]
+		Rval=[int(B[2]),int(B[1])+int(B[3]),-1]
 		return Rval
 	
 	if B[0]=="sh":
-		Rval=[int(B[1]),int(B[2])+int(B[3]),-1]
+		Rval=[int(B[2]),int(B[1])+int(B[3]),-1]
 		return Rval
 
 def SB_format(B):

@@ -112,6 +112,7 @@ class Decode:
                         self.imm[i] = '1'
                 i=len(self.imm)-1
                 while(self.imm[i] == '1'):
+                    self.imm[i] = '0'
                     i-=1
                 if (i >= 0):
                     self.imm[i] = '1'

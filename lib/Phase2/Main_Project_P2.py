@@ -83,6 +83,10 @@ while Instr != "-1":
     
     if midway[0]=="S":
         opt_of_alu[0]=hex(opt_of_alu[0])
+        print(midway)
+        print(opt_of_alu[0])
+        print(opt_of_alu[1])
+        print(midway[1][1])
         MemoryTable.WriteToMemory(opt_of_alu[0],opt_of_alu[1],midway[1][1])
     
     if midway[0]=="SB":
@@ -99,6 +103,7 @@ while Instr != "-1":
     
     Instr = File1.fetchInstruction()
 
+#print(MemoryTable.memory)
 RegisterTable.StoreInFile()
 MemoryTable.StoreInFile(False)
 
