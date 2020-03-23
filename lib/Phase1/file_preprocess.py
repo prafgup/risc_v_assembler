@@ -61,7 +61,7 @@ class initParser:
 					elemli = re.sub("\s+|,", " ", spl[-1]).strip().split()
 					print(elemli)
 					label_count-=1
-					if elemli[0] in self.expandable:
+					if elemli[0] in self.expandable and len(elemli) ==3:
 						expand_count+=1
 					for id in range(len(elemli)):
 						if(elemli[id] in self.registerdict.keys()):
@@ -84,7 +84,7 @@ class initParser:
 			for id in range(len(new_lis)):
 				ln+=1
 				spl = new_lis[id].split(":")
-				if spl[-1].split()[0] in self.expandable:
+				if spl[-1].split()[0] in self.expandable and len(spl[-1].split()) ==3:
 					ln+=1
 				'''if " " in new_lis[id]:
 					components = new_lis[id].split(" ")
