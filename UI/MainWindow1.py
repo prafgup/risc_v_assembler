@@ -4,6 +4,7 @@ sys.path.insert(0,'..')
 sys.path.insert(0,'../lib')
 sys.path.insert(0,'../lib/Phase2')
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import pyqtSlot
 
 class Ui_MainWindow(object):
 	def setupUi(self, MainWindow):
@@ -328,6 +329,8 @@ class Ui_MainWindow(object):
 		self.uploadButton.clicked.connect(self.file_open)
 		self.tabs.currentChanged.connect(self.onTabChange)
 		self.runButton.clicked.connect(self.runCode)
+		# self.regMemDisplayTypeDrop.currentIndexChanged.connect(self.displayTypeChange)
+		self.regMemDisplayTypeDrop.activated[str].connect(self.displayTypeChange)
 
 		self.retranslateUi(MainWindow)
 		self.tabs.setCurrentIndex(0)
@@ -523,12 +526,29 @@ class Ui_MainWindow(object):
 			item = self.codeTable.item(ind, 3)
 			item.setText(self.translate("MainWindow", ori[ind].strip()))
 
+	def displayTypeChange(self,i):
+		self.doRegisterUpdate()
+		self.doMemoryUpdate()
+
 	def doRegisterUpdate(self):
 		rt=open('../lib/Phase2/Files/register_table.txt','r')
 		rt=rt.readlines()
 		for ind in range(len(rt)):
 			item=QtWidgets.QTableWidgetItem()
-			item.setText(rt[ind].strip())
+			val=int(rt[ind].strip())
+			if(self.regMemDisplayTypeDrop.currentIndex()==0):
+				val=(val & 0xffffffff)
+				val=hex(val)
+			elif(self.regMemDisplayTypeDrop.currentIndex()==1):
+				pass
+			elif(self.regMemDisplayTypeDrop.currentIndex()==2):
+				val=(val & 0xffffffff)
+			elif(self.regMemDisplayTypeDrop.currentIndex()==3):
+				try:
+					val=chr(val)
+				except:
+					val=chr(1)
+			item.setText(str(val))
 			self.registerTable.setItem(ind,0,item)
 
 	def doMemoryUpdate(self):
