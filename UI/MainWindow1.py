@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.insert(0,'..')
 sys.path.insert(0,'../lib')
-
+sys.path.insert(0,'../lib/Phase2')
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
@@ -477,6 +477,7 @@ class Ui_MainWindow(object):
 
 
 	def onTabChange(self,i):
+		self.doRegisterUpdate()
 		if(i == 1):
 			self.file_save()
 			mydir = os.getcwd()
@@ -522,7 +523,13 @@ class Ui_MainWindow(object):
 			item = self.codeTable.item(ind, 3)
 			item.setText(self.translate("MainWindow", ori[ind].strip()))
 
-		
+	def doRegisterUpdate(self):
+		rt=open('../lib/Phase2/Files/register_table.txt','r')
+		rt=rt.readlines()
+		for ind in range(len(rt)):
+			item=QtWidgets.QTableWidgetItem()
+			item.setText(rt[ind].strip())
+			self.registerTable.setItem(ind,0,item)
 
 
 from codeeditor import CodeEditor
