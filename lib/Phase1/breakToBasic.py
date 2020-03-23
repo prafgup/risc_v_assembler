@@ -33,12 +33,16 @@ def breakToBasicCode(dataDictionary):
                         dataAddressHexUpper = dataAddressHex[:7]
                         dataAddressHexLower = dataAddressHex[7:]
                         dataAddressHexLower = '0x' + dataAddressHexLower
+                        print("Upper Address Hex -> ", dataAddressHexUpper)
+                        print("dataAddressHexLower -> ", dataAddressHexLower)
                         currentPCH = '0x' + hex(programCounterValue)[2:].zfill(8)
+                        print("PC -> ", currentPCH)
                         pcHexUpper = currentPCH[:7]
                         pcHexLower = currentPCH[7:]
                         pcHexLower = '0x' + pcHexLower
                         pcOffset = int(dataAddressHexUpper, 16) - int(pcHexUpper, 16)
-                        immediateValue = int(dataAddressHexLower, 16)
+                        print("PC offset -> ", pcOffset)
+                        immediateValue = int(dataAddressHexLower, 16) - int(pcHexLower, 16)
                         # dataAddressDecimal = int(dataAddressHex, 16)
                         # pcOffset = dataAddressDecimal - programCounterValue
                         # numberToBeAddedToPC = pcOffset >> 12
