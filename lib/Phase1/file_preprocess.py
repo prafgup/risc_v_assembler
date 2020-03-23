@@ -95,7 +95,7 @@ class initParser:
 					if spl[-1]=="\n":
 
 						ln-=1
-				if key in new_lis[id]:
+				if key in new_lis[id].split():
 					new_lis[id] = new_lis[id].replace(key,str(-4*(ln-1 - int(str(dic[key])))))
 
 		return dic,new_lis
