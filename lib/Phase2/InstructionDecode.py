@@ -2,7 +2,7 @@ from LookupForDecode import *
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__),'..'))
-from lookup1 import InstructionTable
+
 
 class Decode:
     def __init__(self,_machineCode):

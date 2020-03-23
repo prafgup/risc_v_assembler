@@ -18,9 +18,10 @@ F1=open(d+"/../Files/"+"data_memory_table.txt","r")
 for line in F1:
     llist=line.split(" ")
     llist[0]=llist[0][2:]
-    lenk=len(llist[1])
-    if llist[1][lenk-1]=="\n":
-        llist[1]=llist[1][:lenk-1]
+    # lenk=len(llist[1])
+    llist[1]=llist[1].strip()
+    # if llist[1][lenk-1]=="\n":
+    #     llist[1]=llist[1][:lenk-1]
     MemoryTable.WriteToMemory(llist[0],llist[1],"b")
 
 # Initialising RegisterTable Object
@@ -100,12 +101,12 @@ while Instr != -1:
     
     Instr = File1.fetchInstruction()
 
-
+'''
 for i in range (0,32):
     print(RegisterTable.registers[i].value)
 
 print(MemoryTable.memory)
-
+'''
 
 '''
 Update Log:
