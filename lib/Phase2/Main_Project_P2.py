@@ -4,14 +4,16 @@ import LookupForDecode
 from alu import get_alu_opt
 from memory import MemoryTable
 from registers import Register,RegisterTable
-from getMc import *
+from getMC import *
 import os
 
 ''' Change 1: Changing The Path of data_memory_table.txt
               Now the file is directly accesible from Files Section
 '''
+os.chdir("..")
 d = os.getcwd()
-F1=open(d+"/../Files/"+"data_memory_table.txt","r")
+print("d -> ", d)
+F1=open(d+"/Files/"+"data_memory_table.txt","r")
 
 # From the data_memory_table.txt File Generated from Phase 1
 # The data is stored into the memory for Phase 2
@@ -29,6 +31,8 @@ RegisterTable.Initialize()
 
 # Converting Hexadecimal Machine Code Obtained from Phase 1 and Storing it in 
 # binary format.
+os.chdir("Phase2")
+d = os.getcwd()
 getMachineCode()
 File1=Fetch(d + "/Files/" + "machineCode.mc")
 File1.convertInstructionToList()
