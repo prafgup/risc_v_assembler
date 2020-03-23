@@ -1,3 +1,4 @@
+
 .data
 rishabh: .word 56
 .text
