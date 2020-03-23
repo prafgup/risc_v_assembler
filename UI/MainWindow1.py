@@ -327,7 +327,7 @@ class Ui_MainWindow(object):
 
 		self.uploadButton.clicked.connect(self.file_open)
 		self.tabs.currentChanged.connect(self.onTabChange)
-
+		self.runButton.clicked.connect(self.runCode)
 
 		self.retranslateUi(MainWindow)
 		self.tabs.setCurrentIndex(0)
@@ -531,6 +531,13 @@ class Ui_MainWindow(object):
 			item.setText(rt[ind].strip())
 			self.registerTable.setItem(ind,0,item)
 
+	def doMemoryUpdate(self):
+		pass
+
+	def runCode(self):
+		exec(open("../lib/Phase2/Main_Project_P2.py").read())
+		self.doRegisterUpdate()
+		self.doMemoryUpdate()
 
 from codeeditor import CodeEditor
 
