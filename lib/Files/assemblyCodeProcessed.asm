@@ -1,3 +1,5 @@
+.data
+lol: .word 10
 .text
 lui x5 65536
 addi x4 x0 4

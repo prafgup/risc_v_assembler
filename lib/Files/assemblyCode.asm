@@ -1,3 +1,6 @@
+.data
+lol: .word 10
+
 .text
 #beq x0 x0 label
 #beq x0 x0 label2
