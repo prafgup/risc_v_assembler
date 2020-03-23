@@ -18,10 +18,6 @@ F1=open(d+"/Files/"+"data_memory_table.txt","r")
 # The data is stored into the memory for Phase 2
 for line in F1:
     llist=line.split(" ")
-<<<<<<< HEAD
-    llist[0]=llist[0]
-=======
->>>>>>> 7fec26edb921f6da66ad58ca2f888d08d32f6dd9
     # lenk=len(llist[1])
     llist[1]=llist[1].strip()
     # if llist[1][lenk-1]=="\n":
