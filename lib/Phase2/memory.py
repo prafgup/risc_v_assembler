@@ -55,6 +55,8 @@ class MemoryTable:
 
     @staticmethod
     def ReadMemory(address, type):
+        print("Address = ", address)
+        print("Type = ", type)
         if (address[0] != '0' and address[1] != 'x'):
             return None
         if (type == 'b'):
@@ -71,9 +73,11 @@ class MemoryTable:
             if not (address in MemoryTable.memory and hex(int(address, 16)+1) in MemoryTable.memory and hex(int(address, 16)+2) in MemoryTable.memory and hex(int(address, 16)+3) in MemoryTable.memory):
                 return None
             value = MemoryTable.memory[address]
+            print("value => ", value)
             value += 256 * MemoryTable.memory[hex(int(address, 16)+1)]
             value += 65536 * MemoryTable.memory[hex(int(address, 16)+2)]
             value += 16777216 * MemoryTable.memory[hex(int(address, 16)+3)]
+            print("Value after Update -> ", value)
             return value
         elif (type == 'd'):
             if not (address in MemoryTable.memory and hex(int(address, 16)+1) in MemoryTable.memory and hex(int(address, 16)+2) in MemoryTable.memory and hex(int(address, 16)+3) in MemoryTable.memory):

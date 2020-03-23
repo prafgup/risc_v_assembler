@@ -8,6 +8,8 @@ class MemoryTable:
 
     @staticmethod
     def WriteToMemory(address, data, type):
+        if (address[0] != '0' and address[1] != 'x'):
+            return False
         if (type == 'b'):
             MemoryTable.memory[address] = data
         elif (type == 'h'):
@@ -53,6 +55,8 @@ class MemoryTable:
 
     @staticmethod
     def ReadMemory(address, type):
+        if (address[0] != '0' and address[1] != 'x'):
+            return None
         if (type == 'b'):
             if not (address in MemoryTable.memory):
                 return None
@@ -84,27 +88,25 @@ class MemoryTable:
         return None
 
     @staticmethod
-    def StoreInFile():
+    def StoreInFile(toWriteMC = True):
         d = os.getcwd() + "/Files/"
-        outputFile1 = open(d+'machine_code.mc', 'w')
+        if (toWriteMC):
+            outputFile1 = open(d+'machine_code.mc', 'w')
         outputFile2 = open(d+'data_memory_table.txt', 'w')
-        outputFile3 = open(d+'stack_memory_table.txt', 'w')
         addList = []
         for key in MemoryTable.memory:
             addList.append(int(key, 16))
         addList.sort()
         for j in range(0, len(addList)):
             i = hex(addList[j])
-            if (int(i, 16) < int(MemoryTable.baseAddressStack, 16) and int(i, 16) >= int(MemoryTable.baseAddressData, 16)):
+            if (int(i, 16) <= int(MemoryTable.baseAddressStack, 16) and int(i, 16) >= int(MemoryTable.baseAddressData, 16)):
                 outputFile2.write(i+' '+str(MemoryTable.memory[i])+'\n')
-            elif (int(i, 16) < int(MemoryTable.baseAddressData, 16) and int(i, 16) >= int(MemoryTable.baseAddressText, 16) and int(i, 16) % 4 == 0):
+            elif (toWriteMC and int(i, 16) < int(MemoryTable.baseAddressData, 16) and int(i, 16) >= int(MemoryTable.baseAddressText, 16) and int(i, 16) % 4 == 0):
                 value = MemoryTable.ReadMemory(i, 'w')
                 outputFile1.write(i+' '+hex(value)+'\n')
-            elif (int(i, 16) >= int(MemoryTable.baseAddressStack, 16)):
-                outputFile3.write(i+' '+str(MemoryTable.memory[i])+'\n')
-        outputFile1.close()
+        if (toWriteMC):
+            outputFile1.close()
         outputFile2.close()
-        outputFile3.close()
         return
 
 # MemoryTable.WriteToMemory('0x10000000', 6754278, 'w')
