@@ -1,9 +1,7 @@
-beq x0 x0 label
-beq x0 x0 label2
-beq x0 x0 label
-beq x0 x0 label
+addi x1 x1 1
+bge x0 x0 label
 label:
-addi x0 x0 1
+lw x1 lol
 label2:
 addi x0 x0 1
-end:
+bge x0 x0 label
