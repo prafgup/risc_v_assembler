@@ -36,9 +36,13 @@ def get_alu_opt(A):
 		return R
 
 	if A[0]=="U":
+<<<<<<< HEAD
 		B=[A[1],A[2],A[5],A[3]]
+=======
+		B=[A[1],A[2],A[5], A[3]]
+>>>>>>> d44ed26317596a4976db14ba9efe026235929903
 		R=U_format(B)
-		print(R)
+		print("R = ", R)
 		return R
 	
 	if A[0]=="UJ":
@@ -202,7 +206,12 @@ def U_format(B):
 		return Rval
 	
 	if B[0]=="auipc":
+<<<<<<< HEAD
 		Rval=[int(B[3])+int(B[2]),-1,int(B[1])]
+=======
+		print("B = ", B)
+		Rval = [int(B[3])+int(B[2]), -1, int(B[1])]
+>>>>>>> d44ed26317596a4976db14ba9efe026235929903
 		return Rval
 		
 def UJ_format(B):
