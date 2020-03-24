@@ -490,9 +490,6 @@ class Ui_MainWindow(object):
 
 
 	def onTabChange(self,i):
-		# from Phase2.registers import RegisterTable
-		# RegisterTable.Initialize(file_path="../lib/Phase2/")
-		self.doRegisterUpdate()
 		if(i == 0):
 			self.codeTable.setRowCount(0)
 			self.memoryTable.setRowCount(0)
