@@ -1,4 +1,5 @@
-<<<<<<< HEAD
-=======
 addi x5 x0 2
->>>>>>> 8c39554e898241cf5938b5afeac1869da4ad8c51
+addi x4 x0 5
+lui x3 65536
+sw x5 x3 0
+sw x4 x3 4
