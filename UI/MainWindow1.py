@@ -555,16 +555,16 @@ class Ui_MainWindow(object):
 	
 	def selectMemory(self,index):
 		if(index==0):
-			dmt = open('../lib/Files/data_memory_table.txt','r+')
+			dmt = open('../lib/Phase2/Files/data_memory_table.txt','r+')
 			return dmt
 		if(index==1):
-			dmt = open('../lib/Files/data_memory_table.txt','r+')
+			dmt = open('../lib/Phase2/Files/data_memory_table.txt','r+')
 			return dmt
 		if(index==2):
-			dmt = open('../lib/Files/data_memory_table.txt','r+')
+			dmt = open('../lib/Phase2/Files/data_memory_table.txt','r+')
 			return dmt
 		if(index==3):
-			dmt = open('../lib/Files/data_memory_table.txt','r+')
+			dmt = open('../lib/Phase2/Files/data_memory_table.txt', 'r+')
 			return dmt
 
 	def doRegisterUpdate(self):

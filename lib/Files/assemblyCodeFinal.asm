@@ -1,7 +1,6 @@
-lw x3 rishabh
-addi x1 x0 5
-sb x1 x2 -12
-lui x5 65536
-addi x4 x0 4
-add x7 x5 x4
-sw x4 x7 0
+addi x5 x0 0
+addi x3 x0 5
+addi x4 x0 6
+bge x3 x4 8
+addi x5 x0 1
+addi x5 x5 3

@@ -20,6 +20,7 @@ class MemoryTable:
             MemoryTable.memory[address] = data1
             MemoryTable.memory[hex(int(address, 16)+1)]
         elif (type == 'w'):
+            print("Data - >", data)
             if (data >= 4294967296):
                 return False
             data4 = data // 16777216

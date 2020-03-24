@@ -81,6 +81,7 @@ def R_format(B):
 		return Rval
 
 	if B[0]=="mul":
+		print("Mul B-> ", B)
 		Rval=[int(B[2])*int(B[3]),-1,int(B[1])]
 		return Rval
 
@@ -153,15 +154,15 @@ def S_format(B):
 		return Rval
 	
 	if B[0]=="sw":
-		Rval=[int(B[2]),int(B[1])+int(B[3]),-1]
+		Rval=[int(B[1])+int(B[3]),int(B[2]),-1]
 		return Rval
 
 	if B[0]=="sd":
-		Rval=[int(B[2]),int(B[1])+int(B[3]),-1]
+		Rval = [int(B[1])+int(B[3]), int(B[2]), -1]
 		return Rval
 	
 	if B[0]=="sh":
-		Rval=[int(B[2]),int(B[1])+int(B[3]),-1]
+		Rval = [int(B[1])+int(B[3]), int(B[2]), -1]
 		return Rval
 
 def SB_format(B):
@@ -170,28 +171,28 @@ def SB_format(B):
 		if (int(B[1])==int(B[2])):
 			Rval=[B[3],-1,-1]
 		else:
-			Rval=[4,-1,-1]
+			Rval=[-1,-1,-1]
 		return Rval
 	
 	if B[0]=="bne":
 		if (int(B[1])!=int(B[2])):
 			Rval=[B[3],-1,-1]
 		else:
-			Rval=[4,-1,-1]
+			Rval=[-1,-1,-1]
 		return Rval
 
 	if B[0]=="bge":
 		if (int(B[1])>=int(B[2])):
 			Rval=[B[3],-1,-1]
 		else:
-			Rval=[4,-1,-1]
+			Rval=[-1,-1,-1]
 		return Rval
 
 	if B[0]=="blt":
 		if (int(B[1])<int(B[2])):
 			Rval=[B[3],-1,-1]
 		else:
-			Rval=[4,-1,-1]
+			Rval=[-1,-1,-1]
 		return Rval
 	
 def U_format(B):
