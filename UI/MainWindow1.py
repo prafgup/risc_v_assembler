@@ -494,7 +494,7 @@ class Ui_MainWindow(object):
 			from Phase2.registers import RegisterTable
 			RegisterTable.Initialize(file_path="../lib/Phase2/")
 			self.doRegisterUpdate()
-				
+			
 			self.file_save()
 			mydir = os.getcwd()
 			mydir_tmp = "../lib/"
