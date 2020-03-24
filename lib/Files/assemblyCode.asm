@@ -1,1 +1,2 @@
-addi x1 x0 5
+.text
+addi x5 x0 2

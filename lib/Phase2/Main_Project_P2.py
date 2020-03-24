@@ -1,3 +1,6 @@
+import sys
+sys.path.append('..')
+
 from Phase2.InstructionFetch import *
 from Phase2.InstructionDecode import *
 import Phase2.LookupForDecode
@@ -42,6 +45,7 @@ File1.convertInstructionToList()
 
 Instr = File1.fetchInstruction()
 while Instr != "-1":
+    RegisterTable.registers[0].value = 0
     updated = False
     decoded_instr = Decode(Instr)
     midway = decoded_instr.get_decoded()
@@ -62,7 +66,7 @@ while Instr != "-1":
     if midway[0]=="SB":
         midway[3] = RegisterTable.registers[midway[3]].value
         midway[4] = RegisterTable.registers[midway[4]].value
-
+        midway[5] = midway[5]+File1.currentPCD
     if midway[1]=='auipc':
         midway[3] = int(File1.currentPCD)
         print("Updated midway", midway)
@@ -72,31 +76,53 @@ while Instr != "-1":
     midway[3] = RegisterTable.registers[midway[3]].value
     midway[4] = RegisterTable.registers[midway[4]].value
     '''
-    opt_of_alu = get_alu_opt(midway)
-    print("Output of ALU -> ", opt_of_alu)
     
+    if midway[1]=='jal':
+        RegisterTable.registers[midway[2]].value = (File1.currentPCD + 4)
+        File1.updatePC(sequential=False, RA=(File1.currentPCD+int(midway[5]))//4, offsetJ=-1)
+        print("CurrentPc -> ", File1.currentPCD)
+    RegisterTable.registers[0].value = 0
+
+    if midway[1]=="jalr":
+        RegisterTable.registers[midway[2]].value = (File1.currentPCD+4)
+        File1.updatePC(sequential=False, RA=(midway[3]+int(midway[5]))//4, offsetJ=-1)
+    RegisterTable.registers[0].value = 0
+
+    if midway[1]!='jal' and midway[1]!="jalr":
+        opt_of_alu = get_alu_opt(midway)   
+    RegisterTable.registers[0].value = 0
+
     if midway[0]=="R":
         RegisterTable.registers[opt_of_alu[2]].value=opt_of_alu[0]
+    RegisterTable.registers[0].value = 0
 
-    if midway[0]=="I":
+    if midway[0]=="I" and midway[1]!="jalr":
         if midway[1]=="addi" or midway[1]=="andi" or midway[1]=="ori":
             RegisterTable.registers[opt_of_alu[2]].value=opt_of_alu[0]
         else:
             #print("ALU gives"+str(opt_of_alu[0]))
             opt_of_alu[0]=hex(opt_of_alu[0])
+<<<<<<< HEAD
             RegisterTable.registers[opt_of_alu[2]].value = MemoryTable.ReadMemory(opt_of_alu[0],midway[1][1])
     
+=======
+            print("Address -> ", opt_of_alu[0])
+            RegisterTable.registers[opt_of_alu[2]].value=MemoryTable.ReadMemory(opt_of_alu[0],midway[1][1])
+    RegisterTable.registers[0].value = 0
+
+>>>>>>> 8c39554e898241cf5938b5afeac1869da4ad8c51
     if midway[0]=="S":
         opt_of_alu[0]=hex(opt_of_alu[0])
         print(midway)
-        print(opt_of_alu[0])
-        print(opt_of_alu[1])
+        print("opt_of_alu[0]->", opt_of_alu[0])
+        print("opt_of_alu[0]->", opt_of_alu[1])
         print(midway[1][1])
         MemoryTable.WriteToMemory(opt_of_alu[0],opt_of_alu[1],midway[1][1])
     
     if midway[0]=="SB":
-        File1.updatePC(sequential=False,RA=(opt_of_alu[0])//4,offsetJ=0)
-        updated = True
+        if(opt_of_alu[0]!=-1):
+            File1.updatePC(sequential=False,RA=(opt_of_alu[0])//4,offsetJ=0)
+            updated = True
 
     print("Midway = ", midway)  
 
@@ -106,13 +132,14 @@ while Instr != "-1":
         print("opt_of_alu -> ", opt_of_alu)
         RegisterTable.registers[opt_of_alu[2]].value=opt_of_alu[0]
     
-    if midway[0]=="UJ":
-        return_address=File1.currentPCH
-        File1.updatePC(sequential=False,RA=(opt_of_alu[0])//4,offsetJ=0)
-        updated = True
-        RegisterTable.registers[opt_of_alu[2]].value=return_address    
+    # if midway[0]=="UJ":
+    #     return_address=File1.currentPCH
+    #     File1.updatePC(sequential=False,RA=(opt_of_alu[0])//4,offsetJ=0)
+    #     updated = True
+    #     RegisterTable.registers[opt_of_alu[2]].value=return_address    
     if(updated==False):
         File1.updatePC()
+    RegisterTable.registers[0].value = 0
     Instr = File1.fetchInstruction()
 
 RegisterTable.StoreInFile()

@@ -35,6 +35,15 @@ class Ui_MainWindow(object):
 		self.codeEditor = CodeEditor(self.tab)
 		self.codeEditor.setObjectName("codeEditor")
 		self.verticalLayout.addWidget(self.codeEditor)
+
+		self.errorBox=QtWidgets.QPlainTextEdit(self.tab)
+		self.errorBox.setObjectName("errorBox")
+		self.errorBox.setMaximumHeight(150)
+		self.verticalLayout.addWidget(self.errorBox)
+		self.errorBox.setReadOnly(True)
+		self.errorBox.setPlainText("Errors will be displayed here")
+		
+
 		self.tabs.addTab(self.tab, "")
 		self.tab_2 = QtWidgets.QWidget()
 		self.tab_2.setObjectName("tab_2")
@@ -481,8 +490,15 @@ class Ui_MainWindow(object):
 
 
 	def onTabChange(self,i):
-		self.doRegisterUpdate()
+		if(i == 0):
+			self.codeTable.setRowCount(0)
+			self.memoryTable.setRowCount(0)
+			
 		if(i == 1):
+			from Phase2.registers import RegisterTable
+			RegisterTable.Initialize(file_path="../lib/Phase2/")
+			self.doRegisterUpdate()
+			
 			self.file_save()
 			mydir = os.getcwd()
 			mydir_tmp = "../lib/"
@@ -490,7 +506,9 @@ class Ui_MainWindow(object):
 			exec(open("controller.py").read())
 			mydir = os.chdir(mydir)
 			self.showProcessedCode()
-			
+			self.memJumpDropDown.setCurrentIndex(0)
+			self.doMemoryUpdate()
+		
 			
 	def showProcessedCode(self):
 		ori = open("../lib/Files/assemblyCodeFinal.asm")
@@ -555,16 +573,16 @@ class Ui_MainWindow(object):
 	
 	def selectMemory(self,index):
 		if(index==0):
-			dmt = open('../lib/Files/data_memory_table.txt','r+')
+			dmt = open('../lib/Files/memory_text.txt','r+')
 			return dmt
 		if(index==1):
-			dmt = open('../lib/Files/data_memory_table.txt','r+')
+			dmt = open('../lib/Phase2/Files/data_memory_table.txt','r+')
 			return dmt
 		if(index==2):
-			dmt = open('../lib/Files/data_memory_table.txt','r+')
+			dmt = open('../lib/Files/heap_memory_table.txt','r+')
 			return dmt
 		if(index==3):
-			dmt = open('../lib/Files/data_memory_table.txt','r+')
+			dmt = open('../lib/Phase2/Files/data_memory_table.txt', 'r+')
 			return dmt
 
 	def doRegisterUpdate(self):
@@ -579,7 +597,6 @@ class Ui_MainWindow(object):
 
 	def doMemoryUpdate(self):
 		memList = self.selectMemory(self.memJumpDropDown.currentIndex()).readlines()
-		print(memList)
 		self.memoryTable.setRowCount((len(memList)+3)//4)
 		for ind in range(0,len(memList)//4):
 			print("inside"+str(ind))
@@ -613,8 +630,8 @@ class Ui_MainWindow(object):
 
 	def runCode(self):
 		mydir = os.getcwd()
-		mydir_tmp = "../lib/Phase2"
-		mydir_new = os.chdir(mydir_tmp)
+		mydir_tmp = "../lib/Phase2/"
+		mydir_new = os.chdir(os.path.join(mydir,mydir_tmp))
 		exec(open("Main_Project_P2.py").read())
 		mydir = os.chdir(mydir)
 		self.doRegisterUpdate()
