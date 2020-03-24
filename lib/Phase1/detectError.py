@@ -29,12 +29,12 @@ def detectError():
                     rd = int(instructionPart[1][1:])
                     rs1 = int(instructionPart[2][1:])
                     rs2 = int(instructionPart[3][1:])
-                    if(rd < 0 or rd > 32 or rs1 < 0 or rs1 > 32 or rs2 < 0 or rs2 > 32):
+                    if(rd < 0 or rd >= 32 or rs1 < 0 or rs1 >= 32 or rs2 < 0 or rs2 >= 32):
                         errorMessage = "Register Number out of Range"
                     
         # If the instruction os of I format
         elif(instructionPart[0] in I_format):
-            print(instructionPart)
+            # print(instructionPart)
             if(len(instructionPart) != 4):
                 errorMessage = "Expected 3 Operands But Got " + \
                     str(len(instructionPart) - 1)
@@ -49,9 +49,12 @@ def detectError():
                         if(instructionPart[3].strip().isdigit()==False):
                             errorMessage="Required immediate value but not found"
                 # print("instruction part 2 ->",instructionPart[2])
-                rd = int(instructionPart[1][1:])
-                rs1 = int(instructionPart[2][1:])
-                if(rd < 0 or rd > 32 or rs1 < 0 or rs1 > 32):
+                try:
+                    rd = int(instructionPart[1][1:])
+                    rs1 = int(instructionPart[2][1:])
+                except:
+                    errorMessage="Invalid registers chosen"
+                if(rd < 0 or rd >= 32 or rs1 < 0 or rs1 >= 32):
                     errorMessage = "Register Limit Exceeded"
         
         # If the instruction is of S Format
@@ -62,11 +65,14 @@ def detectError():
             else:
                 if(instructionPart[1][0] != 'x' or instructionPart[2][0] != 'x'):
                     errorMessage = "S-Format Instruction Accepts 2 Registers"
-                elif(instructionPart[3].isdigit()):
+                elif(instructionPart[3].strip().isdigit()==False):
                     errorMessage = "Third Argument needs to be an immediate Value"
                 else:
-                    rd = int(instructionPart[1][1:])
-                    rs1 = int(instructionPart[2][1:])
+                    try:
+                        rd = int(instructionPart[1][1:])
+                        rs1 = int(instructionPart[2][1:])
+                    except:
+                        errorMessage="Invalid registers chosen"
                     if(rd < 0 or rd > 32 or rs1 < 0 or rs1 > 32):
                         errorMessage = "Register Limit Exceeded"
                     
@@ -81,9 +87,12 @@ def detectError():
                 elif(instructionPart[3].isdigit()):
                     errorMessage = "Label Not Identified"
                 else:
-                    rd = int(instructionPart[1][1:])
-                    rs1 = int(instructionPart[2][1:])
-                    if(rd < 0 or rd > 32 or rs1 < 0 or rs1 > 32):
+                    try:
+                        rd = int(instructionPart[1][1:])
+                        rs1 = int(instructionPart[2][1:])
+                    except:
+                        errorMessage="Invalid registers chosen"
+                    if(rd < 0 or rd >= 32 or rs1 < 0 or rs1 >= 32):
                         errorMessage = "Register Limit Exceeded"
         
         # If instruction is of U format
@@ -94,7 +103,7 @@ def detectError():
             elif(instructionPart[1][0]!='x'):
                 errorMessage = "U format accept One Register"
             elif(instructionPart[2].strip().isdigit()==False):
-                errorMessage = "Accepted Immediate Value but got Variable"
+                errorMessage = "Required immediate value but not found"
             
         # If instruction is of UJ format
         elif(instructionPart[0] in UJ_format):
@@ -103,8 +112,8 @@ def detectError():
                     str(len(instructionPart) - 1)
             elif(instructionPart[1][0] != 'x'):
                 errorMessage = "U format accept One Register"
-            elif(instructionPart[2].isdigit()):
-                errorMessage = "Accepted Immediate Value but got Variable"
+            elif(instructionPart[2].strip().isdigit()==False):
+                errorMessage = "Required immediate value but not found"
         else:
             errorMessage = "Unidentified Instruction"
         
