@@ -23,12 +23,21 @@ class MemoryTable:
             print("Data - >", data)
             if (data >= 4294967296):
                 return False
-            data4 = data // 16777216
-            data = data - data4*16777216
-            data3 = data // 65536
-            data = data - data3*65536
-            data2 = data // 256
-            data1 = data - data2*256
+            if(data >= 0):
+                data4 = data // 16777216
+                data = data - data4*16777216
+                data3 = data // 65536
+                data = data - data3*65536
+                data2 = data // 256
+                data1 = data - data2*256
+            else:
+                data4 = math.ceil(data/16777216)
+                data = data - data4*16777216
+                data3 = math.ceil(data/65536)
+                data = data - data3*65536
+                data2 = math.ceil(data/256)
+                data1 = data - data2*256
+            print("Writing To Memory")
             MemoryTable.memory[address] = data1
             MemoryTable.memory[hex(int(address, 16)+1)] = data2
             MemoryTable.memory[hex(int(address, 16)+2)] = data3
