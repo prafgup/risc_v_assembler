@@ -42,6 +42,7 @@ def main1(fileName):
     MemoryTable.WriteToMemory(address, 255, 'b')
     inputFile = open(d+'assemblyCodeData.asm', 'r')
     lines = inputFile.readlines()
+    print("Data Recieved -> ", lines)
     address = MemoryTable.baseAddressData
     for line in lines:
         i = 0

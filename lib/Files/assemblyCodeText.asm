@@ -44,10 +44,11 @@ add x8 x3 x8
 loop1:
 blt x5 x6 loop2
 blt x4 x7 loop3
-slli x13 x6 2
+addi x28 x0 2
+sll x13 x6 x28
 add x12 x11 x13
 lw x9 x12 0
-slli x13 x7 2
+sll x13 x7 x28
 add x12 x11 x13
 lw x10 x12 0
 blt x9 x10 c1
@@ -64,7 +65,8 @@ common1:
 jal x0 loop1
 loop2:
 blt x4 x7 loop2exit
-slli x13 x7 2
+addi x28 x0 2
+sll x13 x7 x28
 add x12 x11 x13
 lw x10 x12 0
 sw x10 x8 0
@@ -74,7 +76,8 @@ jal x0 loop2
 loop2exit:
 loop3:
 blt x5 x6 loop3exit
-slli x13 x6 2
+addi x28 x0 2
+sll x13 x6 x28
 add x12 x11 x13
 lw x9 x12 0
 sw x9 x8 0
@@ -88,7 +91,8 @@ addi x8 x8 -276
 add x8 x3 x8
 loop4:
 blt x4 x6 return1
-slli x13 x6 2
+addi x28 x0 2
+sll x13 x6 x28
 add x12 x11 x13
 lw x9 x8 0
 sw x9 x12 0
