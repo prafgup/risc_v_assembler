@@ -614,12 +614,8 @@ class Ui_MainWindow(object):
 
 	def runCode(self):
 		mydir = os.getcwd()
-		print(mydir)
 		mydir_tmp = "../lib/Phase2/"
-		print(mydir_tmp)
-		print(os.path.join(mydir,mydir_tmp))
 		mydir_new = os.chdir(os.path.join(mydir,mydir_tmp))
-		print(os.getcwd())
 		exec(open("Main_Project_P2.py").read())
 		mydir = os.chdir(mydir)
 		self.doRegisterUpdate()
