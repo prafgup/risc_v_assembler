@@ -47,6 +47,7 @@ shutil.rmtree('Snapshot/Files')
 os.mkdir('Snapshot/Files')
 Instr = File1.fetchInstruction()
 count=0
+pcList=[0]
 while Instr != "-1":
     count+=1
     RegisterTable.registers[0].value = 0
@@ -142,9 +143,19 @@ while Instr != "-1":
     Instr = File1.fetchInstruction()
     RegisterTable.StoreInFile("Snapshot/", "register_table_"+str(count)+'.txt')
     MemoryTable.StoreInFile(False, "data_memory_table"+str(count)+".txt", "Snapshot/")
+    pcList.append(File1.currentPCD)
 
 RegisterTable.StoreInFile()
 MemoryTable.StoreInFile(False)
+
+
+
+def savePCD(pcList):
+    f = open("Snapshot/Files/allPCD.txt","w+")
+    for el in pcList:
+        f.write(str(el)+"\n")
+savePCD(pcList)
+
 
 '''
 for i in range (0,32):

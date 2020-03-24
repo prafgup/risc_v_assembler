@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 addi x3 x0 0
 addi x4 x0 1
 addi x5 x0 8
@@ -20,3 +21,11 @@ lw x1 sp 0
 addi sp sp 4
 jalr x0 x1 0
 fallthru:
+=======
+a1: .word 8
+a2:.word 12
+a3:.word 7
+a4:.word 4
+len: .word 4
+b: .word -1
+>>>>>>> e24b92f2b54d769b3a61b7842158d5788d9c5e04
