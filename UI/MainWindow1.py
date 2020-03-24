@@ -35,6 +35,14 @@ class Ui_MainWindow(object):
 		self.codeEditor = CodeEditor(self.tab)
 		self.codeEditor.setObjectName("codeEditor")
 		self.verticalLayout.addWidget(self.codeEditor)
+
+		self.errorBox=QtWidgets.QPlainTextEdit(self.tab)
+		self.errorBox.setObjectName("errorBox")
+		self.errorBox.setMaximumHeight(150)
+		self.verticalLayout.addWidget(self.errorBox)
+		self.errorBox.setReadOnly(True)
+		self.errorBox.setPlainText("Errors will be displayed here")
+
 		self.tabs.addTab(self.tab, "")
 		self.tab_2 = QtWidgets.QWidget()
 		self.tab_2.setObjectName("tab_2")
@@ -481,6 +489,8 @@ class Ui_MainWindow(object):
 
 
 	def onTabChange(self,i):
+		# from Phase2.registers import RegisterTable
+		# RegisterTable.Initialize(file_path="../lib/Phase2/")
 		self.doRegisterUpdate()
 		if(i == 1):
 			self.file_save()
@@ -612,8 +622,8 @@ class Ui_MainWindow(object):
 
 	def runCode(self):
 		mydir = os.getcwd()
-		mydir_tmp = "../lib/Phase2"
-		mydir_new = os.chdir(mydir_tmp)
+		mydir_tmp = "../lib/Phase2/"
+		mydir_new = os.chdir(os.path.join(mydir,mydir_tmp))
 		exec(open("Main_Project_P2.py").read())
 		mydir = os.chdir(mydir)
 		self.doRegisterUpdate()
