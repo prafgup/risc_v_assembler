@@ -499,6 +499,9 @@ class Ui_MainWindow(object):
 			self.memoryTable.setRowCount(0)
 			# self.errorBox.clear()
 
+		from Phase2.registers import RegisterTable
+		RegisterTable.Initialize(file_path="../lib/Phase2/")
+		self.doRegisterUpdate()
 		if(i == 1):
 			self.file_save()
 			mydir = os.getcwd()
@@ -632,6 +635,7 @@ class Ui_MainWindow(object):
 		rt=[]
 		if self.currentPC == 0 or self.currentPC>self.maxPC:
 			rt = ["0"]*32
+			rt[2]="2147483632"
 		else:
 			rt=open('../lib/Phase2/Snapshot/Files/register_table_'+str(self.currentPC)+'.txt','r+')
 			rt=rt.readlines()
