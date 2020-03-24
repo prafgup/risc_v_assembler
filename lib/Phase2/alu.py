@@ -203,8 +203,7 @@ def U_format(B):
 		return Rval
 	
 	if B[0]=="auipc":
-		print("B = ", B)
-		Rval = [int(B[3])+int(B[2]), -1, int(B[1])]
+		Rval=[int(B[3])+int(B[2]),-1,int(B[1])]
 		return Rval
 		
 def UJ_format(B):
