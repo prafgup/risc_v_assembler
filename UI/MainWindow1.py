@@ -42,6 +42,7 @@ class Ui_MainWindow(object):
 		self.verticalLayout.addWidget(self.errorBox)
 		self.errorBox.setReadOnly(True)
 		self.errorBox.setPlainText("Errors will be displayed here")
+		
 
 		self.tabs.addTab(self.tab, "")
 		self.tab_2 = QtWidgets.QWidget()
@@ -489,10 +490,11 @@ class Ui_MainWindow(object):
 
 
 	def onTabChange(self,i):
-		# from Phase2.registers import RegisterTable
-		# RegisterTable.Initialize(file_path="../lib/Phase2/")
-		self.doRegisterUpdate()
 		if(i == 1):
+			from Phase2.registers import RegisterTable
+			RegisterTable.Initialize(file_path="../lib/Phase2/")
+			self.doRegisterUpdate()
+				
 			self.file_save()
 			mydir = os.getcwd()
 			mydir_tmp = "../lib/"
