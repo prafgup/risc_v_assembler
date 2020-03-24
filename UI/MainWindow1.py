@@ -37,11 +37,12 @@ class Ui_MainWindow(object):
 		self.verticalLayout.addWidget(self.codeEditor)
 
 		self.errorBox=QtWidgets.QPlainTextEdit(self.tab)
+		self.errorBox.setStyleSheet("color: rgb(255,0,0);")
 		self.errorBox.setObjectName("errorBox")
 		self.errorBox.setMaximumHeight(150)
 		self.verticalLayout.addWidget(self.errorBox)
 		self.errorBox.setReadOnly(True)
-		self.errorBox.setPlainText("Errors will be displayed here")
+		self.errorBox.setPlaceholderText("Errors will be displayed here")
 		
 
 		self.tabs.addTab(self.tab, "")
@@ -493,21 +494,39 @@ class Ui_MainWindow(object):
 		if(i == 0):
 			self.codeTable.setRowCount(0)
 			self.memoryTable.setRowCount(0)
-			
+			# self.errorBox.clear()
+
 		if(i == 1):
-			from Phase2.registers import RegisterTable
-			RegisterTable.Initialize(file_path="../lib/Phase2/")
-			self.doRegisterUpdate()
-			
 			self.file_save()
 			mydir = os.getcwd()
 			mydir_tmp = "../lib/"
 			mydir_new = os.chdir(mydir_tmp)
-			exec(open("controller.py").read())
+			exec(open("first_half_controller.py").read())
 			mydir = os.chdir(mydir)
+
+			from Phase1.detectError import detectError
+			error_list=detectError()
+			if(len(error_list)>0):
+				self.errorBox.setPlainText(error_list)
+				
+				self.tabs.setCurrentIndex(0)
+				return
+
+			self.errorBox.clear()
+
+			mydir = os.getcwd()
+			mydir_tmp = "../lib/"
+			mydir_new = os.chdir(mydir_tmp)
+			exec(open("second_half_controller.py").read())
+			mydir = os.chdir(mydir)
+
 			self.showProcessedCode()
 			self.memJumpDropDown.setCurrentIndex(0)
 			self.doMemoryUpdate()
+
+			from Phase2.registers import RegisterTable
+			RegisterTable.Initialize(file_path="../lib/Phase2/")
+			self.doRegisterUpdate()
 		
 			
 	def showProcessedCode(self):

@@ -1,1 +1,1 @@
-addi x5 x0 2
+addi x5 x0 8
