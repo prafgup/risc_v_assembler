@@ -490,6 +490,10 @@ class Ui_MainWindow(object):
 
 
 	def onTabChange(self,i):
+		if(i == 0):
+			self.codeTable.setRowCount(0)
+			self.memoryTable.setRowCount(0)
+			
 		if(i == 1):
 			from Phase2.registers import RegisterTable
 			RegisterTable.Initialize(file_path="../lib/Phase2/")
@@ -502,7 +506,9 @@ class Ui_MainWindow(object):
 			exec(open("controller.py").read())
 			mydir = os.chdir(mydir)
 			self.showProcessedCode()
-			
+			self.memJumpDropDown.setCurrentIndex(0)
+			self.doMemoryUpdate()
+		
 			
 	def showProcessedCode(self):
 		ori = open("../lib/Files/assemblyCodeFinal.asm")
@@ -567,13 +573,13 @@ class Ui_MainWindow(object):
 	
 	def selectMemory(self,index):
 		if(index==0):
-			dmt = open('../lib/Phase2/Files/data_memory_table.txt','r+')
+			dmt = open('../lib/Files/memory_text.txt','r+')
 			return dmt
 		if(index==1):
 			dmt = open('../lib/Phase2/Files/data_memory_table.txt','r+')
 			return dmt
 		if(index==2):
-			dmt = open('../lib/Phase2/Files/data_memory_table.txt','r+')
+			dmt = open('../lib/Files/heap_memory_table.txt','r+')
 			return dmt
 		if(index==3):
 			dmt = open('../lib/Phase2/Files/data_memory_table.txt', 'r+')
