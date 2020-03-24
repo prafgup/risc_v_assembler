@@ -35,6 +35,15 @@ class Ui_MainWindow(object):
 		self.codeEditor = CodeEditor(self.tab)
 		self.codeEditor.setObjectName("codeEditor")
 		self.verticalLayout.addWidget(self.codeEditor)
+
+		self.errorBox=QtWidgets.QPlainTextEdit(self.tab)
+		self.errorBox.setObjectName("errorBox")
+		self.errorBox.setMaximumHeight(150)
+		self.verticalLayout.addWidget(self.errorBox)
+		self.errorBox.setReadOnly(True)
+		self.errorBox.setPlainText("Errors will be displayed here")
+		
+
 		self.tabs.addTab(self.tab, "")
 		self.tab_2 = QtWidgets.QWidget()
 		self.tab_2.setObjectName("tab_2")
@@ -489,6 +498,10 @@ class Ui_MainWindow(object):
 			self.memoryTable.setRowCount(0)
 			
 		if(i == 1):
+			from Phase2.registers import RegisterTable
+			RegisterTable.Initialize(file_path="../lib/Phase2/")
+			self.doRegisterUpdate()
+				
 			self.file_save()
 			mydir = os.getcwd()
 			mydir_tmp = "../lib/"
@@ -620,12 +633,8 @@ class Ui_MainWindow(object):
 
 	def runCode(self):
 		mydir = os.getcwd()
-		print(mydir)
 		mydir_tmp = "../lib/Phase2/"
-		print(mydir_tmp)
-		print(os.path.join(mydir,mydir_tmp))
 		mydir_new = os.chdir(os.path.join(mydir,mydir_tmp))
-		print(os.getcwd())
 		exec(open("Main_Project_P2.py").read())
 		mydir = os.chdir(mydir)
 		self.doRegisterUpdate()
