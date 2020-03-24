@@ -71,7 +71,7 @@ class initParser:
 			else:
 				appele = re.sub("\s+|,", " ", elem).strip()
 				elemli  = appele.split(" ")
-				if elemli[0] in self.expandable:
+				if elemli[0] in self.expandable and len(elemli) ==3:
 					expand_count+=1
 				for id in range(len(elemli)):
 					if(elemli[id] in self.registerdict.keys()):
