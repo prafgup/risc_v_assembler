@@ -481,6 +481,8 @@ class Ui_MainWindow(object):
 
 
 	def onTabChange(self,i):
+		# from Phase2.registers import RegisterTable
+		# RegisterTable.Initialize(file_path="../lib/Phase2/")
 		self.doRegisterUpdate()
 		if(i == 1):
 			self.file_save()
@@ -612,8 +614,12 @@ class Ui_MainWindow(object):
 
 	def runCode(self):
 		mydir = os.getcwd()
-		mydir_tmp = "../lib/Phase2"
-		mydir_new = os.chdir(mydir_tmp)
+		print(mydir)
+		mydir_tmp = "../lib/Phase2/"
+		print(mydir_tmp)
+		print(os.path.join(mydir,mydir_tmp))
+		mydir_new = os.chdir(os.path.join(mydir,mydir_tmp))
+		print(os.getcwd())
 		exec(open("Main_Project_P2.py").read())
 		mydir = os.chdir(mydir)
 		self.doRegisterUpdate()
@@ -623,8 +629,6 @@ from codeeditor import CodeEditor
 
 if __name__ == "__main__":
 	import sys
-	from Phase2.registers import RegisterTable
-	RegisterTable.Initialize(file_path="../lib/Phase2/") 
 	app = QtWidgets.QApplication(sys.argv)
 	MainWindow = QtWidgets.QMainWindow()
 	ui = Ui_MainWindow()

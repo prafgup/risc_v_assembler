@@ -1,3 +1,6 @@
+import sys
+sys.path.append('..')
+
 from Phase2.InstructionFetch import *
 from Phase2.InstructionDecode import *
 import Phase2.LookupForDecode
