@@ -116,11 +116,11 @@ Shobhit Gupta
     |- Error Detection
 Praful Gupta
     |- UI 
-    |- preprocessing.py
+    |- file_preprocessing.py
     |- MainWindow1.py
+    |- mcTotextMemory.py
 Shubham Singh
     |- mc_gen.py
-    |- mcTotextMemory.py
     |- Memory.py
     |- register.py
     |- Phase 1 Output Generation
