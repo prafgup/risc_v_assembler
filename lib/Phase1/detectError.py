@@ -48,12 +48,12 @@ def detectError():
                     val=10000
                     if(instructionPart[3].strip()[0]=='-'):
                         if(instructionPart[3].strip()[1:].isdigit()==False):
-                            errorMessage="Third Argument needs to be an immediate Value"
+                            errorMessage="Required immediate value but not found"
                         else:
                             val=int(instructionPart[3].strip())
                     else:
                         if(instructionPart[3].strip().isdigit()==False):
-                            errorMessage="Third Argument needs to be an immediate Value"
+                            errorMessage="Required immediate value but not found"
                         else:
                             val=int(instructionPart[3].strip())
                     if(val!=10000  and (not (val>=-2048 and val<=2047))):
@@ -75,25 +75,16 @@ def detectError():
             else:
                 if(instructionPart[1][0] != 'x' or instructionPart[2][0] != 'x'):
                     errorMessage = "S-Format Instruction Accepts 2 Registers"
+                elif(instructionPart[3].strip().isdigit()==False):
+                    errorMessage = "Third Argument needs to be an immediate Value"
                 else:
-                    val=10000
-                    if(instructionPart[3].strip()[0]=='-'):
-                        if(instructionPart[3].strip()[1:].isdigit()==False):
-                            errorMessage="Third Argument needs to be an immediate Value"
-                        else:
-                            val=int(instructionPart[3].strip())
-                    else:
-                        if(instructionPart[3].strip().isdigit()==False):
-                            errorMessage="Third Argument needs to be an immediate Value"
-                        else:
-                            val=int(instructionPart[3].strip())
-                try:
-                    rd = int(instructionPart[1][1:])
-                    rs1 = int(instructionPart[2][1:])
-                except:
-                    errorMessage="Invalid registers chosen"
-                if(rd < 0 or rd > 32 or rs1 < 0 or rs1 > 32):
-                    errorMessage = "Register Limit Exceeded"
+                    try:
+                        rd = int(instructionPart[1][1:])
+                        rs1 = int(instructionPart[2][1:])
+                    except:
+                        errorMessage="Invalid registers chosen"
+                    if(rd < 0 or rd > 32 or rs1 < 0 or rs1 > 32):
+                        errorMessage = "Register Limit Exceeded"
                     
         # If the instruction is of SB format
         elif(instructionPart[0] in SB_format):
@@ -103,8 +94,8 @@ def detectError():
             else:
                 if(instructionPart[1][0] != 'x' or instructionPart[2][0] != 'x'):
                     errorMessage = "SB-Format Instruction Accepts 2 Registers"
-                # elif(instructionPart[3].isdigit()):
-                #     errorMessage = "Label Not Identified"
+                elif(instructionPart[3].isdigit()):
+                    errorMessage = "Label Not Identified"
                 else:
                     try:
                         rd = int(instructionPart[1][1:])
@@ -121,18 +112,8 @@ def detectError():
                     str(len(instructionPart) - 1)
             elif(instructionPart[1][0]!='x'):
                 errorMessage = "U format accept One Register"
-            else:
-                val=10000000
-                if(instructionPart[2].strip()[0]=='-'):
-                    if(instructionPart[2].strip()[1:].isdigit()==False):
-                        errorMessage="Required immediate value but not found"
-                    else:
-                        val=int(instructionPart[2].strip())
-                else:
-                    if(instructionPart[2].strip().isdigit()==False):
-                        errorMessage="Required immediate value but not found"
-                    else:
-                        val=int(instructionPart[2].strip())
+            elif(instructionPart[2].strip().isdigit()==False):
+                errorMessage = "Required immediate value but not found"
             
         # If instruction is of UJ format
         elif(instructionPart[0] in UJ_format):
@@ -141,19 +122,8 @@ def detectError():
                     str(len(instructionPart) - 1)
             elif(instructionPart[1][0] != 'x'):
                 errorMessage = "U format accept One Register"
-            else:
-                val=10000000
-                if(instructionPart[2].strip()[0]=='-'):
-                    if(instructionPart[2].strip()[1:].isdigit()==False):
-                        errorMessage="Required immediate value but not found"
-                    else:
-                        val=int(instructionPart[2].strip())
-                else:
-                    if(instructionPart[2].strip().isdigit()==False):
-                        errorMessage="Required immediate value but not found"
-                    else:
-                        val=int(instructionPart[2].strip())
-        
+            elif(instructionPart[2].strip().isdigit()==False):
+                errorMessage = "Required immediate value but not found"
         else:
             errorMessage = "Unidentified Instruction"
         
