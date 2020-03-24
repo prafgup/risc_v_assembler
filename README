@@ -122,6 +122,7 @@ Shobhit Gupta
     |- Some UI Functions
     |- MainWindow1.py
     |- InstructionDecode.py
+    |- LookupForDecode.py
     |- Error Detection
 Praful Gupta
     |- UI 
