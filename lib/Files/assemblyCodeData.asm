@@ -1,10 +1,6 @@
-var1: .word -5
-var11: .word 10
-var12: .word 20
-var13: .word 15
-var14: .word 5
-var2: .word 30
-var21: .word -10
-var22: .word 25
-var23: .word 7
-var24: .word 4
+a1: .word 8
+a2: .word 12
+a3: .word 7
+a4: .word 4
+len: .word 4
+b: .word -1

@@ -101,7 +101,7 @@ Special Cases of Assembly Code
 (2) Any directive should have atleast one space after the colon following the directive name
 (3) UI Shows only the active part of the memory.
 (4) Step Functionality will not work if there is any error in running the assembly code. 
-(5) Data Can't be given in a single line, for example, var: .word 5, 6, 7, 8.
+(5) Data Can't be given as an array, for example, var: .word 5, 6, 7, 8.
 (6) Immediate Value and Data given always has to be in Decimal and not in any other base.
 
 Team Members' Individual Contributions
