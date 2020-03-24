@@ -16,7 +16,7 @@ import os
 '''
 os.chdir("..")
 d = os.getcwd()
-#print("d -> ", d)
+print("d -> ", d)
 F1=open(d+"/Files/"+"data_memory_table.txt","r")
 # From the data_memory_table.txt File Generated from Phase 1
 # The data is stored into the memory for Phase 2
@@ -52,17 +52,9 @@ while Instr != "-1":
     count+=1
     RegisterTable.registers[0].value = 0
     updated = False
-
-    print("FETCH: Fetched instruction" +str(Instr) +"from address 0x" + str(File1.currentPCH))
-
     decoded_instr = Decode(Instr)
-
-    print("DECODE: Operation is " +str(midway[1])+ " first register(rs1) "+ str(midway[3]) + " Second register (rs2) " + str(midway[4]) +" Immediate value: " + str(midway[5]) +" destination register " +str(midway[2]))
-
     midway = decoded_instr.get_decoded()
-
-    #print("Printing Here = ", midway)
-
+    print("Printing Here = ", midway)
 
     if midway[0]=="R":
         midway[3] = RegisterTable.registers[midway[3]].value
@@ -70,13 +62,13 @@ while Instr != "-1":
 
     if midway[0]=="I":
         midway[3] = RegisterTable.registers[midway[3]].value
-        #print("Midway -> ", midway)
+        print("Midway -> ", midway)
 
     if midway[0]=="S":
-        #print("Midway before S update -> ", midway)
+        print("Midway before S update -> ", midway)
         midway[3] = RegisterTable.registers[midway[3]].value
         midway[4] = RegisterTable.registers[midway[4]].value
-        #print("Midway after S update -> ", midway)
+        print("Midway after S update -> ", midway)
 
     if midway[0]=="SB":
         midway[3] = RegisterTable.registers[midway[3]].value
@@ -84,7 +76,7 @@ while Instr != "-1":
         midway[5] = midway[5]+File1.currentPCD
     if midway[1]=='auipc':
         midway[3] = int(File1.currentPCD)
-        #print("Updated midway", midway)
+        print("Updated midway", midway)
 
     '''
     midway[2] = RegisterTable.registers[midway[2]].value
@@ -95,7 +87,7 @@ while Instr != "-1":
     if midway[1]=='jal':
         RegisterTable.registers[midway[2]].value = (File1.currentPCD + 4)
         File1.updatePC(sequential=False, RA=(File1.currentPCD+int(midway[5]))//4, offsetJ=-1)
-        #print("CurrentPc -> ", File1.currentPCD)
+        print("CurrentPc -> ", File1.currentPCD)
     RegisterTable.registers[0].value = 0
 
     if midway[1]=="jalr":
@@ -109,53 +101,40 @@ while Instr != "-1":
 
     if midway[0]=="R":
         RegisterTable.registers[opt_of_alu[2]].value=opt_of_alu[0]
-        print("No Memory Operation")
-        print("Write Back: " +str(opt_of_alu[0])+" written to x" + str(opt_of_alu[2]))
-
     RegisterTable.registers[0].value = 0
 
     if midway[0]=="I" and midway[1]!="jalr":
         if midway[1]=="addi" or midway[1]=="andi" or midway[1]=="ori":
             RegisterTable.registers[opt_of_alu[2]].value=opt_of_alu[0]
-            print("No Memory Operation")
-            print("Write Back: " +str(opt_of_alu[0])+" written to x" + str(opt_of_alu[2]))
-            
         else:
             #print("ALU gives"+str(opt_of_alu[0]))
             opt_of_alu[0]=hex(opt_of_alu[0])
-            #print("Address -> ", opt_of_alu[0])
+            print("Address -> ", opt_of_alu[0])
             RegisterTable.registers[opt_of_alu[2]].value=MemoryTable.ReadMemory(opt_of_alu[0],midway[1][1])
-            #print(MemoryTable.ReadMemory(opt_of_alu[0], midway[1][1]))
-            print("Data: "+str(MemoryTable.ReadMemory(opt_of_alu[0],midway[1][1]))+" read from Memory Address: "+str(opt_of_alu[0]))
-            print("Data Read from Memory written to Register x"+str(opt_of_alu[2]))
+            print(MemoryTable.ReadMemory(opt_of_alu[0], midway[1][1]))
     RegisterTable.registers[0].value = 0
 
     if midway[0]=="S":
         opt_of_alu[0]=hex(opt_of_alu[0])
-        #print(midway)
-        #print("opt_of_alu[0]->", opt_of_alu[0])
-        #print("opt_of_alu[0]->", opt_of_alu[1])
-        #print(midway[1][1])
+        print(midway)
+        print("opt_of_alu[0]->", opt_of_alu[0])
+        print("opt_of_alu[0]->", opt_of_alu[1])
+        print(midway[1][1])
         MemoryTable.WriteToMemory(opt_of_alu[0],opt_of_alu[1],midway[1][1])
-        print("Data: "+str(opt_of_alu[1])+" Written to Memory Address: "+str(opt_of_alu[0]))
-        print("No Register Writeback")
-
+    
     if midway[0]=="SB":
         if(opt_of_alu[0]!=-1):
             File1.updatePC(sequential=False,RA=(opt_of_alu[0])//4,offsetJ=0)
             updated = True
-            print("No Memory Access")
-            print("No Register Write Back")
 
-    #print("Midway = ", midway)  
+    print("Midway = ", midway)  
 
 
     if midway[0]=="U":
-        #print("Midway U -> ", midway)
-        #print("opt_of_alu -> ", opt_of_alu)
+        print("Midway U -> ", midway)
+        print("opt_of_alu -> ", opt_of_alu)
         RegisterTable.registers[opt_of_alu[2]].value=opt_of_alu[0]
-        print("No Memory Access")
-        print("Data "+str(opt_of_alu[0])+" Written to Register x"+str(opt_of_alu[2]))
+    
     # if midway[0]=="UJ":
     #     return_address=File1.currentPCH
     #     File1.updatePC(sequential=False,RA=(opt_of_alu[0])//4,offsetJ=0)
