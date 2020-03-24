@@ -16,7 +16,7 @@ def mcToMemory():
 		add+=1
 		memory.append("0x"+"0"*(8-len(str(add)))+str(add)+" "+str(int("0x"+mc[0:2],16)))
 		add+=1
-		f = open("Files/memory_text.txt","w+")
+	f = open("Files/memory_text.txt","w+")
 	for el in memory:
 		f.write(el+"\n")
 		

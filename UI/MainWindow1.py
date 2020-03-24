@@ -529,6 +529,7 @@ class Ui_MainWindow(object):
 			self.showProcessedCode()
 			self.memJumpDropDown.setCurrentIndex(0)
 			self.doMemoryUpdate()
+			self.tableReColor()
 
 			from Phase2.registers import RegisterTable
 			RegisterTable.Initialize(file_path="../lib/Phase2/")
@@ -544,7 +545,7 @@ class Ui_MainWindow(object):
 		mac = mac.readlines()
 		bas = bas.readlines()
 		self.codeTable.setRowCount(len(ori)+1)
-		self.maxPC = len(bas)
+		self.maxPC = 1
 		auipc_count = 0		
 
 		for ind in range(len(bas)):
@@ -588,11 +589,13 @@ class Ui_MainWindow(object):
 		if self.currentPC < self.maxPC:
 			self.currentPC +=1
 		self.displayTypeChange(0)
+		self.tableReColor()
 
 	def stepBack(self):
 		if self.currentPC > 0:
 			self.currentPC -=1
 		self.displayTypeChange(0)
+		self.tableReColor()
 
 
 	def getVal(self,val):
@@ -647,7 +650,13 @@ class Ui_MainWindow(object):
 			self.registerTable.setItem(ind,0,item)
 
 
+	def tableReColor(self):
+		
+		for j in range(self.codeTable.rowCount()-1):
+			self.codeTable.item(j, 0).setBackground(QtGui.QColor(255,255,255))
 
+		if self.currentPC !=0 and self.currentPC<=self.maxPC:
+			self.codeTable.item((int(self.PCList[self.currentPC-1])//4), 0).setBackground(QtGui.QColor(144, 238, 144))
 
 	def doMemoryUpdate(self):
 		memList = self.selectMemory(self.memJumpDropDown.currentIndex())
@@ -693,6 +702,8 @@ class Ui_MainWindow(object):
 		mydir_new = os.chdir(os.path.join(mydir,mydir_tmp))
 		exec(open("Main_Project_P2.py").read())
 		mydir = os.chdir(mydir)
+		self.PCList = open('../lib/Phase2/Snapshot/Files/allPCD.txt','r+').readlines()
+		self.maxPC = len(self.PCList)-1
 		self.doRegisterUpdate()
 		self.doMemoryUpdate()
 

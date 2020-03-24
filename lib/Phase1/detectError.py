@@ -34,6 +34,7 @@ def detectError():
                     
         # If the instruction os of I format
         elif(instructionPart[0] in I_format):
+            print(instructionPart)
             if(len(instructionPart) != 4):
                 errorMessage = "Expected 3 Operands But Got " + \
                     str(len(instructionPart) - 1)
@@ -47,11 +48,11 @@ def detectError():
                     else:
                         if(instructionPart[3].strip().isdigit()==False):
                             errorMessage="Required immediate value but not found"
-
-            rd = int(instructionPart[1][1:])
-            rs1 = int(instructionPart[2][1:])
-            if(rd < 0 or rd > 32 or rs1 < 0 or rs1 > 32):
-                errorMessage = "Register Limit Exceeded"
+                # print("instruction part 2 ->",instructionPart[2])
+                rd = int(instructionPart[1][1:])
+                rs1 = int(instructionPart[2][1:])
+                if(rd < 0 or rd > 32 or rs1 < 0 or rs1 > 32):
+                    errorMessage = "Register Limit Exceeded"
         
         # If the instruction is of S Format
         elif(instructionPart[0] in S_format):
@@ -92,7 +93,7 @@ def detectError():
                     str(len(instructionPart) - 1)
             elif(instructionPart[1][0]!='x'):
                 errorMessage = "U format accept One Register"
-            elif(instructionPart[2].isdigit()==False):
+            elif(instructionPart[2].strip().isdigit()==False):
                 errorMessage = "Accepted Immediate Value but got Variable"
             
         # If instruction is of UJ format
