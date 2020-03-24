@@ -623,6 +623,8 @@ from codeeditor import CodeEditor
 
 if __name__ == "__main__":
 	import sys
+	from Phase2.registers import RegisterTable
+	RegisterTable.Initialize(file_path="../lib/Phase2/") 
 	app = QtWidgets.QApplication(sys.argv)
 	MainWindow = QtWidgets.QMainWindow()
 	ui = Ui_MainWindow()

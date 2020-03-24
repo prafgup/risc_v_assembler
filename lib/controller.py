@@ -9,6 +9,9 @@ from Phase1.mc_gen import *
 from Phase1.memory import *
 from Phase1.mergeDataText import *
 from Phase1.breakToBasic import *
+from Phase2.registers import RegisterTable
+
+RegisterTable.Initialize()
 # Removing Comments and Cleaning the Assembly Code File
 preProcessObj = initParser('assemblyCode.asm') 
 li = preProcessObj.preprocess_file()
