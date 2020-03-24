@@ -24,6 +24,7 @@ def get_alu_opt(A):
 		return R
 	
 	if A[0]=="S":
+		print("Received A->", A)
 		B=[A[1],A[3],A[4],A[5]]
 		R=S_format(B)
 		print(R)
@@ -154,6 +155,7 @@ def S_format(B):
 		return Rval
 	
 	if B[0]=="sw":
+		print("B in sw-> ", B)
 		Rval=[int(B[1])+int(B[3]),int(B[2]),-1]
 		return Rval
 
