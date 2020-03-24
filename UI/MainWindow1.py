@@ -338,7 +338,9 @@ class Ui_MainWindow(object):
 
 		self.uploadButton.clicked.connect(self.file_open)
 		self.tabs.currentChanged.connect(self.onTabChange)
-		self.runButton.clicked.connect(self.runCode)
+		self.runButton.clicked.connect(self.runCodeClick)
+		self.stepButton.clicked.connect(self.stepForward)
+		self.prevButton.clicked.connect(self.stepBack)
 		# self.regMemDisplayTypeDrop.currentIndexChanged.connect(self.displayTypeChange)
 		self.regMemDisplayTypeDrop.activated[str].connect(self.displayTypeChange)
 		self.memJumpDropDown.activated[str].connect(self.memoryTypeChange)
@@ -491,6 +493,7 @@ class Ui_MainWindow(object):
 
 
 	def onTabChange(self,i):
+		self.currentPC = 0
 		if(i == 0):
 			self.codeTable.setRowCount(0)
 			self.memoryTable.setRowCount(0)
@@ -538,7 +541,7 @@ class Ui_MainWindow(object):
 		mac = mac.readlines()
 		bas = bas.readlines()
 		self.codeTable.setRowCount(len(ori)+1)
-		
+		self.maxPC = len(bas)
 		auipc_count = 0		
 
 		for ind in range(len(bas)):
@@ -574,6 +577,21 @@ class Ui_MainWindow(object):
 	def memoryTypeChange(self,i):
 		self.doMemoryUpdate()
 	
+
+
+	def stepForward(self):
+		if self.currentPC ==0:
+			self.runCode()
+		if self.currentPC < self.maxPC:
+			self.currentPC +=1
+		self.displayTypeChange(0)
+
+	def stepBack(self):
+		if self.currentPC > 0:
+			self.currentPC -=1
+		self.displayTypeChange(0)
+
+
 	def getVal(self,val):
 		print(val)
 		if(self.regMemDisplayTypeDrop.currentIndex()==0):
@@ -591,22 +609,32 @@ class Ui_MainWindow(object):
 		return val
 	
 	def selectMemory(self,index):
+	
+
 		if(index==0):
-			dmt = open('../lib/Files/memory_text.txt','r+')
+			dmt = open('../lib/Files/memory_text.txt','r+').readlines()
 			return dmt
+
+		if(self.currentPC == 0 or self.currentPC>self.maxPC):
+			return []
+
 		if(index==1):
-			dmt = open('../lib/Phase2/Files/data_memory_table.txt','r+')
+			dmt = open('../lib/Phase2/Snapshot/Files/data_memory_table'+str(self.currentPC)+'.txt','r+').readlines()
 			return dmt
 		if(index==2):
-			dmt = open('../lib/Files/heap_memory_table.txt','r+')
+			dmt = open('../lib/Files/heap_memory_table.txt','r+').readlines()
 			return dmt
 		if(index==3):
-			dmt = open('../lib/Phase2/Files/data_memory_table.txt', 'r+')
+			dmt = open('../lib/Phase2/Snapshot/Files/data_memory_table'+str(self.currentPC)+'.txt','r+').readlines()
 			return dmt
 
 	def doRegisterUpdate(self):
-		rt=open('../lib/Phase2/Files/register_table.txt','r')
-		rt=rt.readlines()
+		rt=[]
+		if self.currentPC == 0 or self.currentPC>self.maxPC:
+			rt = ["0"]*32
+		else:
+			rt=open('../lib/Phase2/Snapshot/Files/register_table_'+str(self.currentPC)+'.txt','r+')
+			rt=rt.readlines()
 		for ind in range(len(rt)):
 			item=QtWidgets.QTableWidgetItem()
 			val=int(rt[ind].strip())
@@ -614,8 +642,11 @@ class Ui_MainWindow(object):
 			item.setText(str(val))
 			self.registerTable.setItem(ind,0,item)
 
+
+
+
 	def doMemoryUpdate(self):
-		memList = self.selectMemory(self.memJumpDropDown.currentIndex()).readlines()
+		memList = self.selectMemory(self.memJumpDropDown.currentIndex())
 		self.memoryTable.setRowCount((len(memList)+3)//4)
 		for ind in range(0,len(memList)//4):
 			print("inside"+str(ind))
@@ -646,6 +677,11 @@ class Ui_MainWindow(object):
 			item = self.memoryTable.item(ind, 4)
 			item.setText(str(self.getVal(int(memList[ind*4+3].strip().split()[1]))))
 		
+
+	def runCodeClick(self):
+		self.runCode()
+		self.currentPC = self.maxPC
+		self.displayTypeChange(0)
 
 	def runCode(self):
 		mydir = os.getcwd()

@@ -8,6 +8,7 @@ from Phase2.alu import get_alu_opt
 from Phase2.memory import MemoryTable
 from Phase2.registers import Register, RegisterTable
 from Phase2.getMC import *
+import shutil
 import os
 
 ''' Change 1: Changing The Path of data_memory_table.txt
@@ -42,9 +43,12 @@ File1.convertInstructionToList()
 
 #updatePC
 #fetchInstruction
-
+shutil.rmtree('Snapshot/Files')
+os.mkdir('Snapshot/Files')
 Instr = File1.fetchInstruction()
+count=0
 while Instr != "-1":
+    count+=1
     RegisterTable.registers[0].value = 0
     updated = False
     decoded_instr = Decode(Instr)
@@ -85,7 +89,7 @@ while Instr != "-1":
 
     if midway[1]=="jalr":
         RegisterTable.registers[midway[2]].value = (File1.currentPCD+4)
-        File1.updatePC(sequential=False, RA=(midway[3]+int(midway[5]))//4, offsetJ=0)
+        File1.updatePC(sequential=False, RA=(midway[3]+int(midway[5]))//4, offsetJ=-1)
     RegisterTable.registers[0].value = 0
 
     if midway[1]!='jal' and midway[1]!="jalr":
@@ -126,7 +130,6 @@ while Instr != "-1":
         print("Midway U -> ", midway)
         print("opt_of_alu -> ", opt_of_alu)
         RegisterTable.registers[opt_of_alu[2]].value=opt_of_alu[0]
-        
     
     # if midway[0]=="UJ":
     #     return_address=File1.currentPCH
@@ -137,8 +140,9 @@ while Instr != "-1":
         File1.updatePC()
     RegisterTable.registers[0].value = 0
     Instr = File1.fetchInstruction()
+    RegisterTable.StoreInFile("Snapshot/", "register_table_"+str(count)+'.txt')
+    MemoryTable.StoreInFile(False, "data_memory_table"+str(count)+".txt", "Snapshot/")
 
-#print(MemoryTable.memory)
 RegisterTable.StoreInFile()
 MemoryTable.StoreInFile(False)
 

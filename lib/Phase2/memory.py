@@ -93,11 +93,14 @@ class MemoryTable:
         return None
 
     @staticmethod
-    def StoreInFile(toWriteMC = True):
-        d = os.getcwd() + "/Files/"
+    def StoreInFile(toWriteMC = True, file_name='data_memory_table.txt', path=""):
+        if (path == ""):
+            d = os.getcwd() + "/Files/"
+        else:
+            d = path+"Files/"
         if (toWriteMC):
             outputFile1 = open(d+'machine_code.mc', 'w')
-        outputFile2 = open(d+'data_memory_table.txt', 'w')
+        outputFile2 = open(d+file_name, 'w')
         addList = []
         for key in MemoryTable.memory:
             addList.append(int(key, 16))
