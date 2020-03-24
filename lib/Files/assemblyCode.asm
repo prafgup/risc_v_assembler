@@ -1,5 +1,1 @@
-
-.data
-rishabh: .word 56
-.text
-lw x3 rishabh
+addi x1 x0 5

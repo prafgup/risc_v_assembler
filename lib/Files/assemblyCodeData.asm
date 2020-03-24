@@ -1,1 +1,0 @@
-rishabh: .word 56
