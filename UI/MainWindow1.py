@@ -35,6 +35,14 @@ class Ui_MainWindow(object):
 		self.codeEditor = CodeEditor(self.tab)
 		self.codeEditor.setObjectName("codeEditor")
 		self.verticalLayout.addWidget(self.codeEditor)
+
+		self.errorBox=QtWidgets.QPlainTextEdit(self.tab)
+		self.errorBox.setObjectName("errorBox")
+		self.errorBox.setMaximumHeight(150)
+		self.verticalLayout.addWidget(self.errorBox)
+		self.errorBox.setReadOnly(True)
+		self.errorBox.setPlainText("Errors will be displayed here")
+
 		self.tabs.addTab(self.tab, "")
 		self.tab_2 = QtWidgets.QWidget()
 		self.tab_2.setObjectName("tab_2")
