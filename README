@@ -116,12 +116,14 @@ Jigar Nilesh Mehta
     |- lookup1.py
     |- Main_Project_P2.py
     |- alu.py
+    |- Design Documentation
 Shobhit Gupta
     |- separate.py
     |- UI Design
     |- Some UI Functions
     |- MainWindow1.py
     |- InstructionDecode.py
+    |- LookupForDecode.py
     |- Error Detection
 Praful Gupta
     |- UI 
