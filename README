@@ -8,7 +8,8 @@ Table of contents
 1. Directory Structure
 2. How to run GUI
 3. How to run Code - Without GUI
-4. Contributions of team members
+4. Special Cases of Assembly Code
+5. Contribution of Team Members
 
 
 Directory Structure:
@@ -96,6 +97,14 @@ How to run Code - Without GUI
     $cd lib/Phase2 & python3 Main_Project_P2.py
     $cd Files/ & gedit register_table.txt
     $ gedit data_memory_table.txt
+
+Special Cases of Assembly Code
+--------------
+(1) Every Section of the code should fall either in .data or .text segment.
+(2) Any directive should have atleast one space after the colon following the directive name
+(3) UI Shows only the active part of the memory.
+(4) Step Functionality will not work if there is any error in running the assembly code. 
+
 
 Team Members' Individual Contributions
 --------------
