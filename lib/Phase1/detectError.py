@@ -41,7 +41,6 @@ def detectError():
                 if(instructionPart[1][0] != 'x' or instructionPart[2][0] != 'x'):
                     errorMessage = "I-Format Instruction Accepts 2 Registers"
                 elif(instructionPart[3].strip().isdigit()==False):
-                    # print(instructionPart[3])
                     errorMessage = "Third Argument needs to be an immediate Value"
                 else:
                     rd = int(instructionPart[1][1:])
