@@ -85,7 +85,7 @@ while Instr != "-1":
 
     if midway[1]=="jalr":
         RegisterTable.registers[midway[2]].value = (File1.currentPCD+4)
-        File1.updatePC(sequential=False, RA=(midway[3]+int(midway[5]))//4, offsetJ=0)
+        File1.updatePC(sequential=False, RA=(midway[3]+int(midway[5]))//4, offsetJ=-1)
     RegisterTable.registers[0].value = 0
 
     if midway[1]!='jal' and midway[1]!="jalr":
