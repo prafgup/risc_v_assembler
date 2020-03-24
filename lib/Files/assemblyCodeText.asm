@@ -1,1 +1,1 @@
-lw x1 name
+addi x5 x0 3

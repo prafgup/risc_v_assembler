@@ -1,2 +1,1 @@
-auipc x1 65536
-lw x1 x1 0
+addi x5 x0 3
