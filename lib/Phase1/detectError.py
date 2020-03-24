@@ -40,13 +40,18 @@ def detectError():
             else:
                 if(instructionPart[1][0] != 'x' or instructionPart[2][0] != 'x'):
                     errorMessage = "I-Format Instruction Accepts 2 Registers"
-                elif(instructionPart[3].strip().isdigit()==False):
-                    errorMessage = "Third Argument needs to be an immediate Value"
                 else:
-                    rd = int(instructionPart[1][1:])
-                    rs1 = int(instructionPart[2][1:])
-                    if(rd < 0 or rd > 32 or rs1 < 0 or rs1 > 32):
-                        errorMessage = "Register Limit Exceeded"
+                    if(instructionPart[3].strip()[0]=='-'):
+                        if(instructionPart[3].strip()[1:].isdigit()==False):
+                            errorMessage="Required immediate value but not found"
+                    else:
+                        if(instructionPart[3].strip().isdigit()==False):
+                            errorMessage="Required immediate value but not found"
+
+            rd = int(instructionPart[1][1:])
+            rs1 = int(instructionPart[2][1:])
+            if(rd < 0 or rd > 32 or rs1 < 0 or rs1 > 32):
+                errorMessage = "Register Limit Exceeded"
         
         # If the instruction is of S Format
         elif(instructionPart[0] in S_format):

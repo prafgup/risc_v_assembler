@@ -1,4 +1,4 @@
-.text
+.data
 addi x3,x0,0 #seed1
 addi x4,x0,1 #seed2
 addi x5,x0,8 #n
