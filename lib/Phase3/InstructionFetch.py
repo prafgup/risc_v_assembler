@@ -8,9 +8,12 @@ import sys
 import os
 
 def fetchPC():
-    file = open(os.getcwd() + '/InterstageBuffers/PC.txt', 'r+')
-    currentContent = file.readline()
-    file.close()
+    fileCurrent = open(os.getcwd() + '/InterstageBuffers/PC_Current.txt', 'r+')
+    fileHistory = open(os.getcwd() + '/InterstageBuffers/PC_History.txt', 'w')
+    currentContent = fileCurrent.readline()
+    fileHistory.write(currentContent)
+    fileCurrent.close()
+    fileHistory.close()
     return convertPC2LineNumber(currentContent)
 
 def convertPC2LineNumber(currentPCValue):
@@ -22,87 +25,32 @@ def instruction(lineNumber):
     file.close()
     return machineCode[lineNumber].rstrip('\n')
 
-def FetchInstruction(btb_Object):
+def updatePC(Branch, Taken_NotTaken, TargetLineNumber, currentLineNumber):
+    fileCurrent = open(os.getcwd() + '/InterstageBuffers/PC_Current.txt', 'w')
+    if(Branch==True and Taken_NotTaken==True):
+        valueInHex = '0x'+hex(TargetLineNumber*4)[2:].zfill(8)
+    else:
+        valueInHex = '0x'+hex((currentLineNumber+1)*4)[2:].zfill(8)
+    fileCurrent.write(valueInHex)
+    fileCurrent.close()
+    return
+
+def updateIB1(getInstruction, Branch, Taken_NotTaken):
+    file = open(os.getcwd() + '/InterstageBuffers/IB1.txt', 'w')
+    file.write(getInstruction)
+    file.write(" ")
+    if(Branch==True):
+        file.write("True ")
+    else:
+        file.write("False ")
+    if(Taken_NotTaken==True):
+        file.write("True")
+    else:
+        file.write("False")
+
+def FetchInstruction(btb_Object=None):
     currentLineNumber = fetchPC()
     getInstruction = instruction(currentLineNumber)
-    btb_Result = btb_Object.checkInstruction(getInstruction)
-
-FetchInstruction()
-
-# class Fetch:
-#     fileName = ""
-#     lineNo = 0
-#     file = None
-#     Instruction = []
-#     currentPCD = 0
-#     currentPCH = '0x' + hex(0)[2:].zfill(8)
-
-#     def __init__(self, machineCodeFile):
-#         """ Constructor
-#             ------------------------------------------------------------------------
-#             machineCodeFile: Name of File in Machine Code Stored in the folder Files
-#         """
-#         self.fileName = machineCodeFile
-#         self.updatePCRegister()
-
-#     def convertInstructionToList(self):
-#         """ Fetch All Instruction and convert them into a List
-#             ------------------------------------------------------------------------
-#         """
-#         self.file = open(self.fileName, "r+")
-#         self.Instruction = self.file.readlines()
-#         return
-
-#     def updatePCRegister(self):
-#         ''' Update PC Register Text File 
-#         --------------------------------------
-#         Utility Function to Update the Value of PC Register
-#         '''
-#         self.pc_file = open("./Files/PC_Register", "w+")
-#         self.pc_file.write(self.currentPCH)
-#         self.pc_file.close()
-
-#     def updateIRRegister(self, instruction):
-#         ''' Update IR Register Text File
-#         ---------------------------------------
-#         Utilty Function to Update the value of IR Register File
-#         '''
-#         self.ir_file = open("./Files/IR_Register", "w+")
-#         self.ir_file.write(instruction)
-#         self.ir_file.close()
-
-#     def fetchInstruction(self):
-#         """Return Instruction According to the current PC
-#         """
-#         # if(self.lineNo>len(self.Instruction)-1):
-#         #     return -1
-#         instruction = self.Instruction[self.lineNo].rstrip()
-#         if (instruction == "11111111111111111111111111111111"):
-#             return "-1"
-#         self.updateIRRegister(instruction)
-#         return instruction
-
-#     def updatePC(self, sequential=True, RA=0, offsetJ=0):
-#         """ Update the PC - Usually Called After Execute Phase
-#             ------------------------------------------------------------------------
-#             (optional)sequential=True: True when normal updation to next Line
-#                                  Flase: When Have to Use Jump
-#             (optional)RA=0: Base address to jump in case when sequential is False. This has to be the base line number.
-#             (optional)offsetJ=0: Offset in case of sequential is False
-#         """
-#         if(sequential):
-#             self.lineNo = self.lineNo + 1
-#             self.currentPCD = self.currentPCD + 4
-#             self.currentPCH = '0x' + hex(self.currentPCD)[2:].zfill(8)
-#             self.updatePCRegister()
-#             return
-#         elif(not sequential):
-#             self.lineNo = RA + offsetJ
-#             self.currentPCD = 4*self.lineNo
-#             self.currentPCH = '0x' + hex(self.currentPCD)[2:].zfill(8)
-#             self.updatePCRegister()
-#             return self.lineNo
-#         else:
-#             raise Exception(
-#                 'Both Sequential and Jump State False\nCannot Determine the next PC')
-#             return -1
+    [Branch, Taken_NotTaken, TargetLineNumber] = btb_Object.checkInstruction(currentLineNumber)
+    updatePC(Branch, Taken_NotTaken, TargetLineNumber, currentLineNumber)
+    updateIB1(getInstruction, Branch, Taken_NotTaken)
