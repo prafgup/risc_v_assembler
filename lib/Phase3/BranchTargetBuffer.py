@@ -21,32 +21,35 @@ class BTP:
 			TNT = False
 			target = -1
 
-			if self.code[ind].split()[0] in ["bne","beg"] :##ALLBranchStatemnt
+			if self.code[ind].split()[0] in ["bne","beq","blt","bge","jal","jalr"] :##ALLBranchStatemnt
 				isAnyBranch = True
-			if self.code[ind].split()[0] in ["bne","beg"] :##ALLJumpStatement
+			if self.code[ind].split()[0] in ["jal","jalr"] :##ALLJumpStatement
 				isJump = True
-			if self.code[ind].split()[0] in ["bne","beg"] :##ALLConditionalBranchStatemt
+			if self.code[ind].split()[0] in ["bne","beq","blt","bge"] :##ALLConditionalBranchStatemt
 				isBranch = True
 
 			self.lineToInst[ind] = [self.code[ind],isAnyBranch,isJump,isBranch,target,TNT]
 
 
 	def checkInstruction(self,line_no):
-		return self.lineToInst[line_no][1:]
+		if self.lineToInst[line_no][0] == False or self.lineToInst[line_no][4] == -1:
+			return [False,False,-1]
+
+		return [True,self.lineToInst[line_no][-1],self.lineToInst[line_no][-2]]
 
 
 	def update(self,inst):
 		
 		oldObj = self.lineToInst[inst[0]]
 
-		self.lineToInst[inst[0]] = [oldObj[0],oldObj[1],inst[1],inst[2],inst[3],inst[4]]
+		self.lineToInst[inst[0]] = [oldObj[0],oldObj[1],oldObj[2],oldObj[3],inst[2],inst[1]]
 		
 
 btp = BTP()
 
 print(btp.checkInstruction(5))
 
-btp.update([5,True,False,10,True])
+btp.update([5,True,12])
 
 print(btp.checkInstruction(5))
 
