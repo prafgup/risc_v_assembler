@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-addi x5 x0 4
-=======
->>>>>>> 87e52d75627e92d8be01eeef57a4b47e3f8812b5
-=======
 main:
 lw x4 len
 addi x4 x4 -1
@@ -50,10 +44,11 @@ add x8 x3 x8
 loop1:
 blt x5 x6 loop2
 blt x4 x7 loop3
-slli x13 x6 2
+addi x28 x0 2
+sll x13 x6 x28
 add x12 x11 x13
 lw x9 x12 0
-slli x13 x7 2
+sll x13 x7 x28
 add x12 x11 x13
 lw x10 x12 0
 blt x9 x10 c1
@@ -70,7 +65,8 @@ common1:
 jal x0 loop1
 loop2:
 blt x4 x7 loop2exit
-slli x13 x7 2
+addi x28 x0 2
+sll x13 x7 x28
 add x12 x11 x13
 lw x10 x12 0
 sw x10 x8 0
@@ -80,7 +76,8 @@ jal x0 loop2
 loop2exit:
 loop3:
 blt x5 x6 loop3exit
-slli x13 x6 2
+addi x28 x0 2
+sll x13 x6 x28
 add x12 x11 x13
 lw x9 x12 0
 sw x9 x8 0
@@ -90,11 +87,12 @@ jal x0 loop3
 loop3exit:
 add x6 x3 x0
 auipc x8 65536
-addi x8 x8 -276
+addi x8 x8 -288
 add x8 x3 x8
 loop4:
 blt x4 x6 return1
-slli x13 x6 2
+addi x28 x0 2
+sll x13 x6 x28
 add x12 x11 x13
 lw x9 x8 0
 sw x9 x12 0
@@ -104,4 +102,3 @@ jal x0 loop4
 return1:
 jalr x0 x1 0
 end:
->>>>>>> e24b92f2b54d769b3a61b7842158d5788d9c5e04

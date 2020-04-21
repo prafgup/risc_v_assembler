@@ -108,6 +108,7 @@ while Instr != "-1":
             #print("ALU gives"+str(opt_of_alu[0]))
             opt_of_alu[0]=hex(opt_of_alu[0])
             print("Address -> ", opt_of_alu[0])
+            print("Load ->", MemoryTable.memory)
             RegisterTable.registers[opt_of_alu[2]].value=MemoryTable.ReadMemory(opt_of_alu[0],midway[1][1])
     RegisterTable.registers[0].value = 0
 

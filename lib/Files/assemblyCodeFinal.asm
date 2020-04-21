@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-addi x5 x0 4
-=======
->>>>>>> 87e52d75627e92d8be01eeef57a4b47e3f8812b5
-=======
 lw x4 len
 addi x4 x4 -1
 addi x3 x0 0
 jal x1 8
-jal x0 324
+jal x0 340
 bge x3 x4 104
 add x5 x3 x4
 addi x28 x0 1
@@ -43,12 +37,13 @@ addi x7 x5 1
 auipc x8 65536
 addi x8 x8 -128
 add x8 x3 x8
-blt x5 x6 68
-blt x4 x7 96
-slli x13 x6 2
+blt x5 x6 72
+blt x4 x7 104
+addi x28 x0 2
+sll x13 x6 x28
 add x12 x11 x13
 lw x9 x12 0
-slli x13 x7 2
+sll x13 x7 x28
 add x12 x11 x13
 lw x10 x12 0
 blt x9 x10 20
@@ -59,34 +54,36 @@ jal x0 16
 sw x9 x8 0
 addi x6 x6 1
 addi x8 x8 4
-jal x0 -64
-blt x4 x7 32
-slli x13 x7 2
+jal x0 -68
+blt x4 x7 36
+addi x28 x0 2
+sll x13 x7 x28
 add x12 x11 x13
 lw x10 x12 0
 sw x10 x8 0
 addi x7 x7 1
 addi x8 x8 4
-jal x0 -28
-blt x5 x6 32
-slli x13 x6 2
+jal x0 -32
+blt x5 x6 36
+addi x28 x0 2
+sll x13 x6 x28
 add x12 x11 x13
 lw x9 x12 0
 sw x9 x8 0
 addi x6 x6 1
 addi x8 x8 4
-jal x0 -28
+jal x0 -32
 add x6 x3 x0
 auipc x8 65536
-addi x8 x8 -276
+addi x8 x8 -288
 add x8 x3 x8
-blt x4 x6 32
-slli x13 x6 2
+blt x4 x6 36
+addi x28 x0 2
+sll x13 x6 x28
 add x12 x11 x13
 lw x9 x8 0
 sw x9 x12 0
 addi x6 x6 1
 addi x8 x8 4
-jal x0 -28
+jal x0 -32
 jalr x0 x1 0
->>>>>>> e24b92f2b54d769b3a61b7842158d5788d9c5e04

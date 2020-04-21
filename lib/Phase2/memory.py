@@ -81,7 +81,7 @@ class MemoryTable:
             return value
         elif (type == 'w'):
             if not (address in MemoryTable.memory and hex(int(address, 16)+1) in MemoryTable.memory and hex(int(address, 16)+2) in MemoryTable.memory and hex(int(address, 16)+3) in MemoryTable.memory):
-                return None
+                return 0         
             value = MemoryTable.memory[address]
             print("value => ", value)
             value += 256 * MemoryTable.memory[hex(int(address, 16)+1)]
