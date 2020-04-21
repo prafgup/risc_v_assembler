@@ -10,7 +10,7 @@ def ExecuteInstruction (instruction):
         data = memory.ReadMemory(instructionParts[1], instructionParts[0][1])
         WriteToIB4(instructionParts[3], data);
     else:
-        if (int(instructionParts[6]) < 0 or int(instructionParts[6]) > 31)
+        if (int(instructionParts[6]) < 0 or int(instructionParts[6]) > 31):
             return
         data = RegisterTable.registers[int(instructionParts[6])]
         memory.WriteToMemory(instructionParts[1], data, instructionParts[0][1])
