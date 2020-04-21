@@ -1,0 +1,136 @@
+================================================
+Functional Simulator for RISCV Processor
+================================================
+
+README
+
+Table of contents
+1. Directory Structure
+2. How to run GUI
+3. How to run Code - Without GUI
+4. Special Cases of Assembly Code
+5. Contribution of Team Members
+
+
+Directory Structure:
+--------------------
+CS204-Project
+  |
+  |- lib
+      |- Files
+            |- assemblyCode.asm
+            |- assemblyCodeData.asm
+            |- assemblyCodeFinal_BasicVersion.asm
+            |- assemblyCodeFinal.asm
+            |- assemblyCodePreocessed.asm
+            |- assemblyCodeText.asm
+            |- Compiled_Phase1_Output.mc
+            |- data_memory_table.txt
+            |- emptyFile.asm
+            |- heap_memory_table.txt
+            |- machine_code.mc
+            |- machineCode.mc
+            |- memory_text.txt
+            |- register_table.txt
+            |- stack_memory_table.txt
+      |- Phase1
+            |- __init__.py
+            |- breakToBasic.py
+            |- data_lookup.py
+            |- detectError.py
+            |- file_preprocess.py
+            |- instructionClass.py
+            |- lookup1.py
+            |- mc_gen.py
+            |- mcTotextMemory.py
+            |- memory.py
+            |- mergeDataText.py
+            |- registers.py
+            |- separate.py
+      |- Phase2
+            |- Files 
+            |- Snapshot
+            |- alu.py
+            |- getMC.py
+            |- InstructionDecode.py
+            |- InstructionFetch.py
+            |- LookupForDecode.py
+            |- Main_Project_P2.py
+            |- memory.py
+            |- registers.py
+      |- controller.py
+      |- first_half_controller.py
+      |- second_half_controller.py
+  |- UI
+      |- codeeditor.py
+      |- MainWindow1.py
+  |- doc
+      |
+      |- design-doc.docx
+  |- test
+      |- simple_add.mc
+      |- fib.mc
+      |- array_add.mc
+      |- fact.mc
+      |- bubble.mc
+  |- README
+      
+How to run GUI
+------------
+For Running GUI:
+	$cd UI
+	$python3 MainWindow1.py
+
+
+
+
+How to run Code - Without GUI
+--------------
+(1) Phase 1
+    $gedit lib/Files/assemblyCode.asm
+    $cd lib & python3 controller.py
+    $gedit Files/Compiled_Phase1_Output.mc
+(2) Phase 2 <- Can Be Run Only After Running Phase 1 And Generating Machine Code
+    $cd lib/Phase2 & python3 Main_Project_P2.py
+    $cd Files/ & gedit register_table.txt
+    $ gedit data_memory_table.txt
+
+Special Cases of Assembly Code
+--------------
+(1) Every Section of the code should fall either in .data or .text segment.
+(2) Any directive should have atleast one space after the colon following the directive name
+(3) UI Shows only the active part of the memory.
+(4) Step Functionality will not work if there is any error in running the assembly code. 
+(5) Data Can't be given as an array, for example, var: .word 5, 6, 7, 8.
+(6) Immediate Value and Data given always has to be in Decimal and not in any other base.
+
+Team Members' Individual Contributions
+--------------
+Rishabh Agarwal
+    |- breakToBasic.py
+    |- detectError.py
+    |- instructionClass.py
+    |- InstructionFetch.py
+    |- controller.py
+Jigar Nilesh Mehta
+    |- lookup1.py
+    |- Main_Project_P2.py
+    |- alu.py
+Shobhit Gupta
+    |- separate.py
+    |- UI Design
+    |- Some UI Functions
+    |- MainWindow1.py
+    |- InstructionDecode.py
+    |- Error Detection
+Praful Gupta
+    |- UI 
+    |- file_preprocessing.py
+    |- MainWindow1.py
+    |- mcTotextMemory.py
+Shubham Singh
+    |- mc_gen.py
+    |- Memory.py
+    |- register.py
+    |- Phase 1 Output Generation
+    |- Memory Register Snapshot Generation

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .data
 a1: .word 8
 a2: .word 12
@@ -5,46 +6,18 @@ a3: .word 7
 a4: .word 4
 len: .word 4
 b: .word -1
+=======
+>>>>>>> 6a9ae5f464e75487a6614bbd36e66a897c463dc3
 .text
-main:
-lw x4 len
-addi x4 x4 -1
 addi x3 x0 0
-jal x1 mergesort
-jal x0 end
-mergesort:
-bge x3 x4 return
-add x5 x3 x4
-addi x28 x0 1
-sra x5 x5 x28
-addi sp sp -12
-sw x3 sp 0
-sw x4 sp 4
-sw x1 sp 8
-add x4 x0 x5
-jal x1 mergesort
-lw x4 sp 4
-lw x3 sp 0
-add x5 x4 x3
-addi x28 x0 1
-sra x5 x5 x28
-addi x3 x5 1
-jal x1 mergesort
-lw x4 sp 4
-lw x3 sp 0
-add x5 x4 x3
-addi x28 x0 1
-sra x5 x5 x28
-jal x1 merge
-lw x1 sp 8
-addi sp sp 12
-jalr x0 x1 0
-return:
-jalr x0 x1 0
-merge:
-auipc x11 65536
-addi x11 x11 -132
+addi x4 x0 1
+addi x5 x0 8
+jal x1 fib
+beq x0 x0 fallthru
+fib:
+bne x5 x0 l1
 add x6 x3 x0
+<<<<<<< HEAD
 addi x7 x5 1
 auipc x8 65536
 addi x8 x8 -128
@@ -108,5 +81,19 @@ addi x6 x6 1
 addi x8 x8 4
 jal x0 loop4
 return1:
+=======
+add x7 x4 x0
 jalr x0 x1 0
-end:
+l1:
+addi x5 x5 -1
+addi sp sp -4
+sw x1 sp 0
+jal x1 fib
+add x8 x7 x0
+add x7 x7 x6
+add x6 x8 x0
+lw x1 sp 0
+addi sp sp 4
+>>>>>>> 6a9ae5f464e75487a6614bbd36e66a897c463dc3
+jalr x0 x1 0
+fallthru:

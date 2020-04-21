@@ -65,8 +65,10 @@ while Instr != "-1":
         print("Midway -> ", midway)
 
     if midway[0]=="S":
+        print("Midway before S update -> ", midway)
         midway[3] = RegisterTable.registers[midway[3]].value
         midway[4] = RegisterTable.registers[midway[4]].value
+        print("Midway after S update -> ", midway)
 
     if midway[0]=="SB":
         midway[3] = RegisterTable.registers[midway[3]].value
@@ -110,6 +112,7 @@ while Instr != "-1":
             print("Address -> ", opt_of_alu[0])
             print("Load ->", MemoryTable.memory)
             RegisterTable.registers[opt_of_alu[2]].value=MemoryTable.ReadMemory(opt_of_alu[0],midway[1][1])
+            print(MemoryTable.ReadMemory(opt_of_alu[0], midway[1][1]))
     RegisterTable.registers[0].value = 0
 
     if midway[0]=="S":

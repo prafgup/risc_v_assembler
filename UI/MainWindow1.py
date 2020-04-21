@@ -9,6 +9,7 @@ from PyQt5.QtCore import pyqtSlot
 class Ui_MainWindow(object):
 	def setupUi(self, MainWindow):
 		MainWindow.setObjectName("MainWindow")
+		MainWindow.setWindowTitle("SUN - Risc-V Editor & Simulator ")
 		MainWindow.resize(1417, 820)
 		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
 		sizePolicy.setHorizontalStretch(0)
@@ -340,6 +341,7 @@ class Ui_MainWindow(object):
 		self.tabs.currentChanged.connect(self.onTabChange)
 		self.runButton.clicked.connect(self.runCodeClick)
 		self.stepButton.clicked.connect(self.stepForward)
+		self.resetButton.clicked.connect(self.reset)
 		self.prevButton.clicked.connect(self.stepBack)
 		# self.regMemDisplayTypeDrop.currentIndexChanged.connect(self.displayTypeChange)
 		self.regMemDisplayTypeDrop.activated[str].connect(self.displayTypeChange)
@@ -491,6 +493,10 @@ class Ui_MainWindow(object):
 		file.write(text)
 		file.close()
 
+	def reset(self):
+		self.currentPC = 0
+		self.displayTypeChange(0)
+		self.tableReColor()
 
 	def onTabChange(self,i):
 		self.currentPC = 0
