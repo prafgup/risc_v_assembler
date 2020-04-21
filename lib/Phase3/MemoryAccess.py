@@ -10,10 +10,19 @@ def ExecuteInstruction (instruction):
         data = memory.ReadMemory(instructionParts[1], instructionParts[0][1])
         WriteToIB4(instructionParts[3], data);
     else:
+        if (int(instructionParts[6]) < 0 or int(instructionParts[6]) > 31)
+            return
         data = RegisterTable.registers[int(instructionParts[6])]
         memory.WriteToMemory(instructionParts[1], data, instructionParts[0][1])
         WriteToIB4('-1 -1')
+    RemoveLastLine()
     return
+
+def RemoveLastLine():
+    w = open(os.getcwd() + '/InterstageBuffers/IB3.txt','w')
+    lines = ib3.readline()
+    w.writelines([line for line in  lines[:-1]])
+    w.close()
 
 def WriteToIB4(destReg, data):
     ib4 = open(os.getcwd() + '/InterstageBuffers/IB4.txt', 'a')
@@ -28,9 +37,6 @@ def ReadFromIB3 ():
         if line != none:
             lastLine = line
     ib3.close()
-    w = open(os.getcwd() + '/InterstageBuffers/IB3.txt','w')
-    w.writelines([line for line in  lines[:-1]])
-    w.close()
     return lastLine
 
 def main():
