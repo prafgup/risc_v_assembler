@@ -5,16 +5,27 @@ from memory import *
 from registers import RegisterTable
 
 def ExecuteInstruction (instruction):
+    #   InstructionParts[0] = Instruction Type
+    #   InstructionParts[1] = Instruction
+    #   InstructionParts[2] = Address
+    #   InstructionParts[3] = Data for memory stage
+    #   InstructionParts[4] = Data passed to write back
+    #   InstructionParts[5] = Destination register number
+    #   InstructionParts[6] = Data Hazard
+    #   InstructionParts[7] = Source Register number
+    #   InstructionParts[8] = T_NT
     instructionParts = instruction.split(' ')
-    if (instructionParts[0][0] == 'l'):
-        data = memory.ReadMemory(instructionParts[1], instructionParts[0][1])
-        WriteToIB4(instructionParts[3], data);
-    else:
-        if (int(instructionParts[6]) < 0 or int(instructionParts[6]) > 31):
+    if (instructionParts[1][0] == 'l'):
+        data = memory.ReadMemory(instructionParts[2], instructionParts[1][1])
+        WriteToIB4(instructionParts[5], data);
+    else if (instructionParts[1][0] == 's'):
+        if (int(instructionParts[7]) < 0 or int(instructionParts[7]) > 31):
             return
-        data = RegisterTable.registers[int(instructionParts[6])]
-        memory.WriteToMemory(instructionParts[1], data, instructionParts[0][1])
-        WriteToIB4('-1 -1')
+        data = RegisterTable.registers[int(instructionParts[7])]
+        memory.WriteToMemory(instructionParts[2], data, instructionParts[1][1])
+        WriteToIB4(-1, -1)
+    else:
+        WriteToIB4(instructionParts[5], instructionParts[4])
     RemoveLastLine()
     return
 
