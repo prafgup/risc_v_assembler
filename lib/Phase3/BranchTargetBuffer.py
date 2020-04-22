@@ -17,9 +17,6 @@ class BTB1:
 			return [False, False, -1]
 
 	def update(self, lineNumber, unconditional, tnt, target):
-		# print("Updating BTB -> Line Number ", lineNumber, "Unconditional = ", unconditional)
-		# print("tnt = ", tnt)
-		# print("target = ", target)
 		if(unconditional==True):
 			self.unconditionalDictionary[lineNumber] = target
 		else:
