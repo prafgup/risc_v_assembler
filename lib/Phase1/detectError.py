@@ -37,28 +37,6 @@ def detectError():
                     
         # If the instruction os of I format
         elif(instructionPart[0] in I_format):
-<<<<<<< HEAD
-            pass
-            # print(instructionPart)
-            # if(len(instructionPart) != 4):
-            #     errorMessage = "Expected 3 Operands But Got " + \
-            #         str(len(instructionPart) - 1)
-            # else:
-            #     if(instructionPart[1][0] != 'x' or instructionPart[2][0] != 'x'):
-            #         errorMessage = "I-Format Instruction Accepts 2 Registers"
-            #     else:
-            #         if(instructionPart[3].strip()[0]=='-'):
-            #             if(instructionPart[3].strip()[1:].isdigit()==False):
-            #                 errorMessage="Required immediate value but not found"
-            #         else:
-            #             if(instructionPart[3].strip().isdigit()==False):
-            #                 errorMessage="Required immediate value but not found"
-            #     # print("instruction part 2 ->",instructionPart[2])
-            #     rd = int(instructionPart[1][1:])
-            #     rs1 = int(instructionPart[2][1:])
-            #     if(rd < 0 or rd > 32 or rs1 < 0 or rs1 > 32):
-            #         errorMessage = "Register Limit Exceeded"
-=======
             # print(instructionPart)
             if(len(instructionPart) != 4):
                 errorMessage = "Expected 3 Operands But Got " + \
@@ -88,7 +66,6 @@ def detectError():
                     errorMessage="Invalid registers chosen"
                 if(rd < 0 or rd >= 32 or rs1 < 0 or rs1 >= 32):
                     errorMessage = "Register Limit Exceeded"
->>>>>>> 6a9ae5f464e75487a6614bbd36e66a897c463dc3
         
         # If the instruction is of S Format
         elif(instructionPart[0] in S_format):
