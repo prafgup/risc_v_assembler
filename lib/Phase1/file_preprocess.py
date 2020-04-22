@@ -20,7 +20,6 @@ class initParser:
 		d = os.getcwd() + "/Files/"
 		f = open(d+self.file_name, "r+")
 		f1 = f.readlines()
-		print(f1)
 		for st in f1:
 			no_comment = self.remove_comments(st,"#")
 			if(len(no_comment)>0):
@@ -34,7 +33,7 @@ class initParser:
 					else:
 						pos_arr.append(el)
 				final.append(" ".join(pos_arr).strip())
-		print(final)
+		# print(final)
 		return final
 	def write_to_file(self,name,li):
 		d = os.getcwd()
@@ -59,7 +58,7 @@ class initParser:
 					cnt+=1
 				if spl[-1]!="\n":
 					elemli = re.sub("\s+|,", " ", spl[-1]).strip().split()
-					print(elemli)
+					# print(elemli)
 					label_count-=1
 					if elemli[0] in self.expandable and len(elemli) ==3:
 						expand_count+=1
@@ -77,7 +76,7 @@ class initParser:
 					if(elemli[id] in self.registerdict.keys()):
 						elemli[id] = self.registerdict[elemli[id]]
 				new_lis.append(" ".join(elemli))
-		print(dic)
+		# print(dic)
 		for key in dic.keys():
 			ln =0
 			expand_count=0

@@ -21,8 +21,8 @@ class MemoryTable:
             MemoryTable.memory[address] = data1
             MemoryTable.memory[hex(int(address, 16)+1)]
         elif (type == 'w'):
-            print("Writing to file Word")
-            print("Data -> ", data)
+            # print("Writing to file Word")
+            # print("Data -> ", data)
             if (data >= 4294967296):
                 return False
             if(data>=0):

@@ -19,7 +19,6 @@ def main1(fileName):
         if (instructionTemplate == None):
             break
         value = DecodeInstruction(instructionParts, instructionTemplate)
-        print("Binary Value Recieved -> ", value)
         value1 = int(value[0:8], 2)
         value2 = int(value[8:16], 2)
         value3 = int(value[16:24], 2)
@@ -40,9 +39,8 @@ def main1(fileName):
     MemoryTable.WriteToMemory(address, 255, 'b')
     address = hex(int(address, 16) + 1)
     MemoryTable.WriteToMemory(address, 255, 'b')
-    inputFile = open(d+'assemblyCodeData.asm', 'r')
+    inputFile = open(d+'assemblyCodeText.asm', 'r')
     lines = inputFile.readlines()
-    print("Data Recieved -> ", lines)
     address = MemoryTable.baseAddressData
     for line in lines:
         i = 0
