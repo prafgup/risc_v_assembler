@@ -10,8 +10,8 @@ import os
 '''
 def getMachineCode():
     currentWorkingDirectory = os.getcwd()
-    pathToOriginalFile = currentWorkingDirectory + "/../Files/machine_code.mc"
-    pathToCompiledFile = currentWorkingDirectory + "/Files/machineCode.mc"
+    pathToOriginalFile = currentWorkingDirectory + "/Files/machine_code.mc"
+    pathToCompiledFile = currentWorkingDirectory + "/Phase3/MachineCodeFiles/machineCode.mc"
     pointerOF = open(pathToOriginalFile, "r")
     pointerCF = open(pathToCompiledFile, "w+")
     dataOriginalFile = pointerOF.readlines()
@@ -26,4 +26,4 @@ def getMachineCode():
     pointerCF.close()
     pointerOF.close()
 
-getMachineCode()
+# getMachineCode()
