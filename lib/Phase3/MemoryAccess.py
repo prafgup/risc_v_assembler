@@ -18,7 +18,7 @@ def ExecuteInstruction (instruction):
     if (instructionParts[1][0] == 'l'):
         data = memory.ReadMemory(instructionParts[2], instructionParts[1][1])
         WriteToIB4(instructionParts[5], data);
-    else if (instructionParts[1][0] == 's'):
+    elif (instructionParts[1][0] == 's'):
         if (int(instructionParts[7]) < 0 or int(instructionParts[7]) > 31):
             return
         data = RegisterTable.registers[int(instructionParts[7])]
