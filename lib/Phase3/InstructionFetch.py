@@ -15,7 +15,7 @@ def fetchPC():
     fileHistory.write(currentContent)
     fileCurrent.close()
     fileHistory.close()
-    return convertPC2LineNumber(currentContent)
+    return convertPC2LineNumber(currentContent), currentContent
 
 def convertPC2LineNumber(currentPCValue):
     return (int(currentPCValue, 16)//4)
@@ -36,7 +36,7 @@ def updatePC(Branch, Taken_NotTaken, TargetLineNumber, currentLineNumber):
     fileCurrent.close()
     return
 
-def updateIB1(getInstruction, Branch, Taken_NotTaken):
+def updateIB1(getInstruction, Branch, Taken_NotTaken, currentLineNumber, currentPC):
     file = open(os.getcwd() + '/Phase3/InterstageBuffers/IB1.txt', 'w')
     file.write(getInstruction)
     file.write(" ")
@@ -45,18 +45,20 @@ def updateIB1(getInstruction, Branch, Taken_NotTaken):
     else:
         file.write("False ")
     if(Taken_NotTaken==True):
-        file.write("True")
+        file.write("True ")
     else:
-        file.write("False")
+        file.write("False ")
+    file.write(currentLineNumber+" "+currentPC)
+    file.close()
 
 def FetchInstruction(btb_Object=None):
     print("Instruction Fetch Currently in Execution...", end='')
-    currentLineNumber = fetchPC()
+    currentLineNumber, currentPC = fetchPC()
     getInstruction = instruction(currentLineNumber)
     [Branch, Taken_NotTaken, TargetLineNumber] = btb_Object.checkInstruction(currentLineNumber)
     # print("Response from BTB -> ", Branch, Taken_NotTaken, TargetLineNumber)
     updatePC(Branch, Taken_NotTaken, TargetLineNumber, currentLineNumber)
-    updateIB1(getInstruction, Branch, Taken_NotTaken)
+    updateIB1(getInstruction, Branch, Taken_NotTaken, currentLineNumber, currentPC)
     print("Instruction Fetch Completed")
 
 # FetchInstruction()
