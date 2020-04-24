@@ -10,7 +10,7 @@ Function to Read From IB1
 '''
 
 def Initi_dec_his():
-    d=os.getcwd()+"\lib\Phase3\InterstageBuffers\decode_history.txt"
+    d=os.getcwd()+"/InterstageBuffers/decode_history.txt"
     file=open(d,"w")
     line1="X X -1 -1 -1 -1 -1 -1\n"
     line2="X X -1 -1 -1 -1 -1 -1\n"
@@ -64,7 +64,7 @@ def getData(midway, PC_Value):
     return midway
 
 def update_dec_his(s):
-    d=os.getcwd()+"\lib\Phase3\InterstageBuffers\decode_history.txt"
+    d=os.getcwd()+"/InterstageBuffers/decode_history.txt"
     file=open(d,"r")    
     line1=file.readline()
     line2=file.readline()
@@ -74,19 +74,23 @@ def update_dec_his(s):
     line2=line1
     line1=s
     file=open(d,"w")
-    file.write(line1)
-    file.write(line2)
+    file.write(line1+"\n")
+    file.write(line2+"\n")
     file.close() 
     return (l1,l2)
     
 
-Initi_dec_his()
+# Initi_dec_his()
 RegisterTable.Initialize()
 
 l = readFromIB1().split()
 midway = normalDecodePhase2(l[0])
 midwayUpdated = getData(midway, l[-1])
+midwayUpdated.append(l[2])
 print("Input to HDU -> ", midwayUpdated)
+
+for i in range(0, len(midwayUpdated)):
+    midwayUpdated[i] = str(midwayUpdated[i])
 
 s=" "
 s=s.join(midwayUpdated)
