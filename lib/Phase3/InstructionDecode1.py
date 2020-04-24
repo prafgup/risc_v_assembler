@@ -4,9 +4,21 @@ sys.path.append("..")
 from Phase2.InstructionDecode import *
 from Phase3.registers import *
 from Phase3.Hazard_Detection_Unit import *
+
 '''
 Function to Read From IB1
 '''
+
+def Initi_dec_his():
+    d=os.getcwd()+"\lib\Phase3\InterstageBuffers\decode_history.txt"
+    file=open(d,"w")
+    line1="X X -1 -1 -1 -1 -1 -1\n"
+    line2="X X -1 -1 -1 -1 -1 -1\n"
+    file.write(line1)
+    file.write(line2)
+    file.close()
+
+
 def readFromIB1():
     d = os.getcwd() + "/InterstageBuffers/IB1.txt"
     bufferPointer = open(d, "r+")
@@ -51,8 +63,37 @@ def getData(midway, PC_Value):
 
     return midway
 
+def update_dec_his(s):
+    d=os.getcwd()+"\lib\Phase3\InterstageBuffers\decode_history.txt"
+    file=open(d,"r")    
+    line1=file.readline()
+    line2=file.readline()
+    l1=line1
+    l2=line2
+    file.close()
+    line2=line1
+    line1=s
+    file=open(d,"w")
+    file.write(line1)
+    file.write(line2)
+    file.close() 
+    return (l1,l2)
+    
+
+Initi_dec_his()
 RegisterTable.Initialize()
+
 l = readFromIB1().split()
 midway = normalDecodePhase2(l[0])
 midwayUpdated = getData(midway, l[-1])
 print("Input to HDU -> ", midwayUpdated)
+
+s=" "
+s=s.join(midwayUpdated)
+
+(prev_one,prev_two)=update_dec_his(s)
+
+prev_one=prev_one.split(" ")
+prev_two=prev_two.split(" ")
+
+print(Hazard_Detect(midwayUpdated,prev_one,prev_two))
