@@ -48,17 +48,18 @@ def updateIB1(getInstruction, Branch, Taken_NotTaken, currentLineNumber, current
         file.write("True ")
     else:
         file.write("False ")
-    file.write(currentLineNumber+" "+currentPC)
+    file.write(str(currentLineNumber)+" "+currentPC)
     file.close()
 
 def FetchInstruction(btb_Object=None):
     print("Instruction Fetch Currently in Execution...", end='')
     currentLineNumber, currentPC = fetchPC()
     getInstruction = instruction(currentLineNumber)
-    [Branch, Taken_NotTaken, TargetLineNumber] = btb_Object.checkInstruction(currentLineNumber)
+    # [Branch, Taken_NotTaken, TargetLineNumber] = btb_Object.checkInstruction(currentLineNumber)
     # print("Response from BTB -> ", Branch, Taken_NotTaken, TargetLineNumber)
-    updatePC(Branch, Taken_NotTaken, TargetLineNumber, currentLineNumber)
-    updateIB1(getInstruction, Branch, Taken_NotTaken, currentLineNumber, currentPC)
+    # updatePC(Branch, Taken_NotTaken, TargetLineNumber, currentLineNumber)
+    # updateIB1(getInstruction, Branch, Taken_NotTaken, currentLineNumber, currentPC)
+    updateIB1(getInstruction, False, False, "0", "0x00000000")
     print("Instruction Fetch Completed")
 
-# FetchInstruction()
+FetchInstruction()

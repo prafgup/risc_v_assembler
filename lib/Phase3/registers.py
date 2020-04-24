@@ -24,7 +24,7 @@ class RegisterTable:
 
     @staticmethod
     def StoreInFile (file_path="", file_name="register_table.txt"):
-        outputFile = open(file_path+'Files/'+file_name, 'w')
+        outputFile = open(file_path+'MachineCodeFiles/'+file_name, 'w')
         for i in range(32):
             outputFile.write(str(RegisterTable.registers[i].value)+'\n')
         outputFile.close()

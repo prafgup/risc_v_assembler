@@ -1,1 +1,1 @@
-rishabh: .word 56
+var1: .word 56
