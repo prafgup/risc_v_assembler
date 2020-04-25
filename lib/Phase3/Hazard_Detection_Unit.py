@@ -17,7 +17,7 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two):
             #hazard_in_source_1.append(current_instr[3])
             if instruction_minus_two[1][0]=="l":
                 hazard_in_source_1=4
-                stall=stall+1
+                # stall=stall+1
             else:
                 hazard_in_source_1=3
 
@@ -35,12 +35,33 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two):
             #hazard_in_source_2.append(current_instr[4])
             if instruction_minus_two[1][0]=="l":
                 hazard_in_source_2=4
-                stall=stall+1
+                # stall=stall+1
             else:
                 hazard_in_source_2=3
 
     returnreg = [current_instr[0], current_instr[1], current_instr[2], current_instr[3], current_instr[4],
                  hazard_in_source_1, current_instr[5], current_instr[6], hazard_in_source_2, current_instr[7], stall]
+    if stall != 0:
+        statfile = open(r"Files\status.txt", "r")
+        status = statfile.read()
+        statfile.close()
+        statfile = open(r"Files\status.txt", "w")
+        status = status.split(" ")
+        status[1] = str(1)
+        status[2] = str(1)
+        t = " "
+        t = t.join(status)
+        statfile.write(t)
+        statfile.close()
+
+    for i in range(0, len(current_instr)):
+        current_instr[i] = str(current_instr[i])
+    print(current_instr)
+    s = " "
+    s = s.join(current_instr)
+    file = open(r"InterstageBuffers\IB2.txt", "w")
+    file.write(s)
+    file.close()
     return returnreg
 
 # format, name, destination register, source 1, data of source 1, source 2, data of source 2, immediate data, T_NT
