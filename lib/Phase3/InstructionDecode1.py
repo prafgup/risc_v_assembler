@@ -81,23 +81,29 @@ def update_dec_his(s):
     
 
 # Initi_dec_his()
-RegisterTable.Initialize()
+# RegisterTable.Initialize()
 
-l = readFromIB1().split()
-midway = normalDecodePhase2(l[0])
-midwayUpdated = getData(midway, l[-1])
-midwayUpdated.append(l[2])
-print("Input to HDU -> ", midwayUpdated)
 
-for i in range(0, len(midwayUpdated)):
-    midwayUpdated[i] = str(midwayUpdated[i])
 
-s=" "
-s=s.join(midwayUpdated)
 
-(prev_one,prev_two)=update_dec_his(s)
+def main():
+    l = readFromIB1().split()
+    if(l==""):
+        print("Nothing To Decode... Empty IB1")
+        return
+    midway = normalDecodePhase2(l[0])
+    midwayUpdated = getData(midway, l[-1])
+    midwayUpdated.append(l[2])
+    print("Input to HDU -> ", midwayUpdated)
 
-prev_one=prev_one.split(" ")
-prev_two=prev_two.split(" ")
+    for i in range(0, len(midwayUpdated)):
+        midwayUpdated[i] = str(midwayUpdated[i])
 
-print(Hazard_Detect(midwayUpdated,prev_one,prev_two))
+    s=" "
+    s=s.join(midwayUpdated)
+
+    (prev_one,prev_two)=update_dec_his(s)
+
+    prev_one=prev_one.split(" ")
+    prev_two=prev_two.split(" ")
+    print(Hazard_Detect(midwayUpdated, prev_one, prev_two))

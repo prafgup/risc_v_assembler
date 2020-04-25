@@ -14,6 +14,9 @@ def ExecuteInstruction (instruction):
     #   InstructionParts[6] = Data Hazard
     #   InstructionParts[7] = Source Register number
     #   InstructionParts[8] = T_NT
+    if(instruction==""):
+        print("No Content Found in IB3... Nothing Executed")
+        return
     instructionParts = instruction.split(' ')
     print("This - ", instruction)
     print("INstructio -> ", instructionParts[1])
@@ -50,7 +53,6 @@ def ReadFromIB3 ():
     # for line in lines:
     #     if line != None:
     #         lastLine = line
-    print()
     ib3.close()
     return lines
 
@@ -58,5 +60,5 @@ def main():
     ExecuteInstruction(ReadFromIB3())
 
 
-MemoryTable.WriteToMemory('0x10000000', 56, 'b')
-main()
+# MemoryTable.WriteToMemory('0x10000000', 56, 'b')
+# main()

@@ -24,6 +24,8 @@ def instruction(lineNumber):
     file = open(os.getcwd() + '/Phase3/MachineCodeFiles/machineCode.mc')
     machineCode = file.readlines()
     file.close()
+    if(len(machineCode)<=lineNumber+1):
+        return "Invalid"
     return machineCode[lineNumber].rstrip('\n')
 
 def updatePC(Branch, Taken_NotTaken, TargetLineNumber, currentLineNumber):
@@ -55,11 +57,13 @@ def FetchInstruction(btb_Object=None):
     print("Instruction Fetch Currently in Execution...", end='')
     currentLineNumber, currentPC = fetchPC()
     getInstruction = instruction(currentLineNumber)
-    # [Branch, Taken_NotTaken, TargetLineNumber] = btb_Object.checkInstruction(currentLineNumber)
-    # print("Response from BTB -> ", Branch, Taken_NotTaken, TargetLineNumber)
-    # updatePC(Branch, Taken_NotTaken, TargetLineNumber, currentLineNumber)
-    # updateIB1(getInstruction, Branch, Taken_NotTaken, currentLineNumber, currentPC)
-    updateIB1(getInstruction, False, False, "0", "0x00000000")
+    if(getInstruction=="Invalid"):
+        print("Reached The End Of the File While Parsing...")
+        print("No Instruction Fetched!!!")
+        return
+    [Branch, Taken_NotTaken, TargetLineNumber] = btb_Object.checkInstruction(currentLineNumber)
+    updatePC(Branch, Taken_NotTaken, TargetLineNumber, currentLineNumber)
+    updateIB1(getInstruction, Branch, Taken_NotTaken, currentLineNumber, currentPC)
     print("Instruction Fetch Completed")
 
-FetchInstruction()
+# FetchInstruction()

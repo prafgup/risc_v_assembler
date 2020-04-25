@@ -4,19 +4,15 @@ import os
 from registers import RegisterTable
 
 def ReadFromIB4():
-    ib4 = open(os.getcwd() + '/InterstageBuffers/IB4.txt', 'r+')
-    lines =  ib4.readline()
-    # lastLine = None
-    # for line in lines:
-    #     if line != None:
-    #         lastLine = line
+    ib4 = open(os.getcwd() + 'Phase3/InterstageBuffers/IB4.txt', 'r+')
+    line =  ib4.readline()
     ib4.close()
-    w = open(os.getcwd() + '/InterstageBuffers/IB4.txt','w')
-    w.writelines([line for line in  lines[:-1]])
-    w.close()
-    return lines
+    return line
 
 def WriteBackToRegister (instruction):
+    if(instruction==""):
+        print("No Content Found in IB4")
+        return
     instructionParts = instruction.split(' ')
     RegisterTable.registers[int(instructionParts[0])] = instructionParts[1]   
     return
@@ -24,5 +20,5 @@ def WriteBackToRegister (instruction):
 def main():
     WriteBackToRegister(ReadFromIB4())
 
-main()
-print(RegisterTable.registers[5])
+# main()
+# print(RegisterTable.registers[5])
