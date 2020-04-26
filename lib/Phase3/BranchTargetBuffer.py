@@ -11,7 +11,7 @@ class BTB1:
 		if(lineNumberToBeChecked in self.unconditionalDictionary.keys()):
 			return [True, True, self.unconditionalDictionary[lineNumberToBeChecked]]
 		elif(lineNumberToBeChecked in self.conditionalDictionary.keys()):
-			value = self.unconditionalDictionary[lineNumberToBeChecked]
+			value = self.conditionalDictionary[lineNumberToBeChecked]
 			return [True, value[1], value[0]]
 		else:
 			return [False, False, -1]
