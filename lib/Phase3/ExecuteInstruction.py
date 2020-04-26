@@ -29,8 +29,8 @@ def execute(btb_object):
     # T_NT = bool(midway[-4])
 
     if midway[1]=='jal':
-        RegisterTable.registers[midway[2]].value = (pcValueInDecimal + 4)
         pcValueInDecimal = int(midway[-2], 16)
+        RegisterTable.registers[int(midway[2])].value = (pcValueInDecimal + 4)
         if(midway[-4]=='False'):
             T_NT = False
         else:
@@ -57,18 +57,26 @@ def execute(btb_object):
         opt_of_alu = get_alu_opt(midway)
     RegisterTable.registers[0].value = 0
 
-    if(midway[0]=='SB'):
+    if(midway[0] == 'SB'):
+        branchType = True
         pcValueInDecimal = int(midway[-2], 16)
         if(midway[-4] == 'False'):
             T_NT = False
         else:
             T_NT = True
-        if(T_NT==True and opt_of_alu[0]==-1):
+        errorPrediction = False
+        if(T_NT == True and opt_of_alu[0] == -1):
             flush = True
+            errorPrediction = True
             TargetAddress = pcValueInDecimal+4
-        elif(T_NT==False and opt_of_alu[0]!=-1):
+        elif(T_NT == False and opt_of_alu[0] != -1):
             flush = True
-            TargetAddress = opt_of_alu[0]
+            errorPrediction = True
+            TargetAddress = int(opt_of_alu[0])
+        if(opt_of_alu[0] == -1 and errorPrediction == True):
+            btb_object.update(int(midway[-2]), False, False, -1)
+        elif(errorPrediction == True):
+            btb_object.update(int(midway[-2]), False, True, TargetAddress//4)
 
     #Rz,RM,RF_writeback
     #[instruction_type],[instruction],[Address],[Data_for_memory_stage],[Data_simply_passed_to_WB],[DestinationRegisterNumber],[Data_Hazard],[Source_reg_#],[T_NT]

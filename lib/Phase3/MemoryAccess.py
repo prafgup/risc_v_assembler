@@ -18,17 +18,23 @@ def ExecuteInstruction (instruction):
         print("No Content Found in IB3... Nothing Executed")
         return
     instructionParts = instruction.split(' ')
+    addressData = int(instructionParts[2])
+    addressHex = hex(addressData)
     storeType = ['sb', 'sd', 'sw', 'sh']
     loadType = ['lb', 'ld', 'lw', 'lh']
     if (instructionParts[1] in loadType):
-        data = MemoryTable.ReadMemory(instructionParts[2], instructionParts[1][1])
+        data = MemoryTable.ReadMemory(addressHex, instructionParts[1][1])
+        print("Data obtained from the memory", data)
+        print("Address - ", addressHex)
         WriteToIB4(instructionParts[5], data)
     elif (instructionParts[1] in storeType):
+        print("Address to store ", addressHex)
         if (int(instructionParts[7]) < 0 or int(instructionParts[7]) > 31):
             return
-        data = RegisterTable.registers[int(instructionParts[7])]
-        memory.WriteToMemory(instructionParts[2], data, instructionParts[1][1])
+        data = RegisterTable.registers[int(instructionParts[7])].value
+        MemoryTable.WriteToMemory(addressHex, data, instructionParts[1][1])
         WriteToIB4(-1, -1)
+        print(MemoryTable.memory)
     else:
         WriteToIB4(instructionParts[5], instructionParts[4])
     RemoveLastLine()

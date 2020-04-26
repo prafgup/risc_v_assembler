@@ -22,7 +22,7 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two):
                 hazard_in_source_1=4
                 # stall=stall+1
             else:
-                hazard_in_source_1=3
+                hazard_in_source_1=4
 
 
     if current_instr[5]==instruction_minus_one[2]:
@@ -40,10 +40,10 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two):
                 hazard_in_source_2=4
                 # stall=stall+1
             else:
-                hazard_in_source_2=3
+                hazard_in_source_2=4
 
     returnreg = [current_instr[0], current_instr[1], current_instr[2], current_instr[3], current_instr[4],
-                 hazard_in_source_1, current_instr[5], current_instr[6], hazard_in_source_2, current_instr[7], stall, current_instr[-2], current_instr[-1]]
+                 hazard_in_source_1, current_instr[5], current_instr[6], hazard_in_source_2, current_instr[7], current_instr[8], stall, current_instr[-2], current_instr[-1]]
     if stall != 0:
         d = os.getcwd()
         statfile = open(d+"/Phase3/Files/status.txt", "r")
