@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PipeliningStages</class>
+ <widget class="QWidget" name="PipeliningStages">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>973</width>
+    <height>863</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>PipeliningStages</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QWidget" name="widget" native="true">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>100</height>
+      </size>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_2" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QWidget" name="widget_3" native="true">
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTableWidget" name="tableWidget">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>600</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="whatsThis">
+            <string/>
+           </property>
+           <attribute name="verticalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <row>
+            <property name="text">
+             <string>New Row</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>New Row</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>New Row</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>New Row</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>New Row</string>
+            </property>
+           </row>
+           <column>
+            <property name="text">
+             <string>Cycle No.</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Fetch</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Decode</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Execute</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Memory Access</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Writeback</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="widget_4" native="true">
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTableWidget" name="tableWidget_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>0</height>
+            </size>
+           </property>
+           <attribute name="horizontalHeaderVisible">
+            <bool>true</bool>
+           </attribute>
+           <attribute name="horizontalHeaderDefaultSectionSize">
+            <number>125</number>
+           </attribute>
+           <attribute name="horizontalHeaderHighlightSections">
+            <bool>true</bool>
+           </attribute>
+           <attribute name="verticalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <row>
+            <property name="text">
+             <string>New Row</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>New Row</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>New Row</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>New Row</string>
+            </property>
+           </row>
+           <column>
+            <property name="text">
+             <string>Parameters</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Values</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
