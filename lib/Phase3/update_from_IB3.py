@@ -14,7 +14,7 @@ def update_from_IB3_file():
             curr=file2.read()
             curr=curr.split(" ")
             if(curr[0]==s[5]):
-                s[3]=curr[1]
+                s[3]=curr[1].strip()
             file2.close()
     file.close()
 

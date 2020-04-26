@@ -18,10 +18,12 @@ def ExecuteInstruction (instruction):
         print("No Content Found in IB3... Nothing Executed")
         return
     instructionParts = instruction.split(' ')
-    if (instructionParts[1][0] == 'l'):
+    storeType = ['sb', 'sd', 'sw', 'sh']
+    loadType = ['lb', 'ld', 'lw', 'lh']
+    if (instructionParts[1] in loadType):
         data = MemoryTable.ReadMemory(instructionParts[2], instructionParts[1][1])
         WriteToIB4(instructionParts[5], data)
-    elif (instructionParts[1][0] == 's'):
+    elif (instructionParts[1] in storeType):
         if (int(instructionParts[7]) < 0 or int(instructionParts[7]) > 31):
             return
         data = RegisterTable.registers[int(instructionParts[7])]

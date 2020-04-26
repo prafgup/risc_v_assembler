@@ -15,6 +15,7 @@ def update_from_IB2_file():
             dataForwardingFromIB3 = True
             curr=file2.read()
             curr=curr.split(" ")
+            print("Line 18 - ", s[5])
             if(curr[5]==s[3]):
                 s[4]=curr[4]
             file2.close()
@@ -25,7 +26,7 @@ def update_from_IB2_file():
             curr=file2.read()
             curr=curr.split(" ")
             if(curr[0]==s[3]):
-                s[4]=curr[1]
+                s[4]=curr[1].strip()
             file2.close()
         
     if(s[8]!="-1"):
@@ -44,7 +45,7 @@ def update_from_IB2_file():
             curr=file2.read()
             curr=curr.split(" ")
             if(curr[0]==s[6]):
-                s[7]=curr[1]
+                s[7]=curr[1].strip()
             file2.close()
     
     file.close()

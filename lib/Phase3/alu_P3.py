@@ -202,8 +202,8 @@ def SB_format(B):
 def U_format(B):
 	
 	if B[0]=="lui":
-		exp=int(B[2])*(2**12)
-		Rval=[int(exp),-1,int(B[1])]
+		# exp=int(B[2])*(2**12)
+		Rval=[int(B[2]),-1,int(B[1])]
 		return Rval
 	
 	if B[0]=="auipc":

@@ -1,3 +1,6 @@
+import os
+storeType = ['sb', 'sd', 'sw', 'sh']
+loadType = ['lb', 'ld', 'lw', 'lh']
 def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two):
     
     hazard_in_source_1=-1
@@ -6,7 +9,7 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two):
 
     if current_instr[3]==instruction_minus_one[2]:
         #hazard_in_source_1.append(current_instr[3])
-        if instruction_minus_one[1][0]=="l":
+        if instruction_minus_one[1] in loadType:
             hazard_in_source_1=4
             stall=stall+1
         else:
@@ -15,7 +18,7 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two):
     else:
         if current_instr[3]==instruction_minus_two[2]:
             #hazard_in_source_1.append(current_instr[3])
-            if instruction_minus_two[1][0]=="l":
+            if instruction_minus_two[1] in loadType:
                 hazard_in_source_1=4
                 # stall=stall+1
             else:
@@ -24,7 +27,7 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two):
 
     if current_instr[5]==instruction_minus_one[2]:
         #hazard_in_source_2.append(current_instr[4])
-        if instruction_minus_one[1][0]=="l":
+        if instruction_minus_one[1] in loadType:
             hazard_in_source_2=4
             stall=stall+1
         else:
@@ -33,7 +36,7 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two):
     else:
         if current_instr[5]==instruction_minus_two[2]:
             #hazard_in_source_2.append(current_instr[4])
-            if instruction_minus_two[1][0]=="l":
+            if instruction_minus_two[1][0] in loadType:
                 hazard_in_source_2=4
                 # stall=stall+1
             else:
@@ -42,10 +45,11 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two):
     returnreg = [current_instr[0], current_instr[1], current_instr[2], current_instr[3], current_instr[4],
                  hazard_in_source_1, current_instr[5], current_instr[6], hazard_in_source_2, current_instr[7], stall, current_instr[-2], current_instr[-1]]
     if stall != 0:
-        statfile = open(r"Files\status.txt", "r")
+        d = os.getcwd()
+        statfile = open(d+"/Phase3/Files/status.txt", "r")
         status = statfile.read()
         statfile.close()
-        statfile = open(r"Files\status.txt", "w")
+        statfile = open(d+"/Phase3/Files/status.txt", "w")
         status = status.split(" ")
         status[1] = str(1)
         status[2] = str(1)

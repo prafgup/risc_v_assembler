@@ -24,8 +24,8 @@ def reset():
 def Initi_dec_his():
     d = os.getcwd()+"/InterstageBuffers/decode_history.txt"
     file = open(d, "w")
-    line1 = "X X -1 -1 -1 -1 -1 -1\n"
-    line2 = "X X -1 -1 -1 -1 -1 -1\n"
+    line1 = "X X -2 -2 -2 -2 -2 -2\n"
+    line2 = "X X -2 -2 -2 -2 -2 -2\n"
     file.write(line1)
     file.write(line2)
     file.close()
@@ -58,7 +58,7 @@ def updateMemory():
         llist = line.split(" ")
         llist[1] = llist[1].strip()
         print(llist)
-    MemoryTable.WriteToMemory(llist[0], int(llist[1]), "b")
+        MemoryTable.WriteToMemory(llist[0], int(llist[1]), "b")
     print(MemoryTable.memory)
     print("Memory Update Completed!!!")
 
@@ -113,7 +113,7 @@ def Phase3():
     RegisterTable.Initialize()
     clockCycle = 1
     updateStatus()
-    while(clockCycle!=15):
+    while(clockCycle!=20):
         flush = False
         TargetAddress = None
         print("\n=======================================================")

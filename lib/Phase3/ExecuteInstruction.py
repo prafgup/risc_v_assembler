@@ -53,6 +53,7 @@ def execute(btb_object):
     RegisterTable.registers[0].value = 0
 
     if midway[1]!='jal' and midway[1]!="jalr":
+        print("Input to ALU - ", midway)
         opt_of_alu = get_alu_opt(midway)
     RegisterTable.registers[0].value = 0
 

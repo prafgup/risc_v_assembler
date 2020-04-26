@@ -12,8 +12,8 @@ Function to Read From IB1
 def Initi_dec_his():
     d=os.getcwd()+"/Phase3/InterstageBuffers/decode_history.txt"
     file=open(d,"w")
-    line1="X X -1 -1 -1 -1 -1 -1\n"
-    line2="X X -1 -1 -1 -1 -1 -1\n"
+    line1="X X -2 -2 -2 -2 -2 -2\n"
+    line2="X X -2 -2 -2 -2 -2 -2\n"
     file.write(line1)
     file.write(line2)
     file.close()
@@ -58,11 +58,15 @@ def getData(midway, PC_Value):
         midway.insert(6, RegisterTable.registers[midway[5]].value)
         midway[7] = midway[7] + int(PC_Value, 16)
 
-    if midway[1] == 'auipc':
-        print("PC Value Received = ", PC_Value)
-        midway.insert(4, int(PC_Value, 16))
-        midway.insert(6, -1)
-        print("Updated midway", midway)
+    if(midway[0]=='U'):
+        if midway[1] == 'auipc':
+            print("PC Value Received = ", PC_Value)
+            midway.insert(4, int(PC_Value, 16))
+            midway.insert(6, -1)
+            print("Updated midway", midway)
+        if(midway[1]=='lui'):
+            midway.insert(4, -1)
+            midway.insert(6, -1)
 
     return midway
 
@@ -96,6 +100,7 @@ def main():
         return
     l = l.split()
     midway = normalDecodePhase2(l[0])
+    print("Normal Decode Phase 2 - ", midway)
     midwayUpdated = getData(midway, l[-1])
     midwayUpdated.append(l[2])
     midwayUpdated.append(l[-2])
