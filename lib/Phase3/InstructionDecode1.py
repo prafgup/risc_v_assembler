@@ -10,7 +10,7 @@ Function to Read From IB1
 '''
 
 def Initi_dec_his():
-    d=os.getcwd()+"/InterstageBuffers/decode_history.txt"
+    d=os.getcwd()+"/Phase3/InterstageBuffers/decode_history.txt"
     file=open(d,"w")
     line1="X X -1 -1 -1 -1 -1 -1\n"
     line2="X X -1 -1 -1 -1 -1 -1\n"
@@ -20,9 +20,12 @@ def Initi_dec_his():
 
 
 def readFromIB1():
-    d = os.getcwd() + "/InterstageBuffers/IB1.txt"
+    d = os.getcwd() + "/Phase3/InterstageBuffers/IB1.txt"
     bufferPointer = open(d, "r+")
     content = bufferPointer.readlines()
+    print("Reading From Decode conten = ", content)
+    if(len(content)==0):
+        return ""
     bufferPointer.write("")
     bufferPointer.close()
     bufferPointer = open(d, "w")
@@ -64,7 +67,7 @@ def getData(midway, PC_Value):
     return midway
 
 def update_dec_his(s):
-    d=os.getcwd()+"/InterstageBuffers/decode_history.txt"
+    d=os.getcwd()+"/Phase3/InterstageBuffers/decode_history.txt"
     file=open(d,"r")    
     line1=file.readline()
     line2=file.readline()
@@ -87,13 +90,16 @@ def update_dec_his(s):
 
 
 def main():
-    l = readFromIB1().split()
+    l = readFromIB1()
     if(l==""):
         print("Nothing To Decode... Empty IB1")
         return
+    l = l.split()
     midway = normalDecodePhase2(l[0])
     midwayUpdated = getData(midway, l[-1])
     midwayUpdated.append(l[2])
+    midwayUpdated.append(l[-2])
+    midwayUpdated.append(l[-1])
     print("Input to HDU -> ", midwayUpdated)
 
     for i in range(0, len(midwayUpdated)):

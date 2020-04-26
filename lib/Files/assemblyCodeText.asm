@@ -1,1 +1,2 @@
-var1: .word 56
+lui x1 65536
+lui x2 65536

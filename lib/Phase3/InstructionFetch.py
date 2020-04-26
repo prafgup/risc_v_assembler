@@ -40,6 +40,8 @@ def updatePC(Branch, Taken_NotTaken, TargetLineNumber, currentLineNumber):
 
 def updateIB1(getInstruction, Branch, Taken_NotTaken, currentLineNumber, currentPC):
     file = open(os.getcwd() + '/Phase3/InterstageBuffers/IB1.txt', 'w')
+    print("Updating IB1")
+    print(getInstruction)
     file.write(getInstruction)
     file.write(" ")
     if(Branch==True):

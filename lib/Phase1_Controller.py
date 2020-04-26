@@ -8,7 +8,7 @@ from Phase2.registers import RegisterTable
 from Phase1.mcTotextMemory import mcToMemory
 
 def Phase1_Function():
-    print("***************** Phase 1 ********************")
+    print("***************** Phase 3 ********************")
     # -------------------------------------------
     print("Initializing The Register....")
     RegisterTable.Initialize()
@@ -25,7 +25,7 @@ def Phase1_Function():
     print("Successfully Separated Data And Text Section!!!\nFind Text Part in Files/assemblyCodeText.asm\nFind Data Part in Files/assemblyCodeData.asm")
     #--------------------------------------------
     print("Replacing Labels With Offsets....")
-    dic, no_label_list = preProcessObj.generate_labels_and_list('assemblyCodeData.asm')
+    dic, no_label_list = preProcessObj.generate_labels_and_list('assemblyCodeText.asm')
     preProcessObj.write_to_file('assemblyCodeFinal.asm', no_label_list)
     print("Successfully Replaced All Labels...Updated Assembly Code Stored in Files/assemblyCodeFinal.asm")
     #--------------------------------------------
@@ -49,4 +49,4 @@ def Phase1_Function():
     mcToMemory()
     print("Successfully Completed...The location of stored file is Files/memory_text.txt")
     print("---------------------------------------------------------")
-    print("Successfully Executed Phase 1 File")
+    print("Successfully Converted Assembly Code To Machine Code")

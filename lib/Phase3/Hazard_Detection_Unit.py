@@ -40,7 +40,7 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two):
                 hazard_in_source_2=3
 
     returnreg = [current_instr[0], current_instr[1], current_instr[2], current_instr[3], current_instr[4],
-                 hazard_in_source_1, current_instr[5], current_instr[6], hazard_in_source_2, current_instr[7], stall]
+                 hazard_in_source_1, current_instr[5], current_instr[6], hazard_in_source_2, current_instr[7], stall, current_instr[-2], current_instr[-1]]
     if stall != 0:
         statfile = open(r"Files\status.txt", "r")
         status = statfile.read()
@@ -54,12 +54,13 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two):
         statfile.write(t)
         statfile.close()
 
-    for i in range(0, len(current_instr)):
-        current_instr[i] = str(current_instr[i])
-    print(current_instr)
+    for i in range(0, len(returnreg)):
+        returnreg[i] = str(returnreg[i])
+    print(returnreg)
     s = " "
-    s = s.join(current_instr)
-    file = open(r"InterstageBuffers\IB2.txt", "w")
+    s = s.join(returnreg)
+    file = open(r"Phase3/InterstageBuffers/IB2.txt", "w")
+    print("-------------------------Writing to IB2 -> ", s)
     file.write(s)
     file.close()
     return returnreg

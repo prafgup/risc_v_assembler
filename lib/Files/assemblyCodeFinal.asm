@@ -1,1 +1,2 @@
-add x7 x3 x4
+lui x1 65536
+lui x2 65536

@@ -1,8 +1,8 @@
 # Just Call main() function
 
 import os
-from memory import *
-from registers import RegisterTable
+from Phase3.memory import *
+from Phase3.registers import RegisterTable
 
 def ExecuteInstruction (instruction):
     #   InstructionParts[0] = Instruction Type
@@ -18,8 +18,6 @@ def ExecuteInstruction (instruction):
         print("No Content Found in IB3... Nothing Executed")
         return
     instructionParts = instruction.split(' ')
-    print("This - ", instruction)
-    print("INstructio -> ", instructionParts[1])
     if (instructionParts[1][0] == 'l'):
         data = MemoryTable.ReadMemory(instructionParts[2], instructionParts[1][1])
         WriteToIB4(instructionParts[5], data)
@@ -35,18 +33,18 @@ def ExecuteInstruction (instruction):
     return
 
 def RemoveLastLine():
-    w = open(os.getcwd() + '/InterstageBuffers/IB3.txt','w+')
+    w = open(os.getcwd() + '/Phase3/InterstageBuffers/IB3.txt','w+')
     lines = w.readline()
     w.writelines([line for line in  lines[:-1]])
     w.close()
 
 def WriteToIB4(destReg, data):
-    ib4 = open(os.getcwd() + '/InterstageBuffers/IB4.txt', 'a')
+    ib4 = open(os.getcwd() + '/Phase3/InterstageBuffers/IB4.txt', 'a')
     ib4.write(str(destReg)+' '+str(data)+'\n')
     ib4.close()
 
 def ReadFromIB3 ():
-    ib3 = open(os.getcwd() + '/InterstageBuffers/IB3.txt', 'r+')
+    ib3 = open(os.getcwd() + '/Phase3/InterstageBuffers/IB3.txt', 'r+')
     lines = ib3.readline()
     # print(lines)
     # lastLine = None
@@ -54,9 +52,10 @@ def ReadFromIB3 ():
     #     if line != None:
     #         lastLine = line
     ib3.close()
+    print("Data Read From IB3 = ", lines)
     return lines
 
-def main():
+def mainMA():
     ExecuteInstruction(ReadFromIB3())
 
 
