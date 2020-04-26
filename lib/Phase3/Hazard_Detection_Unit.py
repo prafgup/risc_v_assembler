@@ -36,7 +36,7 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two):
     else:
         if current_instr[5]==instruction_minus_two[2]:
             #hazard_in_source_2.append(current_instr[4])
-            if instruction_minus_two[1][0] in loadType:
+            if instruction_minus_two[1] in loadType:
                 hazard_in_source_2=4
                 # stall=stall+1
             else:

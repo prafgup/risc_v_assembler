@@ -117,4 +117,7 @@ def main():
 
     prev_one=prev_one.split(" ")
     prev_two=prev_two.split(" ")
+    print("Param 1 ", midwayUpdated)
+    print("prev_one ", prev_one)
+    print("prev two", prev_two)
     print(Hazard_Detect(midwayUpdated, prev_one, prev_two))

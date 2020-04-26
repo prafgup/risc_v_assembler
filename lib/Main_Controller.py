@@ -22,7 +22,7 @@ def reset():
         pointer.close()
 
 def Initi_dec_his():
-    d = os.getcwd()+"/InterstageBuffers/decode_history.txt"
+    d = os.getcwd()+"/Phase3/InterstageBuffers/decode_history.txt"
     file = open(d, "w")
     line1 = "X X -2 -2 -2 -2 -2 -2\n"
     line2 = "X X -2 -2 -2 -2 -2 -2\n"
@@ -103,6 +103,7 @@ def updatePC(valueInDec):
     
 
 def Phase3():
+    Initi_dec_his()
     reset()
     Phase1_Controller.Phase1_Function()
     copyFiles()
@@ -135,22 +136,28 @@ def Phase3():
                 print("IB4 \t\t IB3")
         print("-------------------------------------------------\n")
         #------------------------------------------------------------------------
+        print("Write Back - - - - - - - - - - - - - ")
         if(readIndex(4)==0):
             wb_Register, wb_Data = mainWB()
         else:
             updateIndex(4)
+        print("- - - - - - - - - - - - - - - -")
+        print("Memory Access - - - - - - -- - - - - - - -")
         if(readIndex(3)==0):
             mainMA()
         else:
             updateIndex(3)
+        print("Execute - - - - - - -  - - -- -")
         if(readIndex(2)==0):
             flush, TargetAddress = execute(btb_object)
         else:
             updateIndex(2)
+        print("Decode -- - - - - -- - - ")
         if(readIndex(1)==0):
             main()
         else:
             updateIndex(1)
+        print("Fetch - - - -  - - - -  -")
         if(readIndex(0)==0):
             FetchInstruction(btb_object)
             decodeStallValue = readIndex(1)
