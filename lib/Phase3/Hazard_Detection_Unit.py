@@ -7,40 +7,41 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two):
     hazard_in_source_2=-1
     stall=0
 
-    if current_instr[3]==instruction_minus_one[2]:
+    if current_instr[3] == instruction_minus_one[2] and current_instr[3] != 0:
         #hazard_in_source_1.append(current_instr[3])
         if instruction_minus_one[1] in loadType:
-            hazard_in_source_1=4
-            stall=stall+1
+            hazard_in_source_1 = 4
+            stall = stall+1
         else:
-            hazard_in_source_1=3
+            hazard_in_source_1 = 3
 
     else:
-        if current_instr[3]==instruction_minus_two[2]:
+        if current_instr[3] == instruction_minus_two[2] and current_instr[3] != 0:
             #hazard_in_source_1.append(current_instr[3])
             if instruction_minus_two[1] in loadType:
-                hazard_in_source_1=4
+                hazard_in_source_1 = 4
                 # stall=stall+1
             else:
-                hazard_in_source_1=4
+                hazard_in_source_1 = 4
 
-
-    if current_instr[5]==instruction_minus_one[2]:
+    if current_instr[5] == instruction_minus_one[2] and current_instr[5] != 0:
         #hazard_in_source_2.append(current_instr[4])
         if instruction_minus_one[1] in loadType:
-            hazard_in_source_2=4
-            stall=stall+1
+            hazard_in_source_2 = 4
+            stall = stall+1
         else:
-            hazard_in_source_2=3
+            hazard_in_source_2 = 3
 
     else:
-        if current_instr[5]==instruction_minus_two[2]:
+        if current_instr[5] == instruction_minus_two[2] and current_instr[5] != 0:
             #hazard_in_source_2.append(current_instr[4])
             if instruction_minus_two[1] in loadType:
-                hazard_in_source_2=4
+                hazard_in_source_2 = 4
                 # stall=stall+1
             else:
-                hazard_in_source_2=4
+                hazard_in_source_2 = 4
+
+    # 25 43
 
     returnreg = [current_instr[0], current_instr[1], current_instr[2], current_instr[3], current_instr[4],
                  hazard_in_source_1, current_instr[5], current_instr[6], hazard_in_source_2, current_instr[7], current_instr[8], stall, current_instr[-2], current_instr[-1]]

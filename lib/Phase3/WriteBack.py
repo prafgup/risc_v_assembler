@@ -16,7 +16,10 @@ def WriteBackToRegister (instruction):
     if(instruction==""):
         return None, None
     instructionParts = instruction.split(' ')
+    if(int(instructionParts[0])==-1):
+        return None, None
     RegisterTable.registers[int(instructionParts[0])].value = int(instructionParts[1])  
+    RegisterTable.registers[0].value = 0
     RegisterTable.StoreInFile() 
     return int(instructionParts[0]), int(instructionParts[1])
 

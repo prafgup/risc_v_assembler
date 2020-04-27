@@ -31,8 +31,10 @@ def ExecuteInstruction (instruction):
         print("Address to store ", addressHex)
         if (int(instructionParts[7]) < 0 or int(instructionParts[7]) > 31):
             return
-        data = RegisterTable.registers[int(instructionParts[7])].value
-        MemoryTable.WriteToMemory(addressHex, data, instructionParts[1][1])
+        # if (instructionParts[3]!=-1):
+        #     pass
+        # data = RegisterTable.registers[int(instructionParts[7])].value
+        MemoryTable.WriteToMemory(addressHex, int(instructionParts[3]), instructionParts[1][1])
         WriteToIB4(-1, -1)
         print(MemoryTable.memory)
     else:

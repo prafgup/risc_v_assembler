@@ -1,4 +1,5 @@
 import os
+import math
 class MemoryTable:
     memory = {}
 

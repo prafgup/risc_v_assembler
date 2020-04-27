@@ -64,6 +64,9 @@ def FetchInstruction(btb_Object=None):
         print("No Instruction Fetched!!!")
         return
     [Branch, Taken_NotTaken, TargetLineNumber] = btb_Object.checkInstruction(currentLineNumber)
+    print("Found in BTB?", Branch)
+    print("Taken Not Taken?", Taken_NotTaken)
+    print("Target Line NUmber = ", TargetLineNumber)
     updatePC(Branch, Taken_NotTaken, TargetLineNumber, currentLineNumber)
     updateIB1(getInstruction, Branch, Taken_NotTaken, currentLineNumber, currentPC)
     print("Instruction Fetch Completed")

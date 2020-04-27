@@ -114,7 +114,10 @@ def Phase3():
     RegisterTable.Initialize()
     clockCycle = 1
     updateStatus()
-    while(clockCycle!=20):
+    while(clockCycle!=200):
+        # if(RegisterTable.registers[31].value!=0):
+        #     print(RegisterTable.registers[31].value)
+        #     break
         flush = False
         TargetAddress = None
         print("\n=======================================================")
@@ -169,8 +172,10 @@ def Phase3():
             flushIB()
             updatePC(TargetAddress)
             Initi_dec_his()
+        elif(flush==False and TargetAddress!=None):
+            updatePC(TargetAddress)
         clockCycle = clockCycle + 1
-        faltu = input("Waiting...")
+        # faltu = input("Waiting...")
         
 Phase3()
     

@@ -1,9 +1,29 @@
-.data
-var1: .word 268435456
-var2: .word 100
 .text
-lui x1 65536
-lui x2 65536
-lw x7 0(x1)
-lw x4 0(x2)
-sw x7 0(x4)
+addi x3,x0,0 #seed1
+addi x4,x0,1 #seed2
+addi x5,x0,8 #n
+
+jal x1,fib
+beq x0,x0,fallthru
+
+fib:
+
+bne x5,x0,l1
+add x6,x3,x0
+add x7,x4,x0
+jalr x0,0(x1)
+
+l1:
+addi x5,x5,-1
+addi sp,sp,-4
+sw x1,0(sp)
+jal x1,fib
+
+add x8,x7,x0
+add x7,x7,x6
+add x6,x8,x0
+lw x1,0(sp)
+addi sp,sp,4
+jalr x0,0(x1)
+
+fallthru:

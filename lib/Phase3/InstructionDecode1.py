@@ -58,6 +58,10 @@ def getData(midway, PC_Value):
         midway.insert(6, RegisterTable.registers[midway[5]].value)
         midway[7] = midway[7] + int(PC_Value, 16)
 
+    if(midway[1] == 'jal'):
+        midway.insert(4, -1)
+        midway.insert(6, -1)
+
     if(midway[0]=='U'):
         if midway[1] == 'auipc':
             print("PC Value Received = ", PC_Value)

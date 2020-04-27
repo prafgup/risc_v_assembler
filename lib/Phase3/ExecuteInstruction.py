@@ -29,28 +29,43 @@ def execute(btb_object):
     # T_NT = bool(midway[-4])
 
     if midway[1]=='jal':
-        pcValueInDecimal = int(midway[-2], 16)
-        RegisterTable.registers[int(midway[2])].value = (pcValueInDecimal + 4)
+        print("Instruction Identified to be Of Type of jal....")
+        pcValueInDecimal = int(midway[-1], 16)
+        dataToBeWrittenInRegister = pcValueInDecimal+4
+        destinationRegister = int(midway[2])
+        print("pcValueInDecimal = ", pcValueInDecimal)
+        print("dataToBeWrittenInRegister = ", dataToBeWrittenInRegister)
+        print("destinationRegister = ", destinationRegister)
+        # RegisterTable.registers[int(midway[2])].value = (pcValueInDecimal + 4)
         if(midway[-4]=='False'):
             T_NT = False
+            print("The Branch Was Not Taken during the Fetch Stage")
         else:
+            print("The Branch Was Taken During The Fetch Stage")
             T_NT = True
         if(T_NT==False):
             # updatePC((pcValueInDecimal+int(midway[9])))
             lineNumber = (pcValueInDecimal+int(midway[9]))//4
             flush = True
             TargetAddress = pcValueInDecimal+int(midway[9])
+            print("Pipeline Flush = ", flush)
+            print("Target Address = ", TargetAddress)
+            print("Target Line NUmber = ", lineNumber)
             btb_object.update(int(midway[-2]), True, True, lineNumber)
             # File1.updatePC(sequential=False, RA=(pcValueInDecimal+int(midway[9]))//4, offsetJ=-1)
             # print("CurrentPc -> ", pcValueInDecimal)
-    RegisterTable.registers[0].value = 0
+        opt_of_alu = [dataToBeWrittenInRegister, -1, destinationRegister]
+    
 
     if midway[1]=="jalr":
-        pcValueInDecimal = int(midway[-2], 16)
-        RegisterTable.registers[midway[2]].value = (pcValueInDecimal+4)
-        updatePC((midway[4]+int(midway[9])))
+        pcValueInDecimal = int(midway[-1], 16)
+        # RegisterTable.registers[midway[2]].value = (pcValueInDecimal+4)
+        # updatePC((midway[4]+int(midway[9])))
+        TargetAddress = int(midway[4]) + int(midway[9])
+        flush = True
         # File1.updatePC(sequential=False, RA=(midway[4]+int(midway[9]))//4, offsetJ=-1)
-    RegisterTable.registers[0].value = 0
+        opt_of_alu = [pcValueInDecimal+4, -1, int(midway[2])]
+
 
     if midway[1]!='jal' and midway[1]!="jalr":
         print("Input to ALU - ", midway)
@@ -59,7 +74,7 @@ def execute(btb_object):
 
     if(midway[0] == 'SB'):
         branchType = True
-        pcValueInDecimal = int(midway[-2], 16)
+        pcValueInDecimal = int(midway[-1], 16)
         if(midway[-4] == 'False'):
             T_NT = False
         else:
