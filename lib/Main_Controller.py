@@ -8,9 +8,57 @@ from Phase3.registers import *
 from Phase3.WriteBack import mainWB
 from Phase3.MemoryAccess import mainMA
 from Phase3.ExecuteInstruction import execute
-from Phase3.InstructionDecode1 import main
+from Phase3.InstructionDecode1 import main, normalDecodePhase2
 from Phase3 import update_from_IB2, update_from_IB3
 import shutil
+from Phase2.InstructionDecode import *
+
+def instr_stat_init():
+    file = open(os.getcwd() + "/Phase3/Files/instruction_Details.txt", "w")
+    file.write("X 0\n")
+    file.write("X 0\n")
+    file.write("X 0\n")
+    file.write("X 0\n")
+    file.write("X 0\n")
+    file.close()
+
+def instr_stat_update(s):
+    file = open(os.getcwd() + "/Phase3/Files/instruction_Details.txt", "r")
+    line1 = file.readline()  # F
+    line2 = file.readline()  # D
+    line3 = file.readline()  # E
+    line4 = file.readline()  # M
+    line5 = file.readline()  # W
+    file.close()
+    statusfile = open(os.getcwd() + "/Phase3/Files/status.txt", "r")
+    curr_stat = statusfile.read()
+    statusfile.close()
+    curr_stat = curr_stat.split(" ")
+    line5 = line4
+    if curr_stat[2] == "0":
+        line4 = line3
+    else:
+        line4 = "X 0\n"
+
+    if curr_stat[1] == "0":
+        line3 = line2
+    elif curr_stat[2] != "0":
+        line3 = "X 0\n"
+
+    if curr_stat[0] == "0":
+        line2 = line1
+    elif curr_stat[1] != "0":
+        line2 = "X 0\n"
+
+    line1 = s
+
+    file = open(os.getcwd() + "/Phase3/Files/instruction_Details.txt", "w")
+    file.write(line1)
+    file.write(line2)
+    file.write(line3)
+    file.write(line4)
+    file.write(line5)
+    file.close()
 
 
 def SnapShotAfterCycleCompletion(cycle_count):
@@ -22,12 +70,19 @@ def SnapShotAfterCycleCompletion(cycle_count):
         file.write(str(RegisterTable.registers[i].value)+'\n')
     file.close()
     file = open(os.getcwd()+"/Phase3/Snapshot/Files/" +
-                "pc_after_each_cycle.txt", 'a')
-    pc = open(os.getcwd()+"/Phase3/InterstageBuffers/PC_Current.txt", 'r')
+                "pcs_after_cycle"+str(cycle_count)+".txt", 'w')
+    pc = open(os.getcwd()+"/Phase3/InterstageBuffers/PC_History.txt", 'r')
     file.write(pc.read()+"\n")
     pc.close()
     file.close()
-
+    instructionDetails = open(
+        os.getcwd()+"/Phase3/Files/instruction_Details.txt", 'r')
+    file = open(os.getcwd()+"/Phase3/Snapshot/Files/" +
+                "instruction_details_after_cycle"+str(cycle_count)+".txt", 'w')
+    readData = instructionDetails.read()
+    readData = readData.split(' ')
+    file.write(readData[1])
+    file.close()
 
 def StoreInstructionsInFile():
     originalPath = os.getcwd()+"/Files/memory_text.txt"
@@ -67,11 +122,19 @@ def copyFiles():
     print("Import Completed...\nUpdated machineCode.mc and data_memory_table.txt")
     print("Successfull Import!!!\n")
 
-def updateStatus():
-    fileAdress = os.getcwd() + "/Phase3/Files/status.txt"
-    filePointer = open(fileAdress, "w+")
-    filePointer.write("0 1 2 3 4")
-    filePointer.close()
+
+def updateStatus(b):
+    if b == 1:
+        fileAdress = os.getcwd() + "/Phase3/Files/status.txt"
+        filePointer = open(fileAdress, "w+")
+        filePointer.write("0 1 2 3 4")
+        filePointer.close()
+
+    if b == 0:
+        fileAdress = os.getcwd() + "/Phase3/Files/status.txt"
+        filePointer = open(fileAdress, "w+")
+        filePointer.write("0 5 5 5 5")
+        filePointer.close()
 
 def updateMemory():
     print("Updating Memory....")
@@ -125,8 +188,17 @@ def updatePC(valueInDec):
     filePointer.close()
     
 
+def getPC_History():
+    pathToFile = os.getcwd() + "/Phase3/InterstageBuffers/PC_History.txt"
+    filePointer = open(pathToFile, "r")
+    pcVal = filePointer.readline()
+    pcVal.strip()
+    filePointer.close()
+    return pcVal
+
 def Phase3():
     Initi_dec_his()
+    instr_stat_init()
     reset()
     Phase1_Controller.Phase1_Function()
     copyFiles()
@@ -136,9 +208,10 @@ def Phase3():
     print("\nRegister Table Initialized!!!")
     RegisterTable.Initialize()
     clockCycle = 1
-    updateStatus()
+    pipelining_status = int(input("Pipeline ON/OFF?: "))
+    updateStatus(pipelining_status)
     StoreInstructionsInFile()
-    while(clockCycle!=200):
+    while(clockCycle!=600):
         # if(RegisterTable.registers[31].value!=0):
         #     print(RegisterTable.registers[31].value)
         #     break
@@ -166,32 +239,47 @@ def Phase3():
         print("Write Back - - - - - - - - - - - - - ")
         if(readIndex(4)==0):
             wb_Register, wb_Data = mainWB()
-        else:
+        elif(pipelining_status==1):
             updateIndex(4)
         print("- - - - - - - - - - - - - - - -")
         print("Memory Access - - - - - - -- - - - - - - -")
         if(readIndex(3)==0):
             mainMA()
-        else:
+        elif(pipelining_status==1):
             updateIndex(3)
         print("Execute - - - - - - -  - - -- -")
         if(readIndex(2)==0):
             flush, TargetAddress = execute(btb_object)
-        else:
+        elif(pipelining_status==1):
             updateIndex(2)
         print("Decode -- - - - - -- - - ")
         if(readIndex(1)==0):
             main()
-        else:
+        elif(pipelining_status==1):
             updateIndex(1)
         print("Fetch - - - -  - - - -  -")
         if(readIndex(0)==0):
-            FetchInstruction(btb_object)
+            FetchInstruction(pipelining_status, btb_object)
             decodeStallValue = readIndex(1)
-            updateIndex(0, decodeStallValue)
-        else:
+            if(pipelining_status==1):
+                updateIndex(0, decodeStallValue)
+        elif(pipelining_status==1):
             updateIndex(0)
         
+        if(pipelining_status==1):
+            getPC_Hist_Value = getPC_History()
+            d = os.getcwd() + "/Phase3/InterstageBuffers/IB1.txt"
+            instr_update=open(d, "r")
+            l = instr_update.readline()
+            if(len(l)!=0):
+                l = l.split(" ")
+                instr_info = normalDecodePhase2(l[0])
+                instr_info = str(instr_info[1])
+                instr_info = instr_info+" "+str(getPC_Hist_Value)+"\n"
+                instr_stat_update(instr_info)
+            else:
+                instr_stat_update("X 0\n")
+
         if(flush==True):
             flushIB()
             updatePC(TargetAddress)
@@ -200,7 +288,25 @@ def Phase3():
             updatePC(TargetAddress)
         SnapShotAfterCycleCompletion(clockCycle)
         clockCycle = clockCycle + 1
-        # faltu = input("Waiting...")
+        if pipelining_status == 0:
+            Initi_dec_his()
+            fileAdress = os.getcwd() + "/Phase3/Files/status.txt"
+            filePointer = open(fileAdress, "r")
+            linepipe = filePointer.readline()
+            filePointer.close()
+            linepipe = linepipe.split(" ")
+            temp = linepipe[4]
+            linepipe[4] = linepipe[3]
+            linepipe[3] = linepipe[2]
+            linepipe[2] = linepipe[1]
+            linepipe[1] = linepipe[0]
+            linepipe[0] = temp
+            linepipe = " ".join(linepipe)
+            fileAdress = os.getcwd() + "/Phase3/Files/status.txt"
+            filePointer = open(fileAdress, "w")
+            filePointer.write(linepipe)
+            filePointer.close()
+        buffer = input("Waiting...")
         
 Phase3()
     

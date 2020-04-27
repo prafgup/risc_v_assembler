@@ -55,7 +55,8 @@ def updateIB1(getInstruction, Branch, Taken_NotTaken, currentLineNumber, current
     file.write(str(currentLineNumber)+" "+currentPC)
     file.close()
 
-def FetchInstruction(btb_Object=None):
+
+def FetchInstruction(pipelining_Status, btb_Object=None):
     print("Instruction Fetch Currently in Execution...", end='')
     currentLineNumber, currentPC = fetchPC()
     getInstruction = instruction(currentLineNumber)
@@ -63,7 +64,10 @@ def FetchInstruction(btb_Object=None):
         print("Reached The End Of the File While Parsing...")
         print("No Instruction Fetched!!!")
         return
-    [Branch, Taken_NotTaken, TargetLineNumber] = btb_Object.checkInstruction(currentLineNumber)
+    Branch = Taken_NotTaken = False
+    TargetLineNumber = -1
+    if(pipelining_Status==1):
+        [Branch, Taken_NotTaken, TargetLineNumber] = btb_Object.checkInstruction(currentLineNumber)
     print("Found in BTB?", Branch)
     print("Taken Not Taken?", Taken_NotTaken)
     print("Target Line NUmber = ", TargetLineNumber)
