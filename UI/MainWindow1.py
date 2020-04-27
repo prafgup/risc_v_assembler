@@ -387,6 +387,26 @@ class Ui_MainWindow(object):
 		self.tab_3 = QtWidgets.QWidget()
 		self.tab_3.setObjectName("tab_3")
 		self.tabs.addTab(self.tab_3, "")
+
+		#self.horizontalLayout = QtWidgets.QHBoxLayout(self.tab_2)
+		#self.horizontalLayout.setObjectName("horizontalLayout")
+
+		self.tab_3.layout = QtWidgets.QGridLayout()
+
+
+		self.temp1 = QtWidgets.QLabel("")
+		self.cb1 = QtWidgets.QCheckBox('Text 1')
+		self.cb1.toggle()
+		self.cb2 = QtWidgets.QCheckBox('Text 2')
+		self.cb2.toggle()
+		#cb.stateChanged.connect(self.changeTitle) #TODO
+		self.pushButton1 = QtWidgets.QPushButton("PyQt5 button")
+		self.tab_3.layout.addWidget(self.cb1,1,1)
+		self.tab_3.layout.addWidget(self.cb2,2,1)
+		self.tab_3.layout.addWidget(self.temp1,3,0)
+		self.tab_3.setLayout(self.tab_3.layout)
+
+
 		self.gridLayout.addWidget(self.tabs, 0, 0, 1, 1)
 		MainWindow.setCentralWidget(self.centralwidget)
 
@@ -559,7 +579,7 @@ class Ui_MainWindow(object):
 		item.setText(_translate("MainWindow", "+3"))
 		self.regMemTab.setTabText(self.regMemTab.indexOf(self.tab_5), _translate("MainWindow", "Memory"))
 		self.tabs.setTabText(self.tabs.indexOf(self.tab_2), _translate("MainWindow", "Simulator"))
-		self.tabs.setTabText(self.tabs.indexOf(self.tab_3), _translate("MainWindow", "Our Team"))
+		self.tabs.setTabText(self.tabs.indexOf(self.tab_3), _translate("MainWindow", "Customize Options"))
 
 	
 	def file_open(self):
