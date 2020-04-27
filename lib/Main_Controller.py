@@ -10,6 +10,29 @@ from Phase3.MemoryAccess import mainMA
 from Phase3.ExecuteInstruction import execute
 from Phase3.InstructionDecode1 import main
 from Phase3 import update_from_IB2, update_from_IB3
+import shutil
+
+
+def SnapShotAfterCycleCompletion(cycle_count):
+    MemoryTable.StoreInFile(False, "memory_after_cycle" +
+                            str(cycle_count)+".txt", os.getcwd()+"/Phase3/Snapshot/")
+    file = open(os.getcwd()+"/Phase3/Snapshot/Files/" +
+                "registers_after_cycle"+str(cycle_count)+".txt", 'w')
+    for i in range(32):
+        file.write(str(RegisterTable.registers[i].value)+'\n')
+    file.close()
+    file = open(os.getcwd()+"/Phase3/Snapshot/Files/" +
+                "pc_after_each_cycle.txt", 'a')
+    pc = open(os.getcwd()+"/Phase3/InterstageBuffers/PC_Current.txt", 'r')
+    file.write(pc.read()+"\n")
+    pc.close()
+    file.close()
+
+
+def StoreInstructionsInFile():
+    originalPath = os.getcwd()+"/Files/memory_text.txt"
+    targetPath = os.getcwd()+"/Phase3/Snapshot/memory_instructions.txt"
+    shutil.copyfile(originalPath, targetPath)
 
 def reset():
     d = os.getcwd()
@@ -114,6 +137,7 @@ def Phase3():
     RegisterTable.Initialize()
     clockCycle = 1
     updateStatus()
+    StoreInstructionsInFile()
     while(clockCycle!=200):
         # if(RegisterTable.registers[31].value!=0):
         #     print(RegisterTable.registers[31].value)
@@ -174,6 +198,7 @@ def Phase3():
             Initi_dec_his()
         elif(flush==False and TargetAddress!=None):
             updatePC(TargetAddress)
+        SnapShotAfterCycleCompletion(clockCycle)
         clockCycle = clockCycle + 1
         # faltu = input("Waiting...")
         
