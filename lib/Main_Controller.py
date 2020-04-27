@@ -205,7 +205,7 @@ def Phase3():
     instr_stat_init()
     reset()
     # - -- - -- - - -- - -- - - 
-    file = open(os.getcwd+"knobs.txt", "w")
+    file = open(os.getcwd()+"/Phase3/Files/knobs.txt", "w")
     file.write("1 1")
     file.close()
     # -----------------------------
@@ -220,7 +220,7 @@ def Phase3():
     print("\nRegister Table Initialized!!!")
     RegisterTable.Initialize()
     clockCycle = 1
-    file = open(os.getcwd+"knobs.txt", "r")
+    file = open(os.getcwd()+"/Phase3/Files/knobs.txt", "r")
     pref = file.read()
     file.close()
     pref = pref.split(" ")
