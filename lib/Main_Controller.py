@@ -79,9 +79,13 @@ def SnapShotAfterCycleCompletion(cycle_count):
         os.getcwd()+"/Phase3/Files/instruction_Details.txt", 'r')
     file = open(os.getcwd()+"/Phase3/Snapshot/Files/" +
                 "instruction_details_after_cycle"+str(cycle_count)+".txt", 'w')
-    readData = instructionDetails.read()
-    readData = readData.split(' ')
-    file.write(readData[1])
+    readData = instructionDetails.readlines()
+    print("==============-=-=-=================-=-=-======================")
+    print("Read Data = ", readData)
+    for data in readData:
+        d = data.split(' ')
+        print("d = ", d)
+        file.write(d[1])
     file.close()
 
 def StoreInstructionsInFile():
@@ -200,6 +204,14 @@ def Phase3():
     Initi_dec_his()
     instr_stat_init()
     reset()
+    # - -- - -- - - -- - -- - - 
+    file = open(os.getcwd+"knobs.txt", "w")
+    file.write("1 1")
+    file.close()
+    # -----------------------------
+    shutil.rmtree(os.getcwd()+"/Phase3/Snapshot/Files")
+    os.mkdir(os.getcwd()+"/Phase3/Snapshot/Files")
+    #------------------------------
     Phase1_Controller.Phase1_Function()
     copyFiles()
     updateMemory()
@@ -208,7 +220,12 @@ def Phase3():
     print("\nRegister Table Initialized!!!")
     RegisterTable.Initialize()
     clockCycle = 1
-    pipelining_status = int(input("Pipeline ON/OFF?: "))
+    file = open(os.getcwd+"knobs.txt", "r")
+    pref = file.read()
+    file.close()
+    pref = pref.split(" ")
+    pipelining_status = int(pref[0])
+    knob = int(pref[1])
     updateStatus(pipelining_status)
     StoreInstructionsInFile()
     while(clockCycle!=600):
