@@ -194,11 +194,62 @@ class Ui_MainWindow(object):
 		self.gridLayout_2 = QtWidgets.QGridLayout(self.tab_4)
 		self.gridLayout_2.setObjectName("gridLayout_2")
 		self.registerTable = QtWidgets.QTableWidget(self.tab_4)
+		self.tab_6 = QtWidgets.QWidget()
+		self.tab_6.setObjectName("tab_6")
+		self.gridLayout_3 = QtWidgets.QGridLayout(self.tab_6)
+		self.gridLayout_3.setObjectName("gridLayout_3")
+		self.registerTable = QtWidgets.QTableWidget(self.tab_6)
 		self.registerTable.setGridStyle(QtCore.Qt.DashLine)
 		self.registerTable.setObjectName("registerTable")
 		self.registerTable.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
 		self.registerTable.setColumnCount(1)
 		self.registerTable.setRowCount(32)
+
+
+		self.pipeTable = QtWidgets.QTableWidget(self.tab_6)
+		self.pipeTable.setGridStyle(QtCore.Qt.DashLine)
+		self.pipeTable.setObjectName("pipeTable")
+		self.pipeTable.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
+		self.pipeTable.setColumnCount(1)
+		self.pipeTable.setRowCount(10)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(0, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(1, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(2, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(3, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(4, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(5, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(6, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(7, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(8, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(9, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(10, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setHorizontalHeaderItem(0, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setItem(0, 0, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setItem(1, 0, item)
+		self.pipeTable.horizontalHeader().setCascadingSectionResizes(True)
+		self.pipeTable.horizontalHeader().setDefaultSectionSize(150)
+		self.pipeTable.horizontalHeader().setMinimumSectionSize(80)
+		self.pipeTable.horizontalHeader().setStretchLastSection(True)
+		self.pipeTable.verticalHeader().setCascadingSectionResizes(False)
+		self.pipeTable.verticalHeader().setDefaultSectionSize(37)
+		self.pipeTable.verticalHeader().setStretchLastSection(False)
+
+
+
 		item = QtWidgets.QTableWidgetItem()
 		self.registerTable.setVerticalHeaderItem(0, item)
 		item = QtWidgets.QTableWidgetItem()
@@ -277,6 +328,7 @@ class Ui_MainWindow(object):
 		self.registerTable.verticalHeader().setDefaultSectionSize(37)
 		self.registerTable.verticalHeader().setStretchLastSection(False)
 		self.gridLayout_2.addWidget(self.registerTable, 0, 0, 1, 1)
+		self.gridLayout_3.addWidget(self.pipeTable, 0, 0, 1, 1)
 		self.regMemTab.addTab(self.tab_4, "")
 		self.tab_5 = QtWidgets.QWidget()
 		self.tab_5.setObjectName("tab_5")
@@ -324,6 +376,11 @@ class Ui_MainWindow(object):
 		self.memoryTable.verticalHeader().setCascadingSectionResizes(True)
 		self.verticalLayout_4.addWidget(self.memoryTable)
 		self.regMemTab.addTab(self.tab_5, "")
+
+
+		self.regMemTab.addTab(self.tab_6, "")
+
+
 		self.verticalLayout_3.addWidget(self.regMemTab)
 		self.horizontalLayout.addWidget(self.widget_2)
 		self.tabs.addTab(self.tab_2, "")
@@ -381,6 +438,37 @@ class Ui_MainWindow(object):
 		self.regMemDisplayTypeDrop.setItemText(1, _translate("MainWindow", "Decimal"))
 		self.regMemDisplayTypeDrop.setItemText(2, _translate("MainWindow", "Unsigned"))
 		self.regMemDisplayTypeDrop.setItemText(3, _translate("MainWindow", "Ascii"))
+
+
+		item = self.pipeTable.verticalHeaderItem(0)
+		item.setText(_translate("MainWindow", "Fetch"))
+		item = self.pipeTable.verticalHeaderItem(1)
+		item.setText(_translate("MainWindow", "Decode"))
+		item = self.pipeTable.verticalHeaderItem(2)
+		item.setText(_translate("MainWindow", "Execute"))
+		item = self.pipeTable.verticalHeaderItem(3)
+		item.setText(_translate("MainWindow", "Memory Access"))
+		item = self.pipeTable.verticalHeaderItem(4)
+		item.setText(_translate("MainWindow", "Writeback"))
+		item = self.pipeTable.verticalHeaderItem(5)
+		item.setText(_translate("MainWindow", "f"))
+		item = self.pipeTable.verticalHeaderItem(6)
+		item.setText(_translate("MainWindow", "g"))
+		item = self.pipeTable.verticalHeaderItem(7)
+		item.setText(_translate("MainWindow", "h"))
+		item = self.pipeTable.verticalHeaderItem(8)
+		item.setText(_translate("MainWindow", "i"))
+		item = self.pipeTable.verticalHeaderItem(9)
+		item.setText(_translate("MainWindow", "j"))
+
+		item = self.pipeTable.horizontalHeaderItem(0)
+		item.setText(_translate("MainWindow", "Status / Values"))
+		__sortingEnabled = self.pipeTable.isSortingEnabled()
+		self.pipeTable.setSortingEnabled(False)
+		self.pipeTable.setSortingEnabled(__sortingEnabled)	
+
+
+
 		item = self.registerTable.verticalHeaderItem(0)
 		item.setText(_translate("MainWindow", "zero(x0)"))
 		item = self.registerTable.verticalHeaderItem(1)
@@ -449,12 +537,9 @@ class Ui_MainWindow(object):
 		item.setText(_translate("MainWindow", "Values"))
 		__sortingEnabled = self.registerTable.isSortingEnabled()
 		self.registerTable.setSortingEnabled(False)
-		item = self.registerTable.item(0, 0)
-		item.setText(_translate("MainWindow", "0"))
-		item = self.registerTable.item(1, 0)
-		item.setText(_translate("MainWindow", "12"))
 		self.registerTable.setSortingEnabled(__sortingEnabled)
 		self.regMemTab.setTabText(self.regMemTab.indexOf(self.tab_4), _translate("MainWindow", "Registers"))
+		self.regMemTab.setTabText(self.regMemTab.indexOf(self.tab_6), _translate("MainWindow", "Pipelining Info"))
 		self.label.setText(_translate("MainWindow", "Jump To"))
 		self.memJumpDropDown.setItemText(0, _translate("MainWindow", "Text"))
 		self.memJumpDropDown.setItemText(1, _translate("MainWindow", "Data"))
@@ -513,7 +598,7 @@ class Ui_MainWindow(object):
 			mydir = os.getcwd()
 			mydir_tmp = "../lib/"
 			mydir_new = os.chdir(mydir_tmp)
-			exec(open("first_half_controller.py").read())
+			exec(open("first_half_controller.py").read(),locals(),locals())
 			mydir = os.chdir(mydir)
 
 			from Phase1.detectError import detectError
@@ -540,6 +625,7 @@ class Ui_MainWindow(object):
 			from Phase2.registers import RegisterTable
 			RegisterTable.Initialize(file_path="../lib/Phase2/")
 			self.doRegisterUpdate()
+			self.doPipeUpdate()
 		
 			
 	def showProcessedCode(self):
@@ -550,11 +636,11 @@ class Ui_MainWindow(object):
 		ori = ori.readlines()
 		mac = mac.readlines()
 		bas = bas.readlines()
-		self.codeTable.setRowCount(len(ori)+1)
+		self.codeTable.setRowCount(len(ori)+2)
 		self.maxPC = 1
 		auipc_count = 0		
 
-		for ind in range(len(bas)):
+		for ind in range(len(bas)+1):
 			# print(ind)
 			# item = self.codeTable.verticalHeaderItem(ind)
 			item = QtWidgets.QTableWidgetItem()
@@ -569,6 +655,10 @@ class Ui_MainWindow(object):
 			item = QtWidgets.QTableWidgetItem()
 			item.setTextAlignment(QtCore.Qt.AlignHCenter)
 			self.codeTable.setItem(ind, 3, item)
+			
+			if(ind == len(bas)):
+				continue
+
 			item.setText(self.translate("MainWindow", "New Row"))
 			item = self.codeTable.item(ind, 0)
 			item.setText(self.translate("MainWindow", mac[ind].strip().split()[0]))
@@ -584,6 +674,7 @@ class Ui_MainWindow(object):
 	def displayTypeChange(self,i):
 		self.doRegisterUpdate()
 		self.doMemoryUpdate()
+		self.doPipeUpdate()
 	def memoryTypeChange(self,i):
 		self.doMemoryUpdate()
 	
@@ -605,7 +696,7 @@ class Ui_MainWindow(object):
 
 
 	def getVal(self,val):
-		print(val)
+		
 		if(self.regMemDisplayTypeDrop.currentIndex()==0):
 			val=(val & 0xffffffff)
 			val=hex(val)
@@ -624,20 +715,20 @@ class Ui_MainWindow(object):
 	
 
 		if(index==0):
-			dmt = open('../lib/Files/memory_text.txt','r+').readlines()
+			dmt = open('../lib/Phase3/Snapshot/memory_instructions.txt','r+').readlines()
 			return dmt
 
 		if(self.currentPC == 0 or self.currentPC>self.maxPC):
 			return []
 
 		if(index==1):
-			dmt = open('../lib/Phase2/Snapshot/Files/data_memory_table'+str(self.currentPC)+'.txt','r+').readlines()
+			dmt = open('../lib/Phase3/Snapshot/Files/memory_after_cycle'+str(self.currentPC)+'.txt','r+').readlines()
 			return dmt
 		if(index==2):
 			dmt = open('../lib/Files/heap_memory_table.txt','r+').readlines()
 			return dmt
 		if(index==3):
-			dmt = open('../lib/Phase2/Snapshot/Files/data_memory_table'+str(self.currentPC)+'.txt','r+').readlines()
+			dmt = open('../lib/Phase3/Snapshot/Files/memory_after_cycle'+str(self.currentPC)+'.txt','r+').readlines()
 			return dmt
 
 	def doRegisterUpdate(self):
@@ -646,7 +737,7 @@ class Ui_MainWindow(object):
 			rt = ["0"]*32
 			rt[2]="2147483632"
 		else:
-			rt=open('../lib/Phase2/Snapshot/Files/register_table_'+str(self.currentPC)+'.txt','r+')
+			rt=open('../lib/Phase3/Snapshot/Files/registers_after_cycle'+str(self.currentPC)+'.txt','r+')
 			rt=rt.readlines()
 		for ind in range(len(rt)):
 			item=QtWidgets.QTableWidgetItem()
@@ -654,21 +745,37 @@ class Ui_MainWindow(object):
 			val = self.getVal(val)
 			item.setText(str(val))
 			self.registerTable.setItem(ind,0,item)
+	def doPipeUpdate(self):
+		rt=[]
+		if self.currentPC == 0 or self.currentPC>self.maxPC:
+			rt = ["0"]*10
+			rt[2]="2147483632"
+		else:
+			rt=open('../lib/Phase3/Snapshot/Files/instruction_details_after_cycle'+str(self.currentPC)+'.txt','r+')
+			rt=rt.readlines()
+		for ind in range(len(rt)):
+			item=QtWidgets.QTableWidgetItem()
+			val=int(rt[ind].strip(),16)
+			val = self.getVal(val)
+			item.setText(str(val))
+			self.pipeTable.setItem(ind,0,item)
 
 
 	def tableReColor(self):
 		
 		for j in range(self.codeTable.rowCount()-1):
 			self.codeTable.item(j, 0).setBackground(QtGui.QColor(255,255,255))
+				
 
 		if self.currentPC !=0 and self.currentPC<=self.maxPC:
+			
 			self.codeTable.item((int(self.PCList[self.currentPC-1])//4), 0).setBackground(QtGui.QColor(144, 238, 144))
 
 	def doMemoryUpdate(self):
 		memList = self.selectMemory(self.memJumpDropDown.currentIndex())
 		self.memoryTable.setRowCount((len(memList)+3)//4)
 		for ind in range(0,len(memList)//4):
-			print("inside"+str(ind))
+			
 			item = QtWidgets.QTableWidgetItem()
 			item.setTextAlignment(QtCore.Qt.AlignHCenter)
 			self.memoryTable.setItem(ind, 0, item)
@@ -704,13 +811,14 @@ class Ui_MainWindow(object):
 
 	def runCode(self):
 		mydir = os.getcwd()
-		mydir_tmp = "../lib/Phase2/"
+		mydir_tmp = "../lib/"
 		mydir_new = os.chdir(os.path.join(mydir,mydir_tmp))
-		exec(open("Main_Project_P2.py").read())
+		exec(open("Main_Controller.py").read())
 		mydir = os.chdir(mydir)
-		self.PCList = open('../lib/Phase2/Snapshot/Files/allPCD.txt','r+').readlines()
+		self.PCList = open('../lib/Phase3/Snapshot/Files/pcs_after_each_cycle.txt','r+').readlines()
 		self.maxPC = len(self.PCList)-1
 		self.doRegisterUpdate()
+		self.doPipeUpdate()
 		self.doMemoryUpdate()
 
 from codeeditor import CodeEditor
