@@ -286,9 +286,9 @@ def Phase3():
     instr_stat_init()
     reset()
     # - -- - -- - - -- - -- - - 
-    #file = open(os.getcwd()+"/Phase3/Files/knobs.txt", "w")
-    #file.write("0 0")
-    #file.close()
+    file = open(os.getcwd()+"/Phase3/Files/knobs.txt", "w")
+    file.write("1 1 0 0")
+    file.close()
     # -----------------------------
     shutil.rmtree(os.getcwd()+"/Phase3/Snapshot/Files")
     os.mkdir(os.getcwd()+"/Phase3/Snapshot/Files")
@@ -307,6 +307,8 @@ def Phase3():
     pref = pref.split(" ")
     pipelining_status = int(pref[0])
     knob = int(pref[1])
+    knob2 = int(pref[2])
+    knob3 = int(pref[3])
     updateStatus(pipelining_status)
     StoreInstructionsInFile()
     cycleEndStatus = False
@@ -425,6 +427,51 @@ def Phase3():
             filePointer.write(linepipe)
             filePointer.close()
         cycleEndStatus = detectEnd(pipelining_status, clockCycle)
+        if knob2 == 1:
+            print("\n\n")
+            print(
+                "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            print(
+                "---------------------------Register File-------------------------------------")
+            for i in range(0, 32):
+                print(str(i)+" : "+str(RegisterTable.registers[i].value))
+            print(
+                "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            print("\n\n")
+
+        if knob3 == 1:
+            print("Cycle Number = ", clockCycle)
+            print("\n\n")
+            print(
+                "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            print(
+                "-------------------------Pipeline Registers----------------------------------")
+            d = os.getcwd() + "/Phase3/InterstageBuffers/IB1.txt"
+            file = open(d, "r")
+            line = file.read()
+            print(line)
+            print("\n\n")
+            d = os.getcwd() + "/Phase3/InterstageBuffers/IB2.txt"
+            file = open(d, "r")
+            line = file.read()
+            print(line)
+            print("\n\n")
+
+            d = os.getcwd() + "/Phase3/InterstageBuffers/IB3.txt"
+            file = open(d, "r")
+            line = file.read()
+            print(line)
+            print("\n\n")
+
+            d = os.getcwd() + "/Phase3/InterstageBuffers/IB4.txt"
+            file = open(d, "r")
+            line = file.read()
+            print(line)
+            print("\n\n")
+
+            print(
+                "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            print("\n\n")
         # if(clockCycle>20):
         #     buffer = input("Waiting...")
     Stats[2] = Stats[0]/Stats[1]
