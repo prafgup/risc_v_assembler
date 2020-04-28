@@ -483,15 +483,15 @@ class Ui_MainWindow(object):
 
 
 		item = self.pipeTable.verticalHeaderItem(0)
-		item.setText(_translate("MainWindow", "Fetch"))
+		item.setText(_translate("MainWindow", "Fetch (PC Value)"))
 		item = self.pipeTable.verticalHeaderItem(1)
-		item.setText(_translate("MainWindow", "Decode"))
+		item.setText(_translate("MainWindow", "Decode (PC Value)"))
 		item = self.pipeTable.verticalHeaderItem(2)
-		item.setText(_translate("MainWindow", "Execute"))
+		item.setText(_translate("MainWindow", "Execute (PC Value)"))
 		item = self.pipeTable.verticalHeaderItem(3)
-		item.setText(_translate("MainWindow", "Memory Access"))
+		item.setText(_translate("MainWindow", "Memory Access (PC Value)"))
 		item = self.pipeTable.verticalHeaderItem(4)
-		item.setText(_translate("MainWindow", "Writeback"))
+		item.setText(_translate("MainWindow", "Writeback (PC Value)"))
 		item = self.pipeTable.verticalHeaderItem(5)
 		item.setText(_translate("MainWindow", "Total number of cycles"))
 		item = self.pipeTable.verticalHeaderItem(6)
@@ -824,14 +824,14 @@ class Ui_MainWindow(object):
 		if self.currentPC == 0:
 			rt = ["0"]*10
 		else:
-			rt=open('../lib/Phase3/Snapshot/TODO.txt','w+')
+			rt=open('../lib/Phase3/Files/summary.txt','r+')
 			rt=rt.readlines()
 		for ind in range(len(rt)):
 			item=QtWidgets.QTableWidgetItem()
-			val=int(rt[ind].strip(),16)
-			val = self.getVal(val)
+			val=rt[ind].strip()
+			#val = self.getVal(val)
 			item.setText(str(val))
-			self.pipeTable.setItem(4+ind,0,item)
+			self.pipeTable.setItem(5+ind,0,item)
 		
 
 
@@ -902,6 +902,7 @@ class Ui_MainWindow(object):
 		self.runCode()
 		self.currentPC = self.maxPC
 		self.displayTypeChange(0)
+		self.tableReColor()
 
 	def runCode(self):
 		mydir = os.getcwd()

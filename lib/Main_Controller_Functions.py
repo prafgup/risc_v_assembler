@@ -282,7 +282,7 @@ def Phase3():
     # Number of Stalls due to controlHazard
     Stats = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     Initi_dec_his()
-    pause = input("waiting...")
+    #pause = input("waiting...")
     instr_stat_init()
     reset()
     # - -- - -- - - -- - -- - - 
@@ -429,6 +429,8 @@ def Phase3():
         #     buffer = input("Waiting...")
     Stats[2] = Stats[0]/Stats[1]
     writeStats(Stats)
+    global allEmpty
+    allEmpty = False
     # print(MemoryTable.memory)
     # print(Stats)
 
