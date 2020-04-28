@@ -421,11 +421,19 @@ class Ui_MainWindow(object):
 		self.cb2 = QtWidgets.QCheckBox('Enable Data Forwarding')
 		self.cb2.toggle()
 		self.cb2.toggled.connect(lambda : self.knobs(self.cb2,1))
+
+		self.cb3 = QtWidgets.QCheckBox('Enable Printing Register File')
+		self.cb3.toggled.connect(lambda : self.knobs(self.cb3,2))
+		self.cb4 = QtWidgets.QCheckBox('Enable Printing Pipelining Registers')
+		self.cb4.toggled.connect(lambda : self.knobs(self.cb4,3))
+
 		#cb.stateChanged.connect(self.changeTitle) #TODO
 		self.pushButton1 = QtWidgets.QPushButton("PyQt5 button")
 		self.tab_3.layout.addWidget(self.cb1,1,1)
 		self.tab_3.layout.addWidget(self.cb2,2,1)
-		self.tab_3.layout.addWidget(self.temp1,3,0)
+		self.tab_3.layout.addWidget(self.cb3,3,1)
+		self.tab_3.layout.addWidget(self.cb4,4,1)
+		self.tab_3.layout.addWidget(self.temp1,5,0)
 		self.tab_3.setLayout(self.tab_3.layout)
 
 
@@ -483,15 +491,15 @@ class Ui_MainWindow(object):
 
 
 		item = self.pipeTable.verticalHeaderItem(0)
-		item.setText(_translate("MainWindow", "Fetch"))
+		item.setText(_translate("MainWindow", "Fetch (PC Value)"))
 		item = self.pipeTable.verticalHeaderItem(1)
-		item.setText(_translate("MainWindow", "Decode"))
+		item.setText(_translate("MainWindow", "Decode (PC Value)"))
 		item = self.pipeTable.verticalHeaderItem(2)
-		item.setText(_translate("MainWindow", "Execute"))
+		item.setText(_translate("MainWindow", "Execute (PC Value)"))
 		item = self.pipeTable.verticalHeaderItem(3)
-		item.setText(_translate("MainWindow", "Memory Access"))
+		item.setText(_translate("MainWindow", "Memory Access (PC Value)"))
 		item = self.pipeTable.verticalHeaderItem(4)
-		item.setText(_translate("MainWindow", "Writeback"))
+		item.setText(_translate("MainWindow", "Writeback (PC Value)"))
 		item = self.pipeTable.verticalHeaderItem(5)
 		item.setText(_translate("MainWindow", "Total number of cycles"))
 		item = self.pipeTable.verticalHeaderItem(6)
@@ -824,14 +832,14 @@ class Ui_MainWindow(object):
 		if self.currentPC == 0:
 			rt = ["0"]*10
 		else:
-			rt=open('../lib/Phase3/Snapshot/TODO.txt','w+')
+			rt=open('../lib/Phase3/Files/summary.txt','r+')
 			rt=rt.readlines()
 		for ind in range(len(rt)):
 			item=QtWidgets.QTableWidgetItem()
-			val=int(rt[ind].strip(),16)
-			val = self.getVal(val)
+			val=rt[ind].strip()
+			#val = self.getVal(val)
 			item.setText(str(val))
-			self.pipeTable.setItem(4+ind,0,item)
+			self.pipeTable.setItem(5+ind,0,item)
 		
 
 
@@ -840,7 +848,7 @@ class Ui_MainWindow(object):
 		rt=open('../lib/Phase3/Files/knobs.txt','r+')
 		rt=rt.readlines()
 		if(len(rt)==0):
-			rt = ['1 1']
+			rt = ['1 1 0 0']
 		lis = rt[0].strip().split()
 		
 		if but.isChecked() == True:
@@ -851,7 +859,7 @@ class Ui_MainWindow(object):
 		rt=open('../lib/Phase3/Files/knobs.txt','w')
 		rt.write(" ".join(lis))
 
-		print(lis)
+		#print(lis)
 		
 
 
@@ -902,6 +910,7 @@ class Ui_MainWindow(object):
 		self.runCode()
 		self.currentPC = self.maxPC
 		self.displayTypeChange(0)
+		self.tableReColor()
 
 	def runCode(self):
 		mydir = os.getcwd()
@@ -919,6 +928,8 @@ class Ui_MainWindow(object):
 	def init(self):
 		self.knobs(self.cb1,0)
 		self.knobs(self.cb2,1)
+		self.knobs(self.cb3,2)
+		self.knobs(self.cb4,3)
 
 from codeeditor import CodeEditor
 
