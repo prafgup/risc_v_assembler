@@ -95,7 +95,8 @@ def update_dec_his(s):
 # RegisterTable.Initialize()
 
 
-
+storeType = ['sb', 'sd', 'sw', 'sh']
+loadType = ['lb', 'ld', 'lw', 'lh']
 
 def main(knob):
     l = readFromIB1()
@@ -103,7 +104,10 @@ def main(knob):
         print("Nothing To Decode... Empty IB1")
         return
     l = l.split()
+    loadStoreType = False
     midway = normalDecodePhase2(l[0])
+    if(midway[1] in storeType or midway[1] in loadType):
+        loadStoreType = True
     print("Normal Decode Phase 2 - ", midway)
     midwayUpdated = getData(midway, l[-1])
     midwayUpdated.append(l[2])
@@ -125,3 +129,4 @@ def main(knob):
     print("prev_one ", prev_one)
     print("prev two", prev_two)
     print(Hazard_Detect(midwayUpdated, prev_one, prev_two, knob))
+    return loadStoreType
