@@ -261,9 +261,9 @@ def Phase3():
     instr_stat_init()
     reset()
     # - -- - -- - - -- - -- - - 
-    file = open(os.getcwd()+"/Phase3/Files/knobs.txt", "w")
-    file.write("0 0")
-    file.close()
+    #file = open(os.getcwd()+"/Phase3/Files/knobs.txt", "w")
+    #file.write("0 0")
+    #file.close()
     # -----------------------------
     shutil.rmtree(os.getcwd()+"/Phase3/Snapshot/Files")
     os.mkdir(os.getcwd()+"/Phase3/Snapshot/Files")
