@@ -110,6 +110,23 @@ def instr_stat_update(s,ps):
     file.close()
 
 
+def update_dec_his(s):
+    d = os.getcwd()+"/Phase3/InterstageBuffers/decode_history.txt"
+    file = open(d, "r")
+    line1 = file.readline()
+    line2 = file.readline()
+    l1 = line1
+    l2 = line2
+    line1 = line1.strip()
+    line2 = line2.strip()
+    file.close()
+    line2 = s
+    file = open(d, "w")
+    file.write(line1+"\n")
+    file.write(line2+"\n")
+    file.close()
+    return (l1, l2)
+
 def SnapShotAfterCycleCompletion(cycle_count):
     MemoryTable.StoreInFile(False, "memory_after_cycle" +
                             str(cycle_count)+".txt", os.getcwd()+"/Phase3/Snapshot/")
@@ -258,11 +275,12 @@ def Phase3():
     # Number of Stalls due to controlHazard
     Stats = [0, 0, 0, 0, -1, 0, -1, -1, 0, 0, -1, 0]
     Initi_dec_his()
+    pause = input("waiting...")
     instr_stat_init()
     reset()
     # - -- - -- - - -- - -- - - 
     file = open(os.getcwd()+"/Phase3/Files/knobs.txt", "w")
-    file.write("0 0")
+    file.write("1 0")
     file.close()
     # -----------------------------
     shutil.rmtree(os.getcwd()+"/Phase3/Snapshot/Files")
@@ -337,6 +355,8 @@ def Phase3():
             if(loadStoreType == True):
                 Stats[3] = Stats[3] + 1
         elif(pipelining_status==1):
+            if(knob==0):
+                update_dec_his("X X -2 -2 -2 -2 -2 -2")
             updateIndex(1)
         print("Fetch - - - -  - - - -  -")
         if(readIndex(0)==0):
@@ -390,7 +410,9 @@ def Phase3():
             filePointer.write(linepipe)
             filePointer.close()
         cycleEndStatus = detectEnd(pipelining_status, clockCycle)
-        # buffer = input("Waiting...")
+        # if(clockCycle>20):
+        #     buffer = input("Waiting...")
     Stats[2] = Stats[0]/Stats[1]
+    print(MemoryTable.memory)
     print(Stats)
 

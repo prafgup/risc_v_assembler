@@ -1,0 +1,3558 @@
+***************** Phase 3 ********************
+Initializing The Register....
+Initialisation Complete!!!
+Preprocessing Data To Remove Comments....
+Preprocessing of The Data Completed!!! Preprocessed Data Stored in Files/assemblyCodeProcessed.asm/
+Separating The Data And Text Section of The Assembly Code...
+Successfully Separated Data And Text Section!!!
+Find Text Part in Files/assemblyCodeText.asm
+Find Data Part in Files/assemblyCodeData.asm
+Replacing Labels With Offsets....
+Successfully Replaced All Labels...Updated Assembly Code Stored in Files/assemblyCodeFinal.asm
+Updating Data In Data Memory...
+Data Memory is Updated!!!! See Files/data_memory_table.txt
+Breaking Complex Instructions to Basic Instructions...
+Process Completed...The Updated Code can Be Found at Files/assemblyCodeFinal_BasicVersion.py
+Converting Instructions into Machine Code...
+Instr ->  sw
+Immediate ->  0
+srcReg1 ->  2
+srcReg2 ->  1
+mcode -> 00000000000100010010000000100011
+Conversion Completed... Machine Code Was Successfully Generated
+Machine Code -> Files/machine_code.mc
+Compiling Output TO Generate Phase 1 Compatible File....
+Final File -> Files/Compiled_Phase1_Output.mc
+Updating Text Memory...
+Successfully Completed...The location of stored file is Files/memory_text.txt
+---------------------------------------------------------
+Successfully Converted Assembly Code To Machine Code
+
+
+Importing Machine Code File From Phase 1 to Phase 3
+Import Completed...
+Updated machineCode.mc and data_memory_table.txt
+Successfull Import!!!
+
+Updating Memory....
+{}
+Memory Update Completed!!!
+
+BTB Object Created!!!
+
+Register Table Initialized!!!
+
+=======================================================
+--------------------|Cycle #1|-------------------------
+=======================================================
+
+Content of IB2 while updating =  
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000000
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000000000000000000110010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000000\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['addi', '0x00000000\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #2|-------------------------
+=======================================================
+
+Content of IB2 while updating =  
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000000000000000110010011 False False 0 0x00000000']
+Normal Decode Phase 2 -  ['I', 'addi', 3, 0, None, 0]
+Input to HDU ->  ['I', 'addi', 3, 0, 0, None, -1, 0, 'False', '0', '0x00000000']
+Param 1  ['I', 'addi', '3', '0', '0', 'None', '-1', '0', 'False', '0', '0x00000000']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['I', 'addi', '3', '0', '0', '-1', 'None', '-1', '-1', '0', 'False', '0', '0', '0x00000000']
+-------------------------Writing to IB2 ->  I addi 3 0 0 -1 None -1 -1 0 False 0 0 0x00000000
+['I', 'addi', '3', '0', '0', '-1', 'None', '-1', '-1', '0', 'False', '0', '0', '0x00000000']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000004
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000000100000000001000010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000004\n', 'addi 0x00000000\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['addi', '0x00000004\n']
+d =  ['addi', '0x00000000\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #3|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 3 0 0 -1 None -1 -1 0 False 0 0 0x00000000
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 3 0 0 -1 None -1 -1 0 False 0 0 0x00000000
+Input to ALU -  ['I', 'addi', '3', '0', '0', '-1', 'None', '-1', '-1', '0', 'False', '0', '0', '0x00000000']
+[0, -1, 3]
+['I', 'addi', '0', '-1', '0', '3', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000100000000001000010011 False False 1 0x00000004']
+Normal Decode Phase 2 -  ['I', 'addi', 4, 0, None, 1]
+Input to HDU ->  ['I', 'addi', 4, 0, 0, None, -1, 1, 'False', '1', '0x00000004']
+Param 1  ['I', 'addi', '4', '0', '0', 'None', '-1', '1', 'False', '1', '0x00000004']
+prev_one  ['I', 'addi', '3', '0', '0', 'None', '-1', '0', 'False', '0', '0x00000000\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['I', 'addi', '4', '0', '0', '-1', 'None', '-1', '-1', '1', 'False', '0', '1', '0x00000004']
+-------------------------Writing to IB2 ->  I addi 4 0 0 -1 None -1 -1 1 False 0 1 0x00000004
+['I', 'addi', '4', '0', '0', '-1', 'None', '-1', '-1', '1', 'False', '0', '1', '0x00000004']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000008
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000100000000000001010010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000008\n', 'addi 0x00000004\n', 'addi 0x00000000\n', 'X 0\n', 'X 0\n']
+d =  ['addi', '0x00000008\n']
+d =  ['addi', '0x00000004\n']
+d =  ['addi', '0x00000000\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #4|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 4 0 0 -1 None -1 -1 1 False 0 1 0x00000004
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '0', '-1', '0', '3', '-1', '-1', '0']
+Updated Content =  ['I', 'addi', '0', '-1', '0', '3', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 0 -1 0 3 -1 -1 0
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 4 0 0 -1 None -1 -1 1 False 0 1 0x00000004
+Input to ALU -  ['I', 'addi', '4', '0', '0', '-1', 'None', '-1', '-1', '1', 'False', '0', '1', '0x00000004']
+[1, -1, 4]
+['I', 'addi', '1', '-1', '1', '4', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000100000000000001010010011 False False 2 0x00000008']
+Normal Decode Phase 2 -  ['I', 'addi', 5, 0, None, 8]
+Input to HDU ->  ['I', 'addi', 5, 0, 0, None, -1, 8, 'False', '2', '0x00000008']
+Param 1  ['I', 'addi', '5', '0', '0', 'None', '-1', '8', 'False', '2', '0x00000008']
+prev_one  ['I', 'addi', '4', '0', '0', 'None', '-1', '1', 'False', '1', '0x00000004\n']
+prev two ['I', 'addi', '3', '0', '0', 'None', '-1', '0', 'False', '0', '0x00000000\n']
+['I', 'addi', '5', '0', '0', '-1', 'None', '-1', '-1', '8', 'False', '0', '2', '0x00000008']
+-------------------------Writing to IB2 ->  I addi 5 0 0 -1 None -1 -1 8 False 0 2 0x00000008
+['I', 'addi', '5', '0', '0', '-1', 'None', '-1', '-1', '8', 'False', '0', '2', '0x00000008']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x0000000c
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000100000000000000011101111
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x0000000c\n', 'addi 0x00000008\n', 'addi 0x00000004\n', 'addi 0x00000000\n', 'X 0\n']
+d =  ['jal', '0x0000000c\n']
+d =  ['addi', '0x00000008\n']
+d =  ['addi', '0x00000004\n']
+d =  ['addi', '0x00000000\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #5|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 0 0 -1 None -1 -1 8 False 0 2 0x00000008
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '1', '-1', '1', '4', '-1', '-1', '0']
+Updated Content =  ['I', 'addi', '1', '-1', '1', '4', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 1 -1 1 4 -1 -1 0
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 5 0 0 -1 None -1 -1 8 False 0 2 0x00000008
+Input to ALU -  ['I', 'addi', '5', '0', '0', '-1', 'None', '-1', '-1', '8', 'False', '0', '2', '0x00000008']
+[8, -1, 5]
+['I', 'addi', '8', '-1', '8', '5', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000100000000000000011101111 False False 3 0x0000000c']
+Normal Decode Phase 2 -  ['UJ', 'jal', 1, None, None, 8]
+Input to HDU ->  ['UJ', 'jal', 1, None, -1, None, -1, 8, 'False', '3', '0x0000000c']
+Param 1  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '8', 'False', '3', '0x0000000c']
+prev_one  ['I', 'addi', '5', '0', '0', 'None', '-1', '8', 'False', '2', '0x00000008\n']
+prev two ['I', 'addi', '4', '0', '0', 'None', '-1', '1', 'False', '1', '0x00000004\n']
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '8', 'False', '0', '3', '0x0000000c']
+-------------------------Writing to IB2 ->  UJ jal 1 None -1 -1 None -1 -1 8 False 0 3 0x0000000c
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '8', 'False', '0', '3', '0x0000000c']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000010
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000010000000000000111001100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['beq 0x00000010\n', 'jal 0x0000000c\n', 'addi 0x00000008\n', 'addi 0x00000004\n', 'addi 0x00000000\n']
+d =  ['beq', '0x00000010\n']
+d =  ['jal', '0x0000000c\n']
+d =  ['addi', '0x00000008\n']
+d =  ['addi', '0x00000004\n']
+d =  ['addi', '0x00000000\n']
+
+=======================================================
+--------------------|Cycle #6|-------------------------
+=======================================================
+
+Content of IB2 while updating =  UJ jal 1 None -1 -1 None -1 -1 8 False 0 3 0x0000000c
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '8', '-1', '8', '5', '-1', '-1', '0']
+Updated Content =  ['I', 'addi', '8', '-1', '8', '5', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 8 -1 8 5 -1 -1 0
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  UJ jal 1 None -1 -1 None -1 -1 8 False 0 3 0x0000000c
+Instruction Identified to be Of Type of jal....
+pcValueInDecimal =  12
+dataToBeWrittenInRegister =  16
+destinationRegister =  1
+The Branch Was Not Taken during the Fetch Stage
+Pipeline Flush =  True
+Target Address =  20
+Target Line NUmber =  5
+['UJ', 'jal', '16', '-1', '16', '1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000010000000000000111001100011 False False 4 0x00000010']
+Normal Decode Phase 2 -  ['SB', 'beq', None, 0, 0, 60]
+Input to HDU ->  ['SB', 'beq', None, 0, 0, 0, 0, 76, 'False', '4', '0x00000010']
+Param 1  ['SB', 'beq', 'None', '0', '0', '0', '0', '76', 'False', '4', '0x00000010']
+prev_one  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '8', 'False', '3', '0x0000000c\n']
+prev two ['I', 'addi', '5', '0', '0', 'None', '-1', '8', 'False', '2', '0x00000008\n']
+['SB', 'beq', 'None', '0', '0', '-1', '0', '0', '-1', '76', 'False', '0', '4', '0x00000010']
+-------------------------Writing to IB2 ->  SB beq None 0 0 -1 0 0 -1 76 False 0 4 0x00000010
+['SB', 'beq', 'None', '0', '0', '-1', '0', '0', '-1', '76', 'False', '0', '4', '0x00000010']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000014
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000000000101001100001100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['bne 0x00000014\n', 'beq 0x00000010\n', 'jal 0x0000000c\n', 'addi 0x00000008\n', 'addi 0x00000004\n']
+d =  ['bne', '0x00000014\n']
+d =  ['beq', '0x00000010\n']
+d =  ['jal', '0x0000000c\n']
+d =  ['addi', '0x00000008\n']
+d =  ['addi', '0x00000004\n']
+
+=======================================================
+--------------------|Cycle #7|-------------------------
+=======================================================
+
+Content of IB2 while updating =  
+----------_Updating IB3 File ----------------
+Data Found =  ['UJ', 'jal', '16', '-1', '16', '1', '-1', '-1', '0']
+Updated Content =  ['UJ', 'jal', '16', '-1', '16', '1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  UJ jal 16 -1 16 1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Reading From Decode conten =  []
+Nothing To Decode... Empty IB1
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000014
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000000000101001100001100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['bne 0x00000014\n', 'bne 0x00000014\n', 'beq 0x00000010\n', 'jal 0x0000000c\n', 'addi 0x00000008\n']
+d =  ['bne', '0x00000014\n']
+d =  ['bne', '0x00000014\n']
+d =  ['beq', '0x00000010\n']
+d =  ['jal', '0x0000000c\n']
+d =  ['addi', '0x00000008\n']
+
+=======================================================
+--------------------|Cycle #8|-------------------------
+=======================================================
+
+Content of IB2 while updating =  
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000000101001100001100011 False False 5 0x00000014']
+Normal Decode Phase 2 -  ['SB', 'bne', None, 5, 0, 16]
+Input to HDU ->  ['SB', 'bne', None, 5, 8, 0, 0, 36, 'False', '5', '0x00000014']
+Param 1  ['SB', 'bne', 'None', '5', '8', '0', '0', '36', 'False', '5', '0x00000014']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['SB', 'bne', 'None', '5', '8', '-1', '0', '0', '-1', '36', 'False', '0', '5', '0x00000014']
+-------------------------Writing to IB2 ->  SB bne None 5 8 -1 0 0 -1 36 False 0 5 0x00000014
+['SB', 'bne', 'None', '5', '8', '-1', '0', '0', '-1', '36', 'False', '0', '5', '0x00000014']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000018
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000000000011000001100110011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['add 0x00000018\n', 'bne 0x00000014\n', 'bne 0x00000014\n', 'beq 0x00000010\n', 'jal 0x0000000c\n']
+d =  ['add', '0x00000018\n']
+d =  ['bne', '0x00000014\n']
+d =  ['bne', '0x00000014\n']
+d =  ['beq', '0x00000010\n']
+d =  ['jal', '0x0000000c\n']
+
+=======================================================
+--------------------|Cycle #9|-------------------------
+=======================================================
+
+Content of IB2 while updating =  SB bne None 5 8 -1 0 0 -1 36 False 0 5 0x00000014
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  SB bne None 5 8 -1 0 0 -1 36 False 0 5 0x00000014
+Input to ALU -  ['SB', 'bne', 'None', '5', '8', '-1', '0', '0', '-1', '36', 'False', '0', '5', '0x00000014']
+['36', -1, -1]
+['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000000011000001100110011 False False 6 0x00000018']
+Normal Decode Phase 2 -  ['R', 'add', 6, 3, 0, None]
+Input to HDU ->  ['R', 'add', 6, 3, 0, 0, 0, None, 'False', '6', '0x00000018']
+Param 1  ['R', 'add', '6', '3', '0', '0', '0', 'None', 'False', '6', '0x00000018']
+prev_one  ['SB', 'bne', 'None', '5', '8', '0', '0', '36', 'False', '5', '0x00000014\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['R', 'add', '6', '3', '0', '-1', '0', '0', '-1', 'None', 'False', '0', '6', '0x00000018']
+-------------------------Writing to IB2 ->  R add 6 3 0 -1 0 0 -1 None False 0 6 0x00000018
+['R', 'add', '6', '3', '0', '-1', '0', '0', '-1', 'None', 'False', '0', '6', '0x00000018']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x0000001c
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000000000100000001110110011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['add 0x0000001c\n', 'add 0x00000018\n', 'bne 0x00000014\n', 'bne 0x00000014\n', 'beq 0x00000010\n']
+d =  ['add', '0x0000001c\n']
+d =  ['add', '0x00000018\n']
+d =  ['bne', '0x00000014\n']
+d =  ['bne', '0x00000014\n']
+d =  ['beq', '0x00000010\n']
+
+=======================================================
+--------------------|Cycle #10|-------------------------
+=======================================================
+
+Content of IB2 while updating =  
+----------_Updating IB3 File ----------------
+Data Found =  ['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Updated Content =  ['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  SB bne 36 -1 36 -1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Reading From Decode conten =  []
+Nothing To Decode... Empty IB1
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000024
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111111100101000001010010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000024\n', 'add 0x0000001c\n', 'add 0x00000018\n', 'bne 0x00000014\n', 'bne 0x00000014\n']
+d =  ['addi', '0x00000024\n']
+d =  ['add', '0x0000001c\n']
+d =  ['add', '0x00000018\n']
+d =  ['bne', '0x00000014\n']
+d =  ['bne', '0x00000014\n']
+
+=======================================================
+--------------------|Cycle #11|-------------------------
+=======================================================
+
+Content of IB2 while updating =  
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111111111100101000001010010011 False False 9 0x00000024']
+Normal Decode Phase 2 -  ['I', 'addi', 5, 5, None, -1]
+Input to HDU ->  ['I', 'addi', 5, 5, 8, None, -1, -1, 'False', '9', '0x00000024']
+Param 1  ['I', 'addi', '5', '5', '8', 'None', '-1', '-1', 'False', '9', '0x00000024']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['I', 'addi', '5', '5', '8', '-1', 'None', '-1', '-1', '-1', 'False', '0', '9', '0x00000024']
+-------------------------Writing to IB2 ->  I addi 5 5 8 -1 None -1 -1 -1 False 0 9 0x00000024
+['I', 'addi', '5', '5', '8', '-1', 'None', '-1', '-1', '-1', 'False', '0', '9', '0x00000024']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000028
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111110000010000000100010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'addi 0x00000024\n', 'add 0x0000001c\n', 'add 0x00000018\n', 'bne 0x00000014\n']
+d =  ['addi', '0x00000028\n']
+d =  ['addi', '0x00000024\n']
+d =  ['add', '0x0000001c\n']
+d =  ['add', '0x00000018\n']
+d =  ['bne', '0x00000014\n']
+
+=======================================================
+--------------------|Cycle #12|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 8 -1 None -1 -1 -1 False 0 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 5 5 8 -1 None -1 -1 -1 False 0 9 0x00000024
+Input to ALU -  ['I', 'addi', '5', '5', '8', '-1', 'None', '-1', '-1', '-1', 'False', '0', '9', '0x00000024']
+[7, -1, 5]
+['I', 'addi', '7', '-1', '7', '5', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111111110000010000000100010011 False False 10 0x00000028']
+Normal Decode Phase 2 -  ['I', 'addi', 2, 2, None, -4]
+Input to HDU ->  ['I', 'addi', 2, 2, 2147483632, None, -1, -4, 'False', '10', '0x00000028']
+Param 1  ['I', 'addi', '2', '2', '2147483632', 'None', '-1', '-4', 'False', '10', '0x00000028']
+prev_one  ['I', 'addi', '5', '5', '8', 'None', '-1', '-1', 'False', '9', '0x00000024\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['I', 'addi', '2', '2', '2147483632', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+-------------------------Writing to IB2 ->  I addi 2 2 2147483632 -1 None -1 -1 -4 False 0 10 0x00000028
+['I', 'addi', '2', '2', '2147483632', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x0000002c
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000000100010010000000100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['sw 0x0000002c\n', 'addi 0x00000028\n', 'addi 0x00000024\n', 'add 0x0000001c\n', 'add 0x00000018\n']
+d =  ['sw', '0x0000002c\n']
+d =  ['addi', '0x00000028\n']
+d =  ['addi', '0x00000024\n']
+d =  ['add', '0x0000001c\n']
+d =  ['add', '0x00000018\n']
+
+=======================================================
+--------------------|Cycle #13|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 2 2 2147483632 -1 None -1 -1 -4 False 0 10 0x00000028
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '7', '-1', '7', '5', '-1', '-1', '0']
+Updated Content =  ['I', 'addi', '7', '-1', '7', '5', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 7 -1 7 5 -1 -1 0
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 2 2 2147483632 -1 None -1 -1 -4 False 0 10 0x00000028
+Input to ALU -  ['I', 'addi', '2', '2', '2147483632', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+[2147483628, -1, 2]
+['I', 'addi', '2147483628', '-1', '2147483628', '2', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000100010010000000100011 False False 11 0x0000002c']
+Normal Decode Phase 2 -  ['S', 'sw', None, 2, 1, 0]
+Midway before S update ->  ['S', 'sw', None, 2, 1, 0]
+Midway after S update ->  ['S', 'sw', None, 2, 2147483632, 1, 16, 0]
+Input to HDU ->  ['S', 'sw', None, 2, 2147483632, 1, 16, 0, 'False', '11', '0x0000002c']
+Param 1  ['S', 'sw', 'None', '2', '2147483632', '1', '16', '0', 'False', '11', '0x0000002c']
+prev_one  ['I', 'addi', '2', '2', '2147483632', 'None', '-1', '-4', 'False', '10', '0x00000028\n']
+prev two ['I', 'addi', '5', '5', '8', 'None', '-1', '-1', 'False', '9', '0x00000024\n']
+['S', 'sw', 'None', '2', '2147483632', '-1', '1', '16', '-1', '0', 'False', '2', '11', '0x0000002c']
+-------------------------Writing to IB2 ->  S sw None 2 2147483632 -1 1 16 -1 0 False 2 11 0x0000002c
+['S', 'sw', 'None', '2', '2147483632', '-1', '1', '16', '-1', '0', 'False', '2', '11', '0x0000002c']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000030
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111110010111111111000011101111
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n', 'add 0x0000001c\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['add', '0x0000001c\n']
+
+=======================================================
+--------------------|Cycle #14|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483632 -1 1 16 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '2147483628', '-1', '2147483628', '2', '-1', '-1', '0']
+Updated Content =  ['I', 'addi', '2147483628', '-1', '2147483628', '2', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 2147483628 -1 2147483628 2 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #15|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483632 -1 1 16 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #16|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483632 -1 1 16 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  S sw None 2 2147483632 -1 1 16 -1 0 False 2 11 0x0000002c
+Input to ALU -  ['S', 'sw', 'None', '2', '2147483632', '-1', '1', '16', '-1', '0', 'False', '2', '11', '0x0000002c']
+Received A-> ['S', 'sw', 'None', '2', '2147483632', '-1', '1', '16', '-1', '0', 'False', '2', '11', '0x0000002c']
+B in sw->  ['sw', '2147483632', '16', '0']
+[2147483632, 16, -1]
+['S', 'sw', '2147483632', '16', '-1', '-1', '-1', '2', '2']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111110010111111111000011101111 False False 12 0x00000030']
+Normal Decode Phase 2 -  ['UJ', 'jal', 1, None, None, -28]
+Input to HDU ->  ['UJ', 'jal', 1, None, -1, None, -1, -28, 'False', '12', '0x00000030']
+Param 1  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'False', '12', '0x00000030']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '-28', 'False', '0', '12', '0x00000030']
+-------------------------Writing to IB2 ->  UJ jal 1 None -1 -1 None -1 -1 -28 False 0 12 0x00000030
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '-28', 'False', '0', '12', '0x00000030']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000034
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000000000111000010000110011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['add 0x00000034\n', 'jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n', 'X 0\n']
+d =  ['add', '0x00000034\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #17|-------------------------
+=======================================================
+
+Content of IB2 while updating =  UJ jal 1 None -1 -1 None -1 -1 -28 False 0 12 0x00000030
+----------_Updating IB3 File ----------------
+Data Found =  ['S', 'sw', '2147483632', '16', '-1', '-1', '-1', '2', '2']
+Updated Content =  ['S', 'sw', '2147483632', '16', '-1', '-1', '-1', '2', '2']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  S sw 2147483632 16 -1 -1 -1 2 2
+Address to store  0x7ffffff0
+Data - > 16
+Writing To Memory
+{'0x7ffffff0': 16, '0x7ffffff1': 0, '0x7ffffff2': 0, '0x7ffffff3': 0, '0x7fffffef': 0, '0x7fffffee': 0, '0x7fffffed': 0, '0x7fffffec': 0, '0x7fffffeb': 0, '0x7fffffea': 0, '0x7fffffe9': 0, '0x7fffffe8': 0, '0x7fffffe7': 0, '0x7fffffe6': 0, '0x7ffffff4': 0, '0x7ffffff5': 0, '0x7ffffff6': 0, '0x7ffffff7': 0, '0x7ffffff8': 0, '0x7ffffff9': 0, '0x7ffffffa': 0}
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  UJ jal 1 None -1 -1 None -1 -1 -28 False 0 12 0x00000030
+Instruction Identified to be Of Type of jal....
+pcValueInDecimal =  48
+dataToBeWrittenInRegister =  52
+destinationRegister =  1
+The Branch Was Not Taken during the Fetch Stage
+Pipeline Flush =  True
+Target Address =  20
+Target Line NUmber =  5
+['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000000111000010000110011 False False 13 0x00000034']
+Normal Decode Phase 2 -  ['R', 'add', 8, 7, 0, None]
+Input to HDU ->  ['R', 'add', 8, 7, 0, 0, 0, None, 'False', '13', '0x00000034']
+Param 1  ['R', 'add', '8', '7', '0', '0', '0', 'None', 'False', '13', '0x00000034']
+prev_one  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'False', '12', '0x00000030\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['R', 'add', '8', '7', '0', '-1', '0', '0', '-1', 'None', 'False', '0', '13', '0x00000034']
+-------------------------Writing to IB2 ->  R add 8 7 0 -1 0 0 -1 None False 0 13 0x00000034
+['R', 'add', '8', '7', '0', '-1', '0', '0', '-1', 'None', 'False', '0', '13', '0x00000034']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000038
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000011000111000001110110011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['add 0x00000038\n', 'add 0x00000034\n', 'jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n']
+d =  ['add', '0x00000038\n']
+d =  ['add', '0x00000034\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #18|-------------------------
+=======================================================
+
+Content of IB2 while updating =  
+----------_Updating IB3 File ----------------
+Data Found =  ['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Updated Content =  ['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  UJ jal 52 -1 52 1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Reading From Decode conten =  []
+Nothing To Decode... Empty IB1
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000014
+Found in BTB? True
+Taken Not Taken? True
+Target Line NUmber =  9
+Updating IB1
+00000000000000101001100001100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['bne 0x00000014\n', 'add 0x00000038\n', 'add 0x00000034\n', 'jal 0x00000030\n', 'jal 0x00000030\n']
+d =  ['bne', '0x00000014\n']
+d =  ['add', '0x00000038\n']
+d =  ['add', '0x00000034\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+
+=======================================================
+--------------------|Cycle #19|-------------------------
+=======================================================
+
+Content of IB2 while updating =  
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000000101001100001100011 True True 5 0x00000014']
+Normal Decode Phase 2 -  ['SB', 'bne', None, 5, 0, 16]
+Input to HDU ->  ['SB', 'bne', None, 5, 7, 0, 0, 36, 'True', '5', '0x00000014']
+Param 1  ['SB', 'bne', 'None', '5', '7', '0', '0', '36', 'True', '5', '0x00000014']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['SB', 'bne', 'None', '5', '7', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+-------------------------Writing to IB2 ->  SB bne None 5 7 -1 0 0 -1 36 True 0 5 0x00000014
+['SB', 'bne', 'None', '5', '7', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000024
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111111100101000001010010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000024\n', 'bne 0x00000014\n', 'add 0x00000038\n', 'add 0x00000034\n', 'jal 0x00000030\n']
+d =  ['addi', '0x00000024\n']
+d =  ['bne', '0x00000014\n']
+d =  ['add', '0x00000038\n']
+d =  ['add', '0x00000034\n']
+d =  ['jal', '0x00000030\n']
+
+=======================================================
+--------------------|Cycle #20|-------------------------
+=======================================================
+
+Content of IB2 while updating =  SB bne None 5 7 -1 0 0 -1 36 True 0 5 0x00000014
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  SB bne None 5 7 -1 0 0 -1 36 True 0 5 0x00000014
+Input to ALU -  ['SB', 'bne', 'None', '5', '7', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+['36', -1, -1]
+['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111111111100101000001010010011 False False 9 0x00000024']
+Normal Decode Phase 2 -  ['I', 'addi', 5, 5, None, -1]
+Input to HDU ->  ['I', 'addi', 5, 5, 7, None, -1, -1, 'False', '9', '0x00000024']
+Param 1  ['I', 'addi', '5', '5', '7', 'None', '-1', '-1', 'False', '9', '0x00000024']
+prev_one  ['SB', 'bne', 'None', '5', '7', '0', '0', '36', 'True', '5', '0x00000014\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['I', 'addi', '5', '5', '7', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+-------------------------Writing to IB2 ->  I addi 5 5 7 -1 None -1 -1 -1 False 2 9 0x00000024
+['I', 'addi', '5', '5', '7', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000028
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111110000010000000100010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n', 'add 0x00000034\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['add', '0x00000034\n']
+
+=======================================================
+--------------------|Cycle #21|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 7 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Found =  ['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Updated Content =  ['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  SB bne 36 -1 36 -1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #22|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 7 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['addi', '0x00000028\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #23|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 7 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 5 5 7 -1 None -1 -1 -1 False 2 9 0x00000024
+Input to ALU -  ['I', 'addi', '5', '5', '7', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+[6, -1, 5]
+['I', 'addi', '6', '-1', '6', '5', '-1', '-1', '2']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111111110000010000000100010011 False False 10 0x00000028']
+Normal Decode Phase 2 -  ['I', 'addi', 2, 2, None, -4]
+Input to HDU ->  ['I', 'addi', 2, 2, 2147483628, None, -1, -4, 'False', '10', '0x00000028']
+Param 1  ['I', 'addi', '2', '2', '2147483628', 'None', '-1', '-4', 'False', '10', '0x00000028']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['I', 'addi', '2', '2', '2147483628', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+-------------------------Writing to IB2 ->  I addi 2 2 2147483628 -1 None -1 -1 -4 False 0 10 0x00000028
+['I', 'addi', '2', '2', '2147483628', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x0000002c
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000000100010010000000100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['sw 0x0000002c\n', 'addi 0x00000028\n', 'addi 0x00000028\n', 'X 0\n', 'X 0\n']
+d =  ['sw', '0x0000002c\n']
+d =  ['addi', '0x00000028\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #24|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 2 2 2147483628 -1 None -1 -1 -4 False 0 10 0x00000028
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '6', '-1', '6', '5', '-1', '-1', '2']
+Updated Content =  ['I', 'addi', '6', '-1', '6', '5', '-1', '-1', '2']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 6 -1 6 5 -1 -1 2
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 2 2 2147483628 -1 None -1 -1 -4 False 0 10 0x00000028
+Input to ALU -  ['I', 'addi', '2', '2', '2147483628', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+[2147483624, -1, 2]
+['I', 'addi', '2147483624', '-1', '2147483624', '2', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000100010010000000100011 False False 11 0x0000002c']
+Normal Decode Phase 2 -  ['S', 'sw', None, 2, 1, 0]
+Midway before S update ->  ['S', 'sw', None, 2, 1, 0]
+Midway after S update ->  ['S', 'sw', None, 2, 2147483628, 1, 52, 0]
+Input to HDU ->  ['S', 'sw', None, 2, 2147483628, 1, 52, 0, 'False', '11', '0x0000002c']
+Param 1  ['S', 'sw', 'None', '2', '2147483628', '1', '52', '0', 'False', '11', '0x0000002c']
+prev_one  ['I', 'addi', '2', '2', '2147483628', 'None', '-1', '-4', 'False', '10', '0x00000028\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['S', 'sw', 'None', '2', '2147483628', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+-------------------------Writing to IB2 ->  S sw None 2 2147483628 -1 1 52 -1 0 False 2 11 0x0000002c
+['S', 'sw', 'None', '2', '2147483628', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000030
+Found in BTB? True
+Taken Not Taken? True
+Target Line NUmber =  5
+Updating IB1
+11111110010111111111000011101111
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #25|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483628 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '2147483624', '-1', '2147483624', '2', '-1', '-1', '0']
+Updated Content =  ['I', 'addi', '2147483624', '-1', '2147483624', '2', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 2147483624 -1 2147483624 2 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #26|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483628 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #27|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483628 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  S sw None 2 2147483628 -1 1 52 -1 0 False 2 11 0x0000002c
+Input to ALU -  ['S', 'sw', 'None', '2', '2147483628', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+Received A-> ['S', 'sw', 'None', '2', '2147483628', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+B in sw->  ['sw', '2147483628', '52', '0']
+[2147483628, 52, -1]
+['S', 'sw', '2147483628', '52', '-1', '-1', '-1', '2', '2']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111110010111111111000011101111 True True 12 0x00000030']
+Normal Decode Phase 2 -  ['UJ', 'jal', 1, None, None, -28]
+Input to HDU ->  ['UJ', 'jal', 1, None, -1, None, -1, -28, 'True', '12', '0x00000030']
+Param 1  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '-28', 'True', '0', '12', '0x00000030']
+-------------------------Writing to IB2 ->  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '-28', 'True', '0', '12', '0x00000030']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000014
+Found in BTB? True
+Taken Not Taken? True
+Target Line NUmber =  9
+Updating IB1
+00000000000000101001100001100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['bne 0x00000014\n', 'jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n', 'X 0\n']
+d =  ['bne', '0x00000014\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #28|-------------------------
+=======================================================
+
+Content of IB2 while updating =  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+----------_Updating IB3 File ----------------
+Data Found =  ['S', 'sw', '2147483628', '52', '-1', '-1', '-1', '2', '2']
+Updated Content =  ['S', 'sw', '2147483628', '52', '-1', '-1', '-1', '2', '2']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  S sw 2147483628 52 -1 -1 -1 2 2
+Address to store  0x7fffffec
+Data - > 52
+Writing To Memory
+{'0x7ffffff0': 16, '0x7ffffff1': 0, '0x7ffffff2': 0, '0x7ffffff3': 0, '0x7fffffef': 0, '0x7fffffee': 0, '0x7fffffed': 0, '0x7fffffec': 52, '0x7fffffeb': 0, '0x7fffffea': 0, '0x7fffffe9': 0, '0x7fffffe8': 0, '0x7fffffe7': 0, '0x7fffffe6': 0, '0x7ffffff4': 0, '0x7ffffff5': 0, '0x7ffffff6': 0, '0x7ffffff7': 0, '0x7ffffff8': 0, '0x7ffffff9': 0, '0x7ffffffa': 0, '0x7fffffe5': 0, '0x7fffffe4': 0, '0x7fffffe3': 0, '0x7fffffe2': 0}
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+Instruction Identified to be Of Type of jal....
+pcValueInDecimal =  48
+dataToBeWrittenInRegister =  52
+destinationRegister =  1
+The Branch Was Taken During The Fetch Stage
+['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000000101001100001100011 True True 5 0x00000014']
+Normal Decode Phase 2 -  ['SB', 'bne', None, 5, 0, 16]
+Input to HDU ->  ['SB', 'bne', None, 5, 6, 0, 0, 36, 'True', '5', '0x00000014']
+Param 1  ['SB', 'bne', 'None', '5', '6', '0', '0', '36', 'True', '5', '0x00000014']
+prev_one  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['SB', 'bne', 'None', '5', '6', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+-------------------------Writing to IB2 ->  SB bne None 5 6 -1 0 0 -1 36 True 0 5 0x00000014
+['SB', 'bne', 'None', '5', '6', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000024
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111111100101000001010010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000024\n', 'bne 0x00000014\n', 'jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n']
+d =  ['addi', '0x00000024\n']
+d =  ['bne', '0x00000014\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #29|-------------------------
+=======================================================
+
+Content of IB2 while updating =  SB bne None 5 6 -1 0 0 -1 36 True 0 5 0x00000014
+----------_Updating IB3 File ----------------
+Data Found =  ['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Updated Content =  ['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  UJ jal 52 -1 52 1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  SB bne None 5 6 -1 0 0 -1 36 True 0 5 0x00000014
+Input to ALU -  ['SB', 'bne', 'None', '5', '6', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+['36', -1, -1]
+['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111111111100101000001010010011 False False 9 0x00000024']
+Normal Decode Phase 2 -  ['I', 'addi', 5, 5, None, -1]
+Input to HDU ->  ['I', 'addi', 5, 5, 6, None, -1, -1, 'False', '9', '0x00000024']
+Param 1  ['I', 'addi', '5', '5', '6', 'None', '-1', '-1', 'False', '9', '0x00000024']
+prev_one  ['SB', 'bne', 'None', '5', '6', '0', '0', '36', 'True', '5', '0x00000014\n']
+prev two ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030\n']
+['I', 'addi', '5', '5', '6', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+-------------------------Writing to IB2 ->  I addi 5 5 6 -1 None -1 -1 -1 False 2 9 0x00000024
+['I', 'addi', '5', '5', '6', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000028
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111110000010000000100010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n', 'jal 0x00000030\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['jal', '0x00000030\n']
+
+=======================================================
+--------------------|Cycle #30|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 6 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Found =  ['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Updated Content =  ['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  SB bne 36 -1 36 -1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #31|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 6 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['addi', '0x00000028\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #32|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 6 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 5 5 6 -1 None -1 -1 -1 False 2 9 0x00000024
+Input to ALU -  ['I', 'addi', '5', '5', '6', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+[5, -1, 5]
+['I', 'addi', '5', '-1', '5', '5', '-1', '-1', '2']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111111110000010000000100010011 False False 10 0x00000028']
+Normal Decode Phase 2 -  ['I', 'addi', 2, 2, None, -4]
+Input to HDU ->  ['I', 'addi', 2, 2, 2147483624, None, -1, -4, 'False', '10', '0x00000028']
+Param 1  ['I', 'addi', '2', '2', '2147483624', 'None', '-1', '-4', 'False', '10', '0x00000028']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['I', 'addi', '2', '2', '2147483624', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+-------------------------Writing to IB2 ->  I addi 2 2 2147483624 -1 None -1 -1 -4 False 0 10 0x00000028
+['I', 'addi', '2', '2', '2147483624', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x0000002c
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000000100010010000000100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['sw 0x0000002c\n', 'addi 0x00000028\n', 'addi 0x00000028\n', 'X 0\n', 'X 0\n']
+d =  ['sw', '0x0000002c\n']
+d =  ['addi', '0x00000028\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #33|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 2 2 2147483624 -1 None -1 -1 -4 False 0 10 0x00000028
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '5', '-1', '5', '5', '-1', '-1', '2']
+Updated Content =  ['I', 'addi', '5', '-1', '5', '5', '-1', '-1', '2']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 5 -1 5 5 -1 -1 2
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 2 2 2147483624 -1 None -1 -1 -4 False 0 10 0x00000028
+Input to ALU -  ['I', 'addi', '2', '2', '2147483624', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+[2147483620, -1, 2]
+['I', 'addi', '2147483620', '-1', '2147483620', '2', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000100010010000000100011 False False 11 0x0000002c']
+Normal Decode Phase 2 -  ['S', 'sw', None, 2, 1, 0]
+Midway before S update ->  ['S', 'sw', None, 2, 1, 0]
+Midway after S update ->  ['S', 'sw', None, 2, 2147483624, 1, 52, 0]
+Input to HDU ->  ['S', 'sw', None, 2, 2147483624, 1, 52, 0, 'False', '11', '0x0000002c']
+Param 1  ['S', 'sw', 'None', '2', '2147483624', '1', '52', '0', 'False', '11', '0x0000002c']
+prev_one  ['I', 'addi', '2', '2', '2147483624', 'None', '-1', '-4', 'False', '10', '0x00000028\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['S', 'sw', 'None', '2', '2147483624', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+-------------------------Writing to IB2 ->  S sw None 2 2147483624 -1 1 52 -1 0 False 2 11 0x0000002c
+['S', 'sw', 'None', '2', '2147483624', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000030
+Found in BTB? True
+Taken Not Taken? True
+Target Line NUmber =  5
+Updating IB1
+11111110010111111111000011101111
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #34|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483624 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '2147483620', '-1', '2147483620', '2', '-1', '-1', '0']
+Updated Content =  ['I', 'addi', '2147483620', '-1', '2147483620', '2', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 2147483620 -1 2147483620 2 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #35|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483624 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #36|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483624 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  S sw None 2 2147483624 -1 1 52 -1 0 False 2 11 0x0000002c
+Input to ALU -  ['S', 'sw', 'None', '2', '2147483624', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+Received A-> ['S', 'sw', 'None', '2', '2147483624', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+B in sw->  ['sw', '2147483624', '52', '0']
+[2147483624, 52, -1]
+['S', 'sw', '2147483624', '52', '-1', '-1', '-1', '2', '2']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111110010111111111000011101111 True True 12 0x00000030']
+Normal Decode Phase 2 -  ['UJ', 'jal', 1, None, None, -28]
+Input to HDU ->  ['UJ', 'jal', 1, None, -1, None, -1, -28, 'True', '12', '0x00000030']
+Param 1  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '-28', 'True', '0', '12', '0x00000030']
+-------------------------Writing to IB2 ->  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '-28', 'True', '0', '12', '0x00000030']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000014
+Found in BTB? True
+Taken Not Taken? True
+Target Line NUmber =  9
+Updating IB1
+00000000000000101001100001100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['bne 0x00000014\n', 'jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n', 'X 0\n']
+d =  ['bne', '0x00000014\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #37|-------------------------
+=======================================================
+
+Content of IB2 while updating =  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+----------_Updating IB3 File ----------------
+Data Found =  ['S', 'sw', '2147483624', '52', '-1', '-1', '-1', '2', '2']
+Updated Content =  ['S', 'sw', '2147483624', '52', '-1', '-1', '-1', '2', '2']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  S sw 2147483624 52 -1 -1 -1 2 2
+Address to store  0x7fffffe8
+Data - > 52
+Writing To Memory
+{'0x7ffffff0': 16, '0x7ffffff1': 0, '0x7ffffff2': 0, '0x7ffffff3': 0, '0x7fffffef': 0, '0x7fffffee': 0, '0x7fffffed': 0, '0x7fffffec': 52, '0x7fffffeb': 0, '0x7fffffea': 0, '0x7fffffe9': 0, '0x7fffffe8': 52, '0x7fffffe7': 0, '0x7fffffe6': 0, '0x7ffffff4': 0, '0x7ffffff5': 0, '0x7ffffff6': 0, '0x7ffffff7': 0, '0x7ffffff8': 0, '0x7ffffff9': 0, '0x7ffffffa': 0, '0x7fffffe5': 0, '0x7fffffe4': 0, '0x7fffffe3': 0, '0x7fffffe2': 0, '0x7fffffe1': 0, '0x7fffffe0': 0, '0x7fffffdf': 0, '0x7fffffde': 0}
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+Instruction Identified to be Of Type of jal....
+pcValueInDecimal =  48
+dataToBeWrittenInRegister =  52
+destinationRegister =  1
+The Branch Was Taken During The Fetch Stage
+['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000000101001100001100011 True True 5 0x00000014']
+Normal Decode Phase 2 -  ['SB', 'bne', None, 5, 0, 16]
+Input to HDU ->  ['SB', 'bne', None, 5, 5, 0, 0, 36, 'True', '5', '0x00000014']
+Param 1  ['SB', 'bne', 'None', '5', '5', '0', '0', '36', 'True', '5', '0x00000014']
+prev_one  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['SB', 'bne', 'None', '5', '5', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+-------------------------Writing to IB2 ->  SB bne None 5 5 -1 0 0 -1 36 True 0 5 0x00000014
+['SB', 'bne', 'None', '5', '5', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000024
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111111100101000001010010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000024\n', 'bne 0x00000014\n', 'jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n']
+d =  ['addi', '0x00000024\n']
+d =  ['bne', '0x00000014\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #38|-------------------------
+=======================================================
+
+Content of IB2 while updating =  SB bne None 5 5 -1 0 0 -1 36 True 0 5 0x00000014
+----------_Updating IB3 File ----------------
+Data Found =  ['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Updated Content =  ['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  UJ jal 52 -1 52 1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  SB bne None 5 5 -1 0 0 -1 36 True 0 5 0x00000014
+Input to ALU -  ['SB', 'bne', 'None', '5', '5', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+['36', -1, -1]
+['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111111111100101000001010010011 False False 9 0x00000024']
+Normal Decode Phase 2 -  ['I', 'addi', 5, 5, None, -1]
+Input to HDU ->  ['I', 'addi', 5, 5, 5, None, -1, -1, 'False', '9', '0x00000024']
+Param 1  ['I', 'addi', '5', '5', '5', 'None', '-1', '-1', 'False', '9', '0x00000024']
+prev_one  ['SB', 'bne', 'None', '5', '5', '0', '0', '36', 'True', '5', '0x00000014\n']
+prev two ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030\n']
+['I', 'addi', '5', '5', '5', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+-------------------------Writing to IB2 ->  I addi 5 5 5 -1 None -1 -1 -1 False 2 9 0x00000024
+['I', 'addi', '5', '5', '5', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000028
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111110000010000000100010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n', 'jal 0x00000030\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['jal', '0x00000030\n']
+
+=======================================================
+--------------------|Cycle #39|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 5 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Found =  ['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Updated Content =  ['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  SB bne 36 -1 36 -1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #40|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 5 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['addi', '0x00000028\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #41|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 5 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 5 5 5 -1 None -1 -1 -1 False 2 9 0x00000024
+Input to ALU -  ['I', 'addi', '5', '5', '5', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+[4, -1, 5]
+['I', 'addi', '4', '-1', '4', '5', '-1', '-1', '2']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111111110000010000000100010011 False False 10 0x00000028']
+Normal Decode Phase 2 -  ['I', 'addi', 2, 2, None, -4]
+Input to HDU ->  ['I', 'addi', 2, 2, 2147483620, None, -1, -4, 'False', '10', '0x00000028']
+Param 1  ['I', 'addi', '2', '2', '2147483620', 'None', '-1', '-4', 'False', '10', '0x00000028']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['I', 'addi', '2', '2', '2147483620', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+-------------------------Writing to IB2 ->  I addi 2 2 2147483620 -1 None -1 -1 -4 False 0 10 0x00000028
+['I', 'addi', '2', '2', '2147483620', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x0000002c
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000000100010010000000100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['sw 0x0000002c\n', 'addi 0x00000028\n', 'addi 0x00000028\n', 'X 0\n', 'X 0\n']
+d =  ['sw', '0x0000002c\n']
+d =  ['addi', '0x00000028\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #42|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 2 2 2147483620 -1 None -1 -1 -4 False 0 10 0x00000028
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '4', '-1', '4', '5', '-1', '-1', '2']
+Updated Content =  ['I', 'addi', '4', '-1', '4', '5', '-1', '-1', '2']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 4 -1 4 5 -1 -1 2
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 2 2 2147483620 -1 None -1 -1 -4 False 0 10 0x00000028
+Input to ALU -  ['I', 'addi', '2', '2', '2147483620', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+[2147483616, -1, 2]
+['I', 'addi', '2147483616', '-1', '2147483616', '2', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000100010010000000100011 False False 11 0x0000002c']
+Normal Decode Phase 2 -  ['S', 'sw', None, 2, 1, 0]
+Midway before S update ->  ['S', 'sw', None, 2, 1, 0]
+Midway after S update ->  ['S', 'sw', None, 2, 2147483620, 1, 52, 0]
+Input to HDU ->  ['S', 'sw', None, 2, 2147483620, 1, 52, 0, 'False', '11', '0x0000002c']
+Param 1  ['S', 'sw', 'None', '2', '2147483620', '1', '52', '0', 'False', '11', '0x0000002c']
+prev_one  ['I', 'addi', '2', '2', '2147483620', 'None', '-1', '-4', 'False', '10', '0x00000028\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['S', 'sw', 'None', '2', '2147483620', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+-------------------------Writing to IB2 ->  S sw None 2 2147483620 -1 1 52 -1 0 False 2 11 0x0000002c
+['S', 'sw', 'None', '2', '2147483620', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000030
+Found in BTB? True
+Taken Not Taken? True
+Target Line NUmber =  5
+Updating IB1
+11111110010111111111000011101111
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #43|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483620 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '2147483616', '-1', '2147483616', '2', '-1', '-1', '0']
+Updated Content =  ['I', 'addi', '2147483616', '-1', '2147483616', '2', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 2147483616 -1 2147483616 2 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #44|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483620 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #45|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483620 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  S sw None 2 2147483620 -1 1 52 -1 0 False 2 11 0x0000002c
+Input to ALU -  ['S', 'sw', 'None', '2', '2147483620', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+Received A-> ['S', 'sw', 'None', '2', '2147483620', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+B in sw->  ['sw', '2147483620', '52', '0']
+[2147483620, 52, -1]
+['S', 'sw', '2147483620', '52', '-1', '-1', '-1', '2', '2']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111110010111111111000011101111 True True 12 0x00000030']
+Normal Decode Phase 2 -  ['UJ', 'jal', 1, None, None, -28]
+Input to HDU ->  ['UJ', 'jal', 1, None, -1, None, -1, -28, 'True', '12', '0x00000030']
+Param 1  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '-28', 'True', '0', '12', '0x00000030']
+-------------------------Writing to IB2 ->  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '-28', 'True', '0', '12', '0x00000030']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000014
+Found in BTB? True
+Taken Not Taken? True
+Target Line NUmber =  9
+Updating IB1
+00000000000000101001100001100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['bne 0x00000014\n', 'jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n', 'X 0\n']
+d =  ['bne', '0x00000014\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #46|-------------------------
+=======================================================
+
+Content of IB2 while updating =  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+----------_Updating IB3 File ----------------
+Data Found =  ['S', 'sw', '2147483620', '52', '-1', '-1', '-1', '2', '2']
+Updated Content =  ['S', 'sw', '2147483620', '52', '-1', '-1', '-1', '2', '2']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  S sw 2147483620 52 -1 -1 -1 2 2
+Address to store  0x7fffffe4
+Data - > 52
+Writing To Memory
+{'0x7ffffff0': 16, '0x7ffffff1': 0, '0x7ffffff2': 0, '0x7ffffff3': 0, '0x7fffffef': 0, '0x7fffffee': 0, '0x7fffffed': 0, '0x7fffffec': 52, '0x7fffffeb': 0, '0x7fffffea': 0, '0x7fffffe9': 0, '0x7fffffe8': 52, '0x7fffffe7': 0, '0x7fffffe6': 0, '0x7ffffff4': 0, '0x7ffffff5': 0, '0x7ffffff6': 0, '0x7ffffff7': 0, '0x7ffffff8': 0, '0x7ffffff9': 0, '0x7ffffffa': 0, '0x7fffffe5': 0, '0x7fffffe4': 52, '0x7fffffe3': 0, '0x7fffffe2': 0, '0x7fffffe1': 0, '0x7fffffe0': 0, '0x7fffffdf': 0, '0x7fffffde': 0, '0x7fffffdd': 0, '0x7fffffdc': 0, '0x7fffffdb': 0, '0x7fffffda': 0}
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+Instruction Identified to be Of Type of jal....
+pcValueInDecimal =  48
+dataToBeWrittenInRegister =  52
+destinationRegister =  1
+The Branch Was Taken During The Fetch Stage
+['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000000101001100001100011 True True 5 0x00000014']
+Normal Decode Phase 2 -  ['SB', 'bne', None, 5, 0, 16]
+Input to HDU ->  ['SB', 'bne', None, 5, 4, 0, 0, 36, 'True', '5', '0x00000014']
+Param 1  ['SB', 'bne', 'None', '5', '4', '0', '0', '36', 'True', '5', '0x00000014']
+prev_one  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['SB', 'bne', 'None', '5', '4', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+-------------------------Writing to IB2 ->  SB bne None 5 4 -1 0 0 -1 36 True 0 5 0x00000014
+['SB', 'bne', 'None', '5', '4', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000024
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111111100101000001010010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000024\n', 'bne 0x00000014\n', 'jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n']
+d =  ['addi', '0x00000024\n']
+d =  ['bne', '0x00000014\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #47|-------------------------
+=======================================================
+
+Content of IB2 while updating =  SB bne None 5 4 -1 0 0 -1 36 True 0 5 0x00000014
+----------_Updating IB3 File ----------------
+Data Found =  ['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Updated Content =  ['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  UJ jal 52 -1 52 1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  SB bne None 5 4 -1 0 0 -1 36 True 0 5 0x00000014
+Input to ALU -  ['SB', 'bne', 'None', '5', '4', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+['36', -1, -1]
+['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111111111100101000001010010011 False False 9 0x00000024']
+Normal Decode Phase 2 -  ['I', 'addi', 5, 5, None, -1]
+Input to HDU ->  ['I', 'addi', 5, 5, 4, None, -1, -1, 'False', '9', '0x00000024']
+Param 1  ['I', 'addi', '5', '5', '4', 'None', '-1', '-1', 'False', '9', '0x00000024']
+prev_one  ['SB', 'bne', 'None', '5', '4', '0', '0', '36', 'True', '5', '0x00000014\n']
+prev two ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030\n']
+['I', 'addi', '5', '5', '4', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+-------------------------Writing to IB2 ->  I addi 5 5 4 -1 None -1 -1 -1 False 2 9 0x00000024
+['I', 'addi', '5', '5', '4', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000028
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111110000010000000100010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n', 'jal 0x00000030\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['jal', '0x00000030\n']
+
+=======================================================
+--------------------|Cycle #48|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 4 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Found =  ['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Updated Content =  ['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  SB bne 36 -1 36 -1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #49|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 4 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['addi', '0x00000028\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #50|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 4 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 5 5 4 -1 None -1 -1 -1 False 2 9 0x00000024
+Input to ALU -  ['I', 'addi', '5', '5', '4', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+[3, -1, 5]
+['I', 'addi', '3', '-1', '3', '5', '-1', '-1', '2']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111111110000010000000100010011 False False 10 0x00000028']
+Normal Decode Phase 2 -  ['I', 'addi', 2, 2, None, -4]
+Input to HDU ->  ['I', 'addi', 2, 2, 2147483616, None, -1, -4, 'False', '10', '0x00000028']
+Param 1  ['I', 'addi', '2', '2', '2147483616', 'None', '-1', '-4', 'False', '10', '0x00000028']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['I', 'addi', '2', '2', '2147483616', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+-------------------------Writing to IB2 ->  I addi 2 2 2147483616 -1 None -1 -1 -4 False 0 10 0x00000028
+['I', 'addi', '2', '2', '2147483616', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x0000002c
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000000100010010000000100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['sw 0x0000002c\n', 'addi 0x00000028\n', 'addi 0x00000028\n', 'X 0\n', 'X 0\n']
+d =  ['sw', '0x0000002c\n']
+d =  ['addi', '0x00000028\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #51|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 2 2 2147483616 -1 None -1 -1 -4 False 0 10 0x00000028
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '3', '-1', '3', '5', '-1', '-1', '2']
+Updated Content =  ['I', 'addi', '3', '-1', '3', '5', '-1', '-1', '2']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 3 -1 3 5 -1 -1 2
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 2 2 2147483616 -1 None -1 -1 -4 False 0 10 0x00000028
+Input to ALU -  ['I', 'addi', '2', '2', '2147483616', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+[2147483612, -1, 2]
+['I', 'addi', '2147483612', '-1', '2147483612', '2', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000100010010000000100011 False False 11 0x0000002c']
+Normal Decode Phase 2 -  ['S', 'sw', None, 2, 1, 0]
+Midway before S update ->  ['S', 'sw', None, 2, 1, 0]
+Midway after S update ->  ['S', 'sw', None, 2, 2147483616, 1, 52, 0]
+Input to HDU ->  ['S', 'sw', None, 2, 2147483616, 1, 52, 0, 'False', '11', '0x0000002c']
+Param 1  ['S', 'sw', 'None', '2', '2147483616', '1', '52', '0', 'False', '11', '0x0000002c']
+prev_one  ['I', 'addi', '2', '2', '2147483616', 'None', '-1', '-4', 'False', '10', '0x00000028\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['S', 'sw', 'None', '2', '2147483616', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+-------------------------Writing to IB2 ->  S sw None 2 2147483616 -1 1 52 -1 0 False 2 11 0x0000002c
+['S', 'sw', 'None', '2', '2147483616', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000030
+Found in BTB? True
+Taken Not Taken? True
+Target Line NUmber =  5
+Updating IB1
+11111110010111111111000011101111
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #52|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483616 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '2147483612', '-1', '2147483612', '2', '-1', '-1', '0']
+Updated Content =  ['I', 'addi', '2147483612', '-1', '2147483612', '2', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 2147483612 -1 2147483612 2 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #53|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483616 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #54|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483616 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  S sw None 2 2147483616 -1 1 52 -1 0 False 2 11 0x0000002c
+Input to ALU -  ['S', 'sw', 'None', '2', '2147483616', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+Received A-> ['S', 'sw', 'None', '2', '2147483616', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+B in sw->  ['sw', '2147483616', '52', '0']
+[2147483616, 52, -1]
+['S', 'sw', '2147483616', '52', '-1', '-1', '-1', '2', '2']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111110010111111111000011101111 True True 12 0x00000030']
+Normal Decode Phase 2 -  ['UJ', 'jal', 1, None, None, -28]
+Input to HDU ->  ['UJ', 'jal', 1, None, -1, None, -1, -28, 'True', '12', '0x00000030']
+Param 1  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '-28', 'True', '0', '12', '0x00000030']
+-------------------------Writing to IB2 ->  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '-28', 'True', '0', '12', '0x00000030']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000014
+Found in BTB? True
+Taken Not Taken? True
+Target Line NUmber =  9
+Updating IB1
+00000000000000101001100001100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['bne 0x00000014\n', 'jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n', 'X 0\n']
+d =  ['bne', '0x00000014\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #55|-------------------------
+=======================================================
+
+Content of IB2 while updating =  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+----------_Updating IB3 File ----------------
+Data Found =  ['S', 'sw', '2147483616', '52', '-1', '-1', '-1', '2', '2']
+Updated Content =  ['S', 'sw', '2147483616', '52', '-1', '-1', '-1', '2', '2']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  S sw 2147483616 52 -1 -1 -1 2 2
+Address to store  0x7fffffe0
+Data - > 52
+Writing To Memory
+{'0x7ffffff0': 16, '0x7ffffff1': 0, '0x7ffffff2': 0, '0x7ffffff3': 0, '0x7fffffef': 0, '0x7fffffee': 0, '0x7fffffed': 0, '0x7fffffec': 52, '0x7fffffeb': 0, '0x7fffffea': 0, '0x7fffffe9': 0, '0x7fffffe8': 52, '0x7fffffe7': 0, '0x7fffffe6': 0, '0x7ffffff4': 0, '0x7ffffff5': 0, '0x7ffffff6': 0, '0x7ffffff7': 0, '0x7ffffff8': 0, '0x7ffffff9': 0, '0x7ffffffa': 0, '0x7fffffe5': 0, '0x7fffffe4': 52, '0x7fffffe3': 0, '0x7fffffe2': 0, '0x7fffffe1': 0, '0x7fffffe0': 52, '0x7fffffdf': 0, '0x7fffffde': 0, '0x7fffffdd': 0, '0x7fffffdc': 0, '0x7fffffdb': 0, '0x7fffffda': 0, '0x7fffffd9': 0, '0x7fffffd8': 0, '0x7fffffd7': 0, '0x7fffffd6': 0}
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+Instruction Identified to be Of Type of jal....
+pcValueInDecimal =  48
+dataToBeWrittenInRegister =  52
+destinationRegister =  1
+The Branch Was Taken During The Fetch Stage
+['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000000101001100001100011 True True 5 0x00000014']
+Normal Decode Phase 2 -  ['SB', 'bne', None, 5, 0, 16]
+Input to HDU ->  ['SB', 'bne', None, 5, 3, 0, 0, 36, 'True', '5', '0x00000014']
+Param 1  ['SB', 'bne', 'None', '5', '3', '0', '0', '36', 'True', '5', '0x00000014']
+prev_one  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['SB', 'bne', 'None', '5', '3', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+-------------------------Writing to IB2 ->  SB bne None 5 3 -1 0 0 -1 36 True 0 5 0x00000014
+['SB', 'bne', 'None', '5', '3', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000024
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111111100101000001010010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000024\n', 'bne 0x00000014\n', 'jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n']
+d =  ['addi', '0x00000024\n']
+d =  ['bne', '0x00000014\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #56|-------------------------
+=======================================================
+
+Content of IB2 while updating =  SB bne None 5 3 -1 0 0 -1 36 True 0 5 0x00000014
+----------_Updating IB3 File ----------------
+Data Found =  ['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Updated Content =  ['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  UJ jal 52 -1 52 1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  SB bne None 5 3 -1 0 0 -1 36 True 0 5 0x00000014
+Input to ALU -  ['SB', 'bne', 'None', '5', '3', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+['36', -1, -1]
+['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111111111100101000001010010011 False False 9 0x00000024']
+Normal Decode Phase 2 -  ['I', 'addi', 5, 5, None, -1]
+Input to HDU ->  ['I', 'addi', 5, 5, 3, None, -1, -1, 'False', '9', '0x00000024']
+Param 1  ['I', 'addi', '5', '5', '3', 'None', '-1', '-1', 'False', '9', '0x00000024']
+prev_one  ['SB', 'bne', 'None', '5', '3', '0', '0', '36', 'True', '5', '0x00000014\n']
+prev two ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030\n']
+['I', 'addi', '5', '5', '3', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+-------------------------Writing to IB2 ->  I addi 5 5 3 -1 None -1 -1 -1 False 2 9 0x00000024
+['I', 'addi', '5', '5', '3', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000028
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111110000010000000100010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n', 'jal 0x00000030\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['jal', '0x00000030\n']
+
+=======================================================
+--------------------|Cycle #57|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 3 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Found =  ['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Updated Content =  ['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  SB bne 36 -1 36 -1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #58|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 3 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['addi', '0x00000028\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #59|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 3 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 5 5 3 -1 None -1 -1 -1 False 2 9 0x00000024
+Input to ALU -  ['I', 'addi', '5', '5', '3', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+[2, -1, 5]
+['I', 'addi', '2', '-1', '2', '5', '-1', '-1', '2']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111111110000010000000100010011 False False 10 0x00000028']
+Normal Decode Phase 2 -  ['I', 'addi', 2, 2, None, -4]
+Input to HDU ->  ['I', 'addi', 2, 2, 2147483612, None, -1, -4, 'False', '10', '0x00000028']
+Param 1  ['I', 'addi', '2', '2', '2147483612', 'None', '-1', '-4', 'False', '10', '0x00000028']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['I', 'addi', '2', '2', '2147483612', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+-------------------------Writing to IB2 ->  I addi 2 2 2147483612 -1 None -1 -1 -4 False 0 10 0x00000028
+['I', 'addi', '2', '2', '2147483612', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x0000002c
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000000100010010000000100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['sw 0x0000002c\n', 'addi 0x00000028\n', 'addi 0x00000028\n', 'X 0\n', 'X 0\n']
+d =  ['sw', '0x0000002c\n']
+d =  ['addi', '0x00000028\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #60|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 2 2 2147483612 -1 None -1 -1 -4 False 0 10 0x00000028
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '2', '-1', '2', '5', '-1', '-1', '2']
+Updated Content =  ['I', 'addi', '2', '-1', '2', '5', '-1', '-1', '2']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 2 -1 2 5 -1 -1 2
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 2 2 2147483612 -1 None -1 -1 -4 False 0 10 0x00000028
+Input to ALU -  ['I', 'addi', '2', '2', '2147483612', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+[2147483608, -1, 2]
+['I', 'addi', '2147483608', '-1', '2147483608', '2', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000100010010000000100011 False False 11 0x0000002c']
+Normal Decode Phase 2 -  ['S', 'sw', None, 2, 1, 0]
+Midway before S update ->  ['S', 'sw', None, 2, 1, 0]
+Midway after S update ->  ['S', 'sw', None, 2, 2147483612, 1, 52, 0]
+Input to HDU ->  ['S', 'sw', None, 2, 2147483612, 1, 52, 0, 'False', '11', '0x0000002c']
+Param 1  ['S', 'sw', 'None', '2', '2147483612', '1', '52', '0', 'False', '11', '0x0000002c']
+prev_one  ['I', 'addi', '2', '2', '2147483612', 'None', '-1', '-4', 'False', '10', '0x00000028\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['S', 'sw', 'None', '2', '2147483612', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+-------------------------Writing to IB2 ->  S sw None 2 2147483612 -1 1 52 -1 0 False 2 11 0x0000002c
+['S', 'sw', 'None', '2', '2147483612', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000030
+Found in BTB? True
+Taken Not Taken? True
+Target Line NUmber =  5
+Updating IB1
+11111110010111111111000011101111
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #61|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483612 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '2147483608', '-1', '2147483608', '2', '-1', '-1', '0']
+Updated Content =  ['I', 'addi', '2147483608', '-1', '2147483608', '2', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 2147483608 -1 2147483608 2 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #62|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483612 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #63|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483612 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  S sw None 2 2147483612 -1 1 52 -1 0 False 2 11 0x0000002c
+Input to ALU -  ['S', 'sw', 'None', '2', '2147483612', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+Received A-> ['S', 'sw', 'None', '2', '2147483612', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+B in sw->  ['sw', '2147483612', '52', '0']
+[2147483612, 52, -1]
+['S', 'sw', '2147483612', '52', '-1', '-1', '-1', '2', '2']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111110010111111111000011101111 True True 12 0x00000030']
+Normal Decode Phase 2 -  ['UJ', 'jal', 1, None, None, -28]
+Input to HDU ->  ['UJ', 'jal', 1, None, -1, None, -1, -28, 'True', '12', '0x00000030']
+Param 1  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '-28', 'True', '0', '12', '0x00000030']
+-------------------------Writing to IB2 ->  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '-28', 'True', '0', '12', '0x00000030']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000014
+Found in BTB? True
+Taken Not Taken? True
+Target Line NUmber =  9
+Updating IB1
+00000000000000101001100001100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['bne 0x00000014\n', 'jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n', 'X 0\n']
+d =  ['bne', '0x00000014\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #64|-------------------------
+=======================================================
+
+Content of IB2 while updating =  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+----------_Updating IB3 File ----------------
+Data Found =  ['S', 'sw', '2147483612', '52', '-1', '-1', '-1', '2', '2']
+Updated Content =  ['S', 'sw', '2147483612', '52', '-1', '-1', '-1', '2', '2']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  S sw 2147483612 52 -1 -1 -1 2 2
+Address to store  0x7fffffdc
+Data - > 52
+Writing To Memory
+{'0x7ffffff0': 16, '0x7ffffff1': 0, '0x7ffffff2': 0, '0x7ffffff3': 0, '0x7fffffef': 0, '0x7fffffee': 0, '0x7fffffed': 0, '0x7fffffec': 52, '0x7fffffeb': 0, '0x7fffffea': 0, '0x7fffffe9': 0, '0x7fffffe8': 52, '0x7fffffe7': 0, '0x7fffffe6': 0, '0x7ffffff4': 0, '0x7ffffff5': 0, '0x7ffffff6': 0, '0x7ffffff7': 0, '0x7ffffff8': 0, '0x7ffffff9': 0, '0x7ffffffa': 0, '0x7fffffe5': 0, '0x7fffffe4': 52, '0x7fffffe3': 0, '0x7fffffe2': 0, '0x7fffffe1': 0, '0x7fffffe0': 52, '0x7fffffdf': 0, '0x7fffffde': 0, '0x7fffffdd': 0, '0x7fffffdc': 52, '0x7fffffdb': 0, '0x7fffffda': 0, '0x7fffffd9': 0, '0x7fffffd8': 0, '0x7fffffd7': 0, '0x7fffffd6': 0, '0x7fffffd5': 0, '0x7fffffd4': 0, '0x7fffffd3': 0, '0x7fffffd2': 0}
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+Instruction Identified to be Of Type of jal....
+pcValueInDecimal =  48
+dataToBeWrittenInRegister =  52
+destinationRegister =  1
+The Branch Was Taken During The Fetch Stage
+['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000000101001100001100011 True True 5 0x00000014']
+Normal Decode Phase 2 -  ['SB', 'bne', None, 5, 0, 16]
+Input to HDU ->  ['SB', 'bne', None, 5, 2, 0, 0, 36, 'True', '5', '0x00000014']
+Param 1  ['SB', 'bne', 'None', '5', '2', '0', '0', '36', 'True', '5', '0x00000014']
+prev_one  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['SB', 'bne', 'None', '5', '2', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+-------------------------Writing to IB2 ->  SB bne None 5 2 -1 0 0 -1 36 True 0 5 0x00000014
+['SB', 'bne', 'None', '5', '2', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000024
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111111100101000001010010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000024\n', 'bne 0x00000014\n', 'jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n']
+d =  ['addi', '0x00000024\n']
+d =  ['bne', '0x00000014\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #65|-------------------------
+=======================================================
+
+Content of IB2 while updating =  SB bne None 5 2 -1 0 0 -1 36 True 0 5 0x00000014
+----------_Updating IB3 File ----------------
+Data Found =  ['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Updated Content =  ['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  UJ jal 52 -1 52 1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  SB bne None 5 2 -1 0 0 -1 36 True 0 5 0x00000014
+Input to ALU -  ['SB', 'bne', 'None', '5', '2', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+['36', -1, -1]
+['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111111111100101000001010010011 False False 9 0x00000024']
+Normal Decode Phase 2 -  ['I', 'addi', 5, 5, None, -1]
+Input to HDU ->  ['I', 'addi', 5, 5, 2, None, -1, -1, 'False', '9', '0x00000024']
+Param 1  ['I', 'addi', '5', '5', '2', 'None', '-1', '-1', 'False', '9', '0x00000024']
+prev_one  ['SB', 'bne', 'None', '5', '2', '0', '0', '36', 'True', '5', '0x00000014\n']
+prev two ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030\n']
+['I', 'addi', '5', '5', '2', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+-------------------------Writing to IB2 ->  I addi 5 5 2 -1 None -1 -1 -1 False 2 9 0x00000024
+['I', 'addi', '5', '5', '2', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000028
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111110000010000000100010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n', 'jal 0x00000030\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['jal', '0x00000030\n']
+
+=======================================================
+--------------------|Cycle #66|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 2 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Found =  ['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Updated Content =  ['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  SB bne 36 -1 36 -1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #67|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 2 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['addi', '0x00000028\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #68|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 2 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 5 5 2 -1 None -1 -1 -1 False 2 9 0x00000024
+Input to ALU -  ['I', 'addi', '5', '5', '2', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+[1, -1, 5]
+['I', 'addi', '1', '-1', '1', '5', '-1', '-1', '2']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111111110000010000000100010011 False False 10 0x00000028']
+Normal Decode Phase 2 -  ['I', 'addi', 2, 2, None, -4]
+Input to HDU ->  ['I', 'addi', 2, 2, 2147483608, None, -1, -4, 'False', '10', '0x00000028']
+Param 1  ['I', 'addi', '2', '2', '2147483608', 'None', '-1', '-4', 'False', '10', '0x00000028']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['I', 'addi', '2', '2', '2147483608', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+-------------------------Writing to IB2 ->  I addi 2 2 2147483608 -1 None -1 -1 -4 False 0 10 0x00000028
+['I', 'addi', '2', '2', '2147483608', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x0000002c
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000000100010010000000100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['sw 0x0000002c\n', 'addi 0x00000028\n', 'addi 0x00000028\n', 'X 0\n', 'X 0\n']
+d =  ['sw', '0x0000002c\n']
+d =  ['addi', '0x00000028\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #69|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 2 2 2147483608 -1 None -1 -1 -4 False 0 10 0x00000028
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '1', '-1', '1', '5', '-1', '-1', '2']
+Updated Content =  ['I', 'addi', '1', '-1', '1', '5', '-1', '-1', '2']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 1 -1 1 5 -1 -1 2
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 2 2 2147483608 -1 None -1 -1 -4 False 0 10 0x00000028
+Input to ALU -  ['I', 'addi', '2', '2', '2147483608', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+[2147483604, -1, 2]
+['I', 'addi', '2147483604', '-1', '2147483604', '2', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000100010010000000100011 False False 11 0x0000002c']
+Normal Decode Phase 2 -  ['S', 'sw', None, 2, 1, 0]
+Midway before S update ->  ['S', 'sw', None, 2, 1, 0]
+Midway after S update ->  ['S', 'sw', None, 2, 2147483608, 1, 52, 0]
+Input to HDU ->  ['S', 'sw', None, 2, 2147483608, 1, 52, 0, 'False', '11', '0x0000002c']
+Param 1  ['S', 'sw', 'None', '2', '2147483608', '1', '52', '0', 'False', '11', '0x0000002c']
+prev_one  ['I', 'addi', '2', '2', '2147483608', 'None', '-1', '-4', 'False', '10', '0x00000028\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['S', 'sw', 'None', '2', '2147483608', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+-------------------------Writing to IB2 ->  S sw None 2 2147483608 -1 1 52 -1 0 False 2 11 0x0000002c
+['S', 'sw', 'None', '2', '2147483608', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000030
+Found in BTB? True
+Taken Not Taken? True
+Target Line NUmber =  5
+Updating IB1
+11111110010111111111000011101111
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #70|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483608 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '2147483604', '-1', '2147483604', '2', '-1', '-1', '0']
+Updated Content =  ['I', 'addi', '2147483604', '-1', '2147483604', '2', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 2147483604 -1 2147483604 2 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #71|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483608 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #72|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483608 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  S sw None 2 2147483608 -1 1 52 -1 0 False 2 11 0x0000002c
+Input to ALU -  ['S', 'sw', 'None', '2', '2147483608', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+Received A-> ['S', 'sw', 'None', '2', '2147483608', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+B in sw->  ['sw', '2147483608', '52', '0']
+[2147483608, 52, -1]
+['S', 'sw', '2147483608', '52', '-1', '-1', '-1', '2', '2']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111110010111111111000011101111 True True 12 0x00000030']
+Normal Decode Phase 2 -  ['UJ', 'jal', 1, None, None, -28]
+Input to HDU ->  ['UJ', 'jal', 1, None, -1, None, -1, -28, 'True', '12', '0x00000030']
+Param 1  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '-28', 'True', '0', '12', '0x00000030']
+-------------------------Writing to IB2 ->  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '-28', 'True', '0', '12', '0x00000030']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000014
+Found in BTB? True
+Taken Not Taken? True
+Target Line NUmber =  9
+Updating IB1
+00000000000000101001100001100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['bne 0x00000014\n', 'jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n', 'X 0\n']
+d =  ['bne', '0x00000014\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #73|-------------------------
+=======================================================
+
+Content of IB2 while updating =  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+----------_Updating IB3 File ----------------
+Data Found =  ['S', 'sw', '2147483608', '52', '-1', '-1', '-1', '2', '2']
+Updated Content =  ['S', 'sw', '2147483608', '52', '-1', '-1', '-1', '2', '2']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  S sw 2147483608 52 -1 -1 -1 2 2
+Address to store  0x7fffffd8
+Data - > 52
+Writing To Memory
+{'0x7ffffff0': 16, '0x7ffffff1': 0, '0x7ffffff2': 0, '0x7ffffff3': 0, '0x7fffffef': 0, '0x7fffffee': 0, '0x7fffffed': 0, '0x7fffffec': 52, '0x7fffffeb': 0, '0x7fffffea': 0, '0x7fffffe9': 0, '0x7fffffe8': 52, '0x7fffffe7': 0, '0x7fffffe6': 0, '0x7ffffff4': 0, '0x7ffffff5': 0, '0x7ffffff6': 0, '0x7ffffff7': 0, '0x7ffffff8': 0, '0x7ffffff9': 0, '0x7ffffffa': 0, '0x7fffffe5': 0, '0x7fffffe4': 52, '0x7fffffe3': 0, '0x7fffffe2': 0, '0x7fffffe1': 0, '0x7fffffe0': 52, '0x7fffffdf': 0, '0x7fffffde': 0, '0x7fffffdd': 0, '0x7fffffdc': 52, '0x7fffffdb': 0, '0x7fffffda': 0, '0x7fffffd9': 0, '0x7fffffd8': 52, '0x7fffffd7': 0, '0x7fffffd6': 0, '0x7fffffd5': 0, '0x7fffffd4': 0, '0x7fffffd3': 0, '0x7fffffd2': 0, '0x7fffffd1': 0, '0x7fffffd0': 0, '0x7fffffcf': 0, '0x7fffffce': 0}
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+Instruction Identified to be Of Type of jal....
+pcValueInDecimal =  48
+dataToBeWrittenInRegister =  52
+destinationRegister =  1
+The Branch Was Taken During The Fetch Stage
+['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000000101001100001100011 True True 5 0x00000014']
+Normal Decode Phase 2 -  ['SB', 'bne', None, 5, 0, 16]
+Input to HDU ->  ['SB', 'bne', None, 5, 1, 0, 0, 36, 'True', '5', '0x00000014']
+Param 1  ['SB', 'bne', 'None', '5', '1', '0', '0', '36', 'True', '5', '0x00000014']
+prev_one  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['SB', 'bne', 'None', '5', '1', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+-------------------------Writing to IB2 ->  SB bne None 5 1 -1 0 0 -1 36 True 0 5 0x00000014
+['SB', 'bne', 'None', '5', '1', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000024
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111111100101000001010010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000024\n', 'bne 0x00000014\n', 'jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n']
+d =  ['addi', '0x00000024\n']
+d =  ['bne', '0x00000014\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #74|-------------------------
+=======================================================
+
+Content of IB2 while updating =  SB bne None 5 1 -1 0 0 -1 36 True 0 5 0x00000014
+----------_Updating IB3 File ----------------
+Data Found =  ['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Updated Content =  ['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  UJ jal 52 -1 52 1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  SB bne None 5 1 -1 0 0 -1 36 True 0 5 0x00000014
+Input to ALU -  ['SB', 'bne', 'None', '5', '1', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+['36', -1, -1]
+['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111111111100101000001010010011 False False 9 0x00000024']
+Normal Decode Phase 2 -  ['I', 'addi', 5, 5, None, -1]
+Input to HDU ->  ['I', 'addi', 5, 5, 1, None, -1, -1, 'False', '9', '0x00000024']
+Param 1  ['I', 'addi', '5', '5', '1', 'None', '-1', '-1', 'False', '9', '0x00000024']
+prev_one  ['SB', 'bne', 'None', '5', '1', '0', '0', '36', 'True', '5', '0x00000014\n']
+prev two ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030\n']
+['I', 'addi', '5', '5', '1', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+-------------------------Writing to IB2 ->  I addi 5 5 1 -1 None -1 -1 -1 False 2 9 0x00000024
+['I', 'addi', '5', '5', '1', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000028
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111110000010000000100010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n', 'jal 0x00000030\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['jal', '0x00000030\n']
+
+=======================================================
+--------------------|Cycle #75|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 1 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Found =  ['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Updated Content =  ['SB', 'bne', '36', '-1', '36', '-1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  SB bne 36 -1 36 -1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #76|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 1 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['addi', '0x00000028\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #77|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 5 5 1 -1 None -1 -1 -1 False 2 9 0x00000024
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 5 5 1 -1 None -1 -1 -1 False 2 9 0x00000024
+Input to ALU -  ['I', 'addi', '5', '5', '1', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+[0, -1, 5]
+['I', 'addi', '0', '-1', '0', '5', '-1', '-1', '2']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111111110000010000000100010011 False False 10 0x00000028']
+Normal Decode Phase 2 -  ['I', 'addi', 2, 2, None, -4]
+Input to HDU ->  ['I', 'addi', 2, 2, 2147483604, None, -1, -4, 'False', '10', '0x00000028']
+Param 1  ['I', 'addi', '2', '2', '2147483604', 'None', '-1', '-4', 'False', '10', '0x00000028']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['I', 'addi', '2', '2', '2147483604', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+-------------------------Writing to IB2 ->  I addi 2 2 2147483604 -1 None -1 -1 -4 False 0 10 0x00000028
+['I', 'addi', '2', '2', '2147483604', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x0000002c
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+00000000000100010010000000100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['sw 0x0000002c\n', 'addi 0x00000028\n', 'addi 0x00000028\n', 'X 0\n', 'X 0\n']
+d =  ['sw', '0x0000002c\n']
+d =  ['addi', '0x00000028\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #78|-------------------------
+=======================================================
+
+Content of IB2 while updating =  I addi 2 2 2147483604 -1 None -1 -1 -4 False 0 10 0x00000028
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '0', '-1', '0', '5', '-1', '-1', '2']
+Updated Content =  ['I', 'addi', '0', '-1', '0', '5', '-1', '-1', '2']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 0 -1 0 5 -1 -1 2
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  I addi 2 2 2147483604 -1 None -1 -1 -4 False 0 10 0x00000028
+Input to ALU -  ['I', 'addi', '2', '2', '2147483604', '-1', 'None', '-1', '-1', '-4', 'False', '0', '10', '0x00000028']
+[2147483600, -1, 2]
+['I', 'addi', '2147483600', '-1', '2147483600', '2', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000100010010000000100011 False False 11 0x0000002c']
+Normal Decode Phase 2 -  ['S', 'sw', None, 2, 1, 0]
+Midway before S update ->  ['S', 'sw', None, 2, 1, 0]
+Midway after S update ->  ['S', 'sw', None, 2, 2147483604, 1, 52, 0]
+Input to HDU ->  ['S', 'sw', None, 2, 2147483604, 1, 52, 0, 'False', '11', '0x0000002c']
+Param 1  ['S', 'sw', 'None', '2', '2147483604', '1', '52', '0', 'False', '11', '0x0000002c']
+prev_one  ['I', 'addi', '2', '2', '2147483604', 'None', '-1', '-4', 'False', '10', '0x00000028\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['S', 'sw', 'None', '2', '2147483604', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+-------------------------Writing to IB2 ->  S sw None 2 2147483604 -1 1 52 -1 0 False 2 11 0x0000002c
+['S', 'sw', 'None', '2', '2147483604', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000030
+Found in BTB? True
+Taken Not Taken? True
+Target Line NUmber =  5
+Updating IB1
+11111110010111111111000011101111
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #79|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483604 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Found =  ['I', 'addi', '2147483600', '-1', '2147483600', '2', '-1', '-1', '0']
+Updated Content =  ['I', 'addi', '2147483600', '-1', '2147483600', '2', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  I addi 2147483600 -1 2147483600 2 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #80|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483604 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #81|-------------------------
+=======================================================
+
+Content of IB2 while updating =  S sw None 2 2147483604 -1 1 52 -1 0 False 2 11 0x0000002c
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  S sw None 2 2147483604 -1 1 52 -1 0 False 2 11 0x0000002c
+Input to ALU -  ['S', 'sw', 'None', '2', '2147483604', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+Received A-> ['S', 'sw', 'None', '2', '2147483604', '-1', '1', '52', '-1', '0', 'False', '2', '11', '0x0000002c']
+B in sw->  ['sw', '2147483604', '52', '0']
+[2147483604, 52, -1]
+['S', 'sw', '2147483604', '52', '-1', '-1', '-1', '2', '2']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111110010111111111000011101111 True True 12 0x00000030']
+Normal Decode Phase 2 -  ['UJ', 'jal', 1, None, None, -28]
+Input to HDU ->  ['UJ', 'jal', 1, None, -1, None, -1, -28, 'True', '12', '0x00000030']
+Param 1  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030']
+prev_one  ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '-28', 'True', '0', '12', '0x00000030']
+-------------------------Writing to IB2 ->  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+['UJ', 'jal', '1', 'None', '-1', '-1', 'None', '-1', '-1', '-28', 'True', '0', '12', '0x00000030']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000014
+Found in BTB? True
+Taken Not Taken? True
+Target Line NUmber =  9
+Updating IB1
+00000000000000101001100001100011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['bne 0x00000014\n', 'jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n', 'X 0\n']
+d =  ['bne', '0x00000014\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #82|-------------------------
+=======================================================
+
+Content of IB2 while updating =  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+----------_Updating IB3 File ----------------
+Data Found =  ['S', 'sw', '2147483604', '52', '-1', '-1', '-1', '2', '2']
+Updated Content =  ['S', 'sw', '2147483604', '52', '-1', '-1', '-1', '2', '2']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  S sw 2147483604 52 -1 -1 -1 2 2
+Address to store  0x7fffffd4
+Data - > 52
+Writing To Memory
+{'0x7ffffff0': 16, '0x7ffffff1': 0, '0x7ffffff2': 0, '0x7ffffff3': 0, '0x7fffffef': 0, '0x7fffffee': 0, '0x7fffffed': 0, '0x7fffffec': 52, '0x7fffffeb': 0, '0x7fffffea': 0, '0x7fffffe9': 0, '0x7fffffe8': 52, '0x7fffffe7': 0, '0x7fffffe6': 0, '0x7ffffff4': 0, '0x7ffffff5': 0, '0x7ffffff6': 0, '0x7ffffff7': 0, '0x7ffffff8': 0, '0x7ffffff9': 0, '0x7ffffffa': 0, '0x7fffffe5': 0, '0x7fffffe4': 52, '0x7fffffe3': 0, '0x7fffffe2': 0, '0x7fffffe1': 0, '0x7fffffe0': 52, '0x7fffffdf': 0, '0x7fffffde': 0, '0x7fffffdd': 0, '0x7fffffdc': 52, '0x7fffffdb': 0, '0x7fffffda': 0, '0x7fffffd9': 0, '0x7fffffd8': 52, '0x7fffffd7': 0, '0x7fffffd6': 0, '0x7fffffd5': 0, '0x7fffffd4': 52, '0x7fffffd3': 0, '0x7fffffd2': 0, '0x7fffffd1': 0, '0x7fffffd0': 0, '0x7fffffcf': 0, '0x7fffffce': 0, '0x7fffffcd': 0, '0x7fffffcc': 0, '0x7fffffcb': 0, '0x7fffffca': 0}
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  UJ jal 1 None -1 -1 None -1 -1 -28 True 0 12 0x00000030
+Instruction Identified to be Of Type of jal....
+pcValueInDecimal =  48
+dataToBeWrittenInRegister =  52
+destinationRegister =  1
+The Branch Was Taken During The Fetch Stage
+['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['00000000000000101001100001100011 True True 5 0x00000014']
+Normal Decode Phase 2 -  ['SB', 'bne', None, 5, 0, 16]
+Input to HDU ->  ['SB', 'bne', None, 5, 0, 0, 0, 36, 'True', '5', '0x00000014']
+Param 1  ['SB', 'bne', 'None', '5', '0', '0', '0', '36', 'True', '5', '0x00000014']
+prev_one  ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030\n']
+prev two ['X', 'X', '-2', '-2', '-2', '-2', '-2', '-2\n']
+['SB', 'bne', 'None', '5', '0', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+-------------------------Writing to IB2 ->  SB bne None 5 0 -1 0 0 -1 36 True 0 5 0x00000014
+['SB', 'bne', 'None', '5', '0', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000024
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111111100101000001010010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000024\n', 'bne 0x00000014\n', 'jal 0x00000030\n', 'jal 0x00000030\n', 'X 0\n']
+d =  ['addi', '0x00000024\n']
+d =  ['bne', '0x00000014\n']
+d =  ['jal', '0x00000030\n']
+d =  ['jal', '0x00000030\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #83|-------------------------
+=======================================================
+
+Content of IB2 while updating =  SB bne None 5 0 -1 0 0 -1 36 True 0 5 0x00000014
+----------_Updating IB3 File ----------------
+Data Found =  ['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Updated Content =  ['UJ', 'jal', '52', '-1', '52', '1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  UJ jal 52 -1 52 1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Data found in IB2 =  SB bne None 5 0 -1 0 0 -1 36 True 0 5 0x00000014
+Input to ALU -  ['SB', 'bne', 'None', '5', '0', '-1', '0', '0', '-1', '36', 'True', '0', '5', '0x00000014']
+[-1, -1, -1]
+['SB', 'bne', '-1', '-1', '-1', '-1', '-1', '-1', '0']
+Decode -- - - - - -- - - 
+Reading From Decode conten =  ['11111111111100101000001010010011 False False 9 0x00000024']
+Normal Decode Phase 2 -  ['I', 'addi', 5, 5, None, -1]
+Input to HDU ->  ['I', 'addi', 5, 5, 0, None, -1, -1, 'False', '9', '0x00000024']
+Param 1  ['I', 'addi', '5', '5', '0', 'None', '-1', '-1', 'False', '9', '0x00000024']
+prev_one  ['SB', 'bne', 'None', '5', '0', '0', '0', '36', 'True', '5', '0x00000014\n']
+prev two ['UJ', 'jal', '1', 'None', '-1', 'None', '-1', '-28', 'True', '12', '0x00000030\n']
+['I', 'addi', '5', '5', '0', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+-------------------------Writing to IB2 ->  I addi 5 5 0 -1 None -1 -1 -1 False 2 9 0x00000024
+['I', 'addi', '5', '5', '0', '-1', 'None', '-1', '-1', '-1', 'False', '2', '9', '0x00000024']
+Fetch - - - -  - - - -  -
+Instruction Fetch Currently in Execution...Current PC =  0x00000028
+Found in BTB? False
+Taken Not Taken? False
+Target Line NUmber =  -1
+Updating IB1
+11111111110000010000000100010011
+Instruction Fetch Completed
+==============-=-=-=================-=-=-======================
+Read Data =  ['addi 0x00000028\n', 'X 0\n', 'X 0\n', 'X 0\n', 'jal 0x00000030\n']
+d =  ['addi', '0x00000028\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['jal', '0x00000030\n']
+
+=======================================================
+--------------------|Cycle #84|-------------------------
+=======================================================
+
+Content of IB2 while updating =  
+----------_Updating IB3 File ----------------
+Data Found =  ['SB', 'bne', '-1', '-1', '-1', '-1', '-1', '-1', '0']
+Updated Content =  ['SB', 'bne', '-1', '-1', '-1', '-1', '-1', '-1', '0']
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  SB bne -1 -1 -1 -1 -1 -1 0
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['X 0\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+
+=======================================================
+--------------------|Cycle #85|-------------------------
+=======================================================
+
+Content of IB2 while updating =  
+----------_Updating IB3 File ----------------
+Data Forwarding Performed------------------------
+
+	~~~~~~No Data Forwarding~~~~~~
+
+-------------------------------------------------
+
+Write Back - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - -
+Memory Access - - - - - - -- - - - - - - -
+Data Read From IB3 =  
+No Content Found in IB3... Nothing Executed
+Execute - - - - - - -  - - -- -
+Decode -- - - - - -- - - 
+Fetch - - - -  - - - -  -
+==============-=-=-=================-=-=-======================
+Read Data =  ['X 0\n', 'X 0\n', 'X 0\n', 'X 0\n', 'X 0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+d =  ['X', '0\n']
+[85, 53, 1.6037735849056605, 8, -1, 18, -1, -1, 0, 4, -1, 8]

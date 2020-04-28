@@ -1,0 +1,2 @@
+I addi 2 2 2147483624 None -1 8 False 31 0x0000007c
+I lw 1 2 2147483624 None -1 4 False 30 0x00000078

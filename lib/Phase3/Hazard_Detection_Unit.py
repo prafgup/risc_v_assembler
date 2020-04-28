@@ -1,6 +1,24 @@
 import os
 storeType = ['sb', 'sd', 'sw', 'sh']
 loadType = ['lb', 'ld', 'lw', 'lh']
+
+def PC_Retrieval(ist_minus_one, ist_minus_two):
+    currentPCPath = os.getcwd() + '/Phase3/InterstageBuffers/PC_Current.txt'
+    historyPCPath = os.getcwd() + '/Phase3/InterstageBuffers/PC_History.txt'
+    currentPCPathPointer = open(currentPCPath, "w")
+    historyPCPathPointer = open(historyPCPath, "r")
+    history = historyPCPathPointer.readline().strip()
+    historyPCPathPointer.close()
+    currentPCPathPointer.write(history)
+    currentPCPathPointer.close()
+    path = os.getcwd() + '/Phase3/InterstageBuffers/decode_histroy.txt'
+    pointer = open(path, "w")
+    minus_one = ' '.join(ist_minus_one)
+    minus_two = ' '.join(ist_minus_two)
+    pointer.write(minus_one.strip()+"\n")
+    pointer.write(minus_two.strip()+"\n")
+    pointer.close()
+
 def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two,knob):
     
     hazard_in_source_1=-1
@@ -11,9 +29,7 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two,knob
             #hazard_in_source_1.append(current_instr[3])
             if instruction_minus_one[1] in loadType:
                 hazard_in_source_1 = 4
-                if current_instr[1] not in storeType:
-                    print("Checkpoint 15")
-                    stall = stall+1
+                stall = stall+1
             else:
                 hazard_in_source_1 = 3
 
@@ -30,8 +46,8 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two,knob
             #hazard_in_source_2.append(current_instr[4])
             if instruction_minus_one[1] in loadType:
                 hazard_in_source_2 = 4
-                print("Checkpoint 33")
-                stall = stall+1
+                if current_instr[1] not in storeType:
+                    stall = stall+1
             else:
                 hazard_in_source_2 = 3
 
@@ -72,42 +88,56 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two,knob
         file.write(s)
         file.close()
         return returnreg
-    ###############################################################################################
-    stall1=0
-    if knob==0:
-        if current_instr[3] != 0 and current_instr[5]!=0:
-            if current_instr[3] == instruction_minus_two[2] or current_instr[5] == instruction_minus_two[2]:
-                stall1=1
-            if current_instr[3] == instruction_minus_one[2] or current_instr[5] == instruction_minus_one[2]:
-                stall1=2
+###############################################################################################
+    stall1 = 0
+    if knob == 0:
+        if current_instr[3] != 0 and current_instr[3]!='None':
+            if current_instr[3] == instruction_minus_two[2]:
+                stall1 = 1
+                print("Line 90")
+        if current_instr[5] != 0 and current_instr[5] != 'None':
+            if current_instr[5] == instruction_minus_two[2]:
+                stall1 = 1
+                print("Line 94")
 
-        if stall1!=0:
-            d = os.getcwd()
-            statfile = open(d+"/Phase3/Files/status.txt", "r")
-            status = statfile.read()
-            statfile.close()
-            statfile = open(d+"/Phase3/Files/status.txt", "w")
-            status = status.split(" ")
-            status[1] = str(stall1)
-            status[2] = str(stall1)
-            t = " "
-            t = t.join(status)
-            statfile.write(t)
-            statfile.close()
+        if current_instr[3] != 0 and current_instr[3] != 'None':
+            if current_instr[3] == instruction_minus_one[2]:
+                stall1 = 2
+                print("Line 99")
+        if current_instr[5] != 0 and current_instr[5] != 'None':
+            if current_instr[5] == instruction_minus_one[2]:
+                stall1 = 2
+                print("Line 103")
 
-        returnreg = [current_instr[0], current_instr[1], current_instr[2], current_instr[3], current_instr[4],
-                    -1, current_instr[5], current_instr[6], -1, current_instr[7], current_instr[8], stall1, current_instr[-2], current_instr[-1]]
+        if stall1 != 0:
+            PC_Retrieval(instruction_minus_one, instruction_minus_two)
+            return [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+            # d = os.getcwd()
+            # statfile = open(d+"/Phase3/Files/status.txt", "r")
+            # status = statfile.read()
+            # statfile.close()
+            # statfile = open(d+"/Phase3/Files/status.txt", "w")
+            # status = status.split(" ")
+            # status[1] = str(stall1)
+            # status[2] = str(stall1)
+            # t = " "
+            # t = t.join(status)
+            # statfile.write(t)
+            # statfile.close()
+        else:
+            returnreg = [current_instr[0], current_instr[1], current_instr[2], current_instr[3], current_instr[4],
+                        -1, current_instr[5], current_instr[6], -1, current_instr[7], current_instr[8], stall1, current_instr[-2], current_instr[-1]]
 
-        for i in range(0, len(returnreg)):
-            returnreg[i] = str(returnreg[i])
-        print(returnreg)
-        s = " "
-        s = s.join(returnreg)
-        file = open(r"Phase3/InterstageBuffers/IB2.txt", "w")
-        print("-------------------------Writing to IB2 -> ", s)
-        file.write(s)
-        file.close()
-        return returnreg
+            for i in range(0, len(returnreg)):
+                returnreg[i] = str(returnreg[i])
+            print(returnreg)
+            s = " "
+            s = s.join(returnreg)
+            file = open(r"Phase3/InterstageBuffers/IB2.txt", "w")
+            print("-------------------------Writing to IB2 -> ", s)
+            file.write(s)
+            file.close()
+            return returnreg
 
 # format, name, destination register, source 1, data of source 1, source 2, data of source 2, immediate data, T_NT
 
@@ -123,7 +153,7 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two,knob
 #     With_Hazard[i]=str(With_Hazard[i])
 # print(With_Hazard)
 # s = " "
-# s = s.join(With_Hazard) 
+# s = s.join(With_Hazard)
 
 # file=open(r"Files\IB2.txt","w")
 # file.write(s)
