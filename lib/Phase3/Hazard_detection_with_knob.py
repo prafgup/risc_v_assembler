@@ -12,7 +12,6 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two,knob
             if instruction_minus_one[1] in loadType:
                 hazard_in_source_1 = 4
                 if current_instr[1] not in storeType:
-                    print("Checkpoint 15")
                     stall = stall+1
             else:
                 hazard_in_source_1 = 3
@@ -30,7 +29,6 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two,knob
             #hazard_in_source_2.append(current_instr[4])
             if instruction_minus_one[1] in loadType:
                 hazard_in_source_2 = 4
-                print("Checkpoint 33")
                 stall = stall+1
             else:
                 hazard_in_source_2 = 3
@@ -72,7 +70,7 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two,knob
         file.write(s)
         file.close()
         return returnreg
-    ###############################################################################################
+###############################################################################################
     stall1=0
     if knob==0:
         if current_instr[3] != 0 and current_instr[5]!=0:

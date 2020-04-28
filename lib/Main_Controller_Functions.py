@@ -22,7 +22,7 @@ def instr_stat_init():
     file.write("X 0\n")
     file.close()
 
-def instr_stat_update(s):
+def instr_stat_update(s,ps):
     file = open(os.getcwd() + "/Phase3/Files/instruction_Details.txt", "r")
     line1 = file.readline()  # F
     line2 = file.readline()  # D
@@ -34,23 +34,31 @@ def instr_stat_update(s):
     curr_stat = statusfile.read()
     statusfile.close()
     curr_stat = curr_stat.split(" ")
-    line5 = line4
-    if curr_stat[2] == "0":
-        line4 = line3
-    else:
-        line4 = "X 0\n"
+    if ps==1:
+        line5 = line4
+        if curr_stat[2] == "0":
+            line4 = line3
+        else:
+            line4 = "X 0\n"
 
-    if curr_stat[1] == "0":
-        line3 = line2
-    elif curr_stat[2] != "0":
-        line3 = "X 0\n"
+        if curr_stat[1] == "0":
+            line3 = line2
+        elif curr_stat[2] != "0":
+            line3 = "X 0\n"
 
-    if curr_stat[0] == "0":
-        line2 = line1
-    elif curr_stat[1] != "0":
-        line2 = "X 0\n"
+        if curr_stat[0] == "0":
+            line2 = line1
+        elif curr_stat[1] != "0":
+            line2 = "X 0\n"
 
-    line1 = s
+        line1 = s
+
+    if ps==0:
+        line5=line4
+        line4=line3
+        line3=line2
+        line2=line1
+        line1=s
 
     file = open(os.getcwd() + "/Phase3/Files/instruction_Details.txt", "w")
     file.write(line1)
@@ -228,7 +236,7 @@ def Phase3():
     knob = int(pref[1])
     updateStatus(pipelining_status)
     StoreInstructionsInFile()
-    while(clockCycle!=600):
+    while(clockCycle!=400):
         # if(RegisterTable.registers[31].value!=0):
         #     print(RegisterTable.registers[31].value)
         #     break
@@ -271,7 +279,7 @@ def Phase3():
             updateIndex(2)
         print("Decode -- - - - - -- - - ")
         if(readIndex(1)==0):
-            main()
+            main(knob)
         elif(pipelining_status==1):
             updateIndex(1)
         print("Fetch - - - -  - - - -  -")
@@ -283,19 +291,18 @@ def Phase3():
         elif(pipelining_status==1):
             updateIndex(0)
         
-        if(pipelining_status==1):
-            getPC_Hist_Value = getPC_History()
-            d = os.getcwd() + "/Phase3/InterstageBuffers/IB1.txt"
-            instr_update=open(d, "r")
-            l = instr_update.readline()
-            if(len(l)!=0):
-                l = l.split(" ")
-                instr_info = normalDecodePhase2(l[0])
-                instr_info = str(instr_info[1])
-                instr_info = instr_info+" "+str(getPC_Hist_Value)+"\n"
-                instr_stat_update(instr_info)
-            else:
-                instr_stat_update("X 0\n")
+        getPC_Hist_Value = getPC_History()
+        d = os.getcwd() + "/Phase3/InterstageBuffers/IB1.txt"
+        instr_update=open(d, "r")
+        l = instr_update.readline()
+        if(len(l)!=0):
+            l = l.split(" ")
+            instr_info = normalDecodePhase2(l[0])
+            instr_info = str(instr_info[1])
+            instr_info = instr_info+" "+str(getPC_Hist_Value)+"\n"
+            instr_stat_update(instr_info,pipelining_status)
+        else:
+            instr_stat_update("X 0\n",pipelining_status)
 
         if(flush==True):
             flushIB()
@@ -323,6 +330,6 @@ def Phase3():
             filePointer = open(fileAdress, "w")
             filePointer.write(linepipe)
             filePointer.close()
-        #buffer = input("Waiting...")
+        buffer = input("Waiting...")
         
 

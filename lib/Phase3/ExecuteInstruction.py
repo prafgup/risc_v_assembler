@@ -11,13 +11,12 @@ def updatePC(valueInDec):
     filePointer.close()
 
 def execute(btb_object):
-    branchType = False
     file=open("Phase3/InterstageBuffers/IB2.txt","r")
     flush = False
     TargetAddress = None
     instr=file.readline()
     if(instr==""):
-        return flush, TargetAddress, False
+        return flush, TargetAddress
     print("Data found in IB2 = ", instr)
     midway=instr.split(" ")
     file.close()
@@ -30,7 +29,6 @@ def execute(btb_object):
     # T_NT = bool(midway[-4])
 
     if midway[1]=='jal':
-        branchType = True
         print("Instruction Identified to be Of Type of jal....")
         pcValueInDecimal = int(midway[-1], 16)
         dataToBeWrittenInRegister = pcValueInDecimal+4
@@ -60,7 +58,6 @@ def execute(btb_object):
     
 
     if midway[1]=="jalr":
-        branchType = True
         pcValueInDecimal = int(midway[-1], 16)
         # RegisterTable.registers[midway[2]].value = (pcValueInDecimal+4)
         # updatePC((midway[4]+int(midway[9])))
@@ -110,6 +107,6 @@ def execute(btb_object):
     file.write(s)
     file.close()
     
-    return flush, TargetAddress, branchType
+    return flush, TargetAddress 
 
 
