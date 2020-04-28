@@ -468,7 +468,8 @@ def Phase3():
             print("\n\n")
         # if(clockCycle>20):
         #     buffer = input("Waiting...")
-    Stats[2] = Stats[0]/Stats[1]
+    if(Stats[1]!=0):
+        Stats[2] = Stats[0]/Stats[1]
     writeStats(Stats)
     global allEmpty
     allEmpty = False

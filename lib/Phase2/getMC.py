@@ -12,8 +12,11 @@ def getMachineCode():
     currentWorkingDirectory = os.getcwd()
     pathToOriginalFile = currentWorkingDirectory + "/Files/machine_code.mc"
     pathToCompiledFile = currentWorkingDirectory + "/Phase3/MachineCodeFiles/machineCode.mc"
+    pointerCF = open(pathToCompiledFile, "w")
+    pointerCF.write("")
+    pointerCF.close()
     pointerOF = open(pathToOriginalFile, "r")
-    pointerCF = open(pathToCompiledFile, "w+")
+    pointerCF = open(pathToCompiledFile, "w")
     dataOriginalFile = pointerOF.readlines()
     for line in dataOriginalFile:
         parts = line.split(" ")
