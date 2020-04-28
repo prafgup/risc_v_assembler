@@ -102,7 +102,7 @@ def main(knob):
     l = readFromIB1()
     if(l==""):
         print("Nothing To Decode... Empty IB1")
-        return
+        return False, 0, False, 0
     l = l.split()
     loadStoreType = False
     midway = normalDecodePhase2(l[0])
@@ -128,5 +128,8 @@ def main(knob):
     print("Param 1 ", midwayUpdated)
     print("prev_one ", prev_one)
     print("prev two", prev_two)
-    print(Hazard_Detect(midwayUpdated, prev_one, prev_two, knob))
-    return loadStoreType
+    l, hazard, stall = (Hazard_Detect(midwayUpdated, prev_one, prev_two, knob))
+    print("l = ", l)
+    print("hazard = ", hazard)
+    print("stall = ", stall)
+    return loadStoreType, l[-3], hazard, stall

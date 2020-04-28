@@ -20,7 +20,7 @@ def PC_Retrieval(ist_minus_one, ist_minus_two):
     pointer.close()
 
 def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two,knob):
-    
+    hazard = False
     hazard_in_source_1=-1
     hazard_in_source_2=-1
     stall=0
@@ -30,25 +30,31 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two,knob
             if instruction_minus_one[1] in loadType:
                 hazard_in_source_1 = 4
                 stall = stall+1
+                hazard = True
             else:
                 hazard_in_source_1 = 3
+                hazard = True
 
         else:
             if current_instr[3] == instruction_minus_two[2] and current_instr[3] != 0:
                 #hazard_in_source_1.append(current_instr[3])
                 if instruction_minus_two[1] in loadType:
                     hazard_in_source_1 = 4
+                    hazard = True
                     # stall=stall+1
                 else:
+                    hazard = True
                     hazard_in_source_1 = 4
 
         if current_instr[5] == instruction_minus_one[2] and current_instr[5] != 0:
             #hazard_in_source_2.append(current_instr[4])
             if instruction_minus_one[1] in loadType:
                 hazard_in_source_2 = 4
+                hazard = True
                 if current_instr[1] not in storeType:
                     stall = stall+1
             else:
+                hazard = True
                 hazard_in_source_2 = 3
 
         else:
@@ -56,8 +62,10 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two,knob
                 #hazard_in_source_2.append(current_instr[4])
                 if instruction_minus_two[1] in loadType:
                     hazard_in_source_2 = 4
+                    hazard = True
                     # stall=stall+1
                 else:
+                    hazard = True
                     hazard_in_source_2 = 4
 
         # 25 43
@@ -87,31 +95,37 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two,knob
         print("-------------------------Writing to IB2 -> ", s)
         file.write(s)
         file.close()
-        return returnreg
+        print("Returning From Here 98")
+        return returnreg, hazard, stall
 ###############################################################################################
     stall1 = 0
     if knob == 0:
         if current_instr[3] != 0 and current_instr[3]!='None':
             if current_instr[3] == instruction_minus_two[2]:
                 stall1 = 1
+                hazard = True
                 print("Line 90")
         if current_instr[5] != 0 and current_instr[5] != 'None':
             if current_instr[5] == instruction_minus_two[2]:
                 stall1 = 1
+                hazard = True
                 print("Line 94")
 
         if current_instr[3] != 0 and current_instr[3] != 'None':
             if current_instr[3] == instruction_minus_one[2]:
                 stall1 = 2
+                hazard = True
                 print("Line 99")
         if current_instr[5] != 0 and current_instr[5] != 'None':
             if current_instr[5] == instruction_minus_one[2]:
                 stall1 = 2
+                hazard = True
                 print("Line 103")
 
         if stall1 != 0:
             PC_Retrieval(instruction_minus_one, instruction_minus_two)
-            return [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+            print("Returning From Here LIne 127")
+            return [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], True, 1
             # d = os.getcwd()
             # statfile = open(d+"/Phase3/Files/status.txt", "r")
             # status = statfile.read()
@@ -137,7 +151,8 @@ def Hazard_Detect(current_instr,instruction_minus_one,instruction_minus_two,knob
             print("-------------------------Writing to IB2 -> ", s)
             file.write(s)
             file.close()
-            return returnreg
+            print("Returning From Here Line no 155")
+            return returnreg, hazard, 0
 
 # format, name, destination register, source 1, data of source 1, source 2, data of source 2, immediate data, T_NT
 

@@ -266,6 +266,13 @@ def getPC_History():
     filePointer.close()
     return pcVal
 
+def writeStats(Stats):
+    path = os.getcwd() + "/Phase3/Files/summary.txt"
+    pointer = open(path, "w")
+    for i in Stats:
+        pointer.write(str(i)+"\n")
+    pointer.close()
+
 def Phase3():
     # Total Number of Cycle, Total Instruction Executed, CPI, Number of Data Transfer, Number of ALU
     # Number of Control Instructions Executed, Number of Stalls/Bubbles
@@ -273,7 +280,7 @@ def Phase3():
     # Number of Branch MissPredicton
     # Number of Stalls due to dataHazard
     # Number of Stalls due to controlHazard
-    Stats = [0, 0, 0, 0, -1, 0, -1, -1, 0, 0, -1, 0]
+    Stats = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     Initi_dec_his()
     pause = input("waiting...")
     instr_stat_init()
@@ -325,10 +332,13 @@ def Phase3():
             print("Source IB\t\tDestination IB")
             if(ib3_To_ib2==True):
                 print("IB3 \t\t IB2")
+                Stats[6] = Stats[6] + 1
             if(ib4_To_ib2==True):
                 print("IB4 \t\t IB2")
+                Stats[6] = Stats[6] + 1
             if(ib4_to_ib3==True):
                 print("IB4 \t\t IB3")
+                Stats[6] = Stats[6] + 1
         print("-------------------------------------------------\n")
         #------------------------------------------------------------------------
         print("Write Back - - - - - - - - - - - - - ")
@@ -344,6 +354,7 @@ def Phase3():
             updateIndex(3)
         print("Execute - - - - - - -  - - -- -")
         if(readIndex(2)==0):
+            Stats[4] = Stats[4] + 1
             flush, TargetAddress, branchType = execute(btb_object)
             if(branchType == True):
                 Stats[5] = Stats[5] + 1
@@ -351,7 +362,10 @@ def Phase3():
             updateIndex(2)
         print("Decode -- - - - - -- - - ")
         if(readIndex(1)==0):
-            loadStoreType = main(knob)
+            loadStoreType, dataHazardBool, hazard, stalls = main(knob)
+            if(hazard==True):
+                Stats[7] += 1
+            Stats[11] = Stats[11] + stalls
             if(loadStoreType == True):
                 Stats[3] = Stats[3] + 1
         elif(pipelining_status==1):
@@ -382,6 +396,7 @@ def Phase3():
             instr_stat_update("X 0\n",pipelining_status)
 
         if(flush==True):
+            Stats[6] = Stats[6] + 2
             flushIB()
             updatePC(TargetAddress)
             Initi_dec_his()
@@ -413,6 +428,7 @@ def Phase3():
         # if(clockCycle>20):
         #     buffer = input("Waiting...")
     Stats[2] = Stats[0]/Stats[1]
-    print(MemoryTable.memory)
-    print(Stats)
+    writeStats(Stats)
+    # print(MemoryTable.memory)
+    # print(Stats)
 
