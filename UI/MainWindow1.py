@@ -421,11 +421,19 @@ class Ui_MainWindow(object):
 		self.cb2 = QtWidgets.QCheckBox('Enable Data Forwarding')
 		self.cb2.toggle()
 		self.cb2.toggled.connect(lambda : self.knobs(self.cb2,1))
+
+		self.cb3 = QtWidgets.QCheckBox('Enable Printing Register File')
+		self.cb3.toggled.connect(lambda : self.knobs(self.cb3,2))
+		self.cb4 = QtWidgets.QCheckBox('Enable Printing Pipelining Registers')
+		self.cb4.toggled.connect(lambda : self.knobs(self.cb4,3))
+
 		#cb.stateChanged.connect(self.changeTitle) #TODO
 		self.pushButton1 = QtWidgets.QPushButton("PyQt5 button")
 		self.tab_3.layout.addWidget(self.cb1,1,1)
 		self.tab_3.layout.addWidget(self.cb2,2,1)
-		self.tab_3.layout.addWidget(self.temp1,3,0)
+		self.tab_3.layout.addWidget(self.cb3,3,1)
+		self.tab_3.layout.addWidget(self.cb4,4,1)
+		self.tab_3.layout.addWidget(self.temp1,5,0)
 		self.tab_3.setLayout(self.tab_3.layout)
 
 
@@ -840,7 +848,7 @@ class Ui_MainWindow(object):
 		rt=open('../lib/Phase3/Files/knobs.txt','r+')
 		rt=rt.readlines()
 		if(len(rt)==0):
-			rt = ['1 1']
+			rt = ['1 1 0 0']
 		lis = rt[0].strip().split()
 		
 		if but.isChecked() == True:
@@ -851,7 +859,7 @@ class Ui_MainWindow(object):
 		rt=open('../lib/Phase3/Files/knobs.txt','w')
 		rt.write(" ".join(lis))
 
-		print(lis)
+		#print(lis)
 		
 
 
@@ -920,6 +928,8 @@ class Ui_MainWindow(object):
 	def init(self):
 		self.knobs(self.cb1,0)
 		self.knobs(self.cb2,1)
+		self.knobs(self.cb3,2)
+		self.knobs(self.cb4,3)
 
 from codeeditor import CodeEditor
 
