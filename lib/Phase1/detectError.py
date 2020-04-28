@@ -121,17 +121,22 @@ def detectError():
                 errorMessage = "Expected 2 Operands But Got " + \
                     str(len(instructionPart) - 1)
             elif(instructionPart[1][0] != 'x'):
-                errorMessage = "U format accept One Register"
-            elif(instructionPart[2].strip().isdigit()==False):
-                errorMessage = "Required immediate value but not found"
+            	errorMessage = "U format accept One Register"
+            else:
+                if(instructionPart[2].strip()[0]=='-'):
+                    if(instructionPart[2].strip()[1:].isdigit()==False):
+                        errorMessage="Required immediate value but not found"
+                    pass
+                else:
+                    if(instructionPart[2].strip().isdigit()==False):
+                        errorMessage="Required immediate value but not found"
+                    pass
         else:
             errorMessage = "Unidentified Instruction"
         
         if(len(errorMessage)>0):
             errorMessage = instruction+"    -->"+ errorMessage + "\n"
-        
         errorList+=errorMessage
-
     return errorList
 
 
