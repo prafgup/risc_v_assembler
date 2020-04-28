@@ -13,6 +13,38 @@ from Phase3 import update_from_IB2, update_from_IB3
 import shutil
 from Phase2.InstructionDecode import *
 
+# Global Variable To Mark All Empty IB Previous Cycle
+allEmpty = False
+
+def detectEnd(pipelining_status, clockCycle):
+    global allEmpty
+    allIBEmpty = True
+    if(pipelining_status==0):
+        if((clockCycle-1)%5==0):
+            fileIB1 = open(os.getcwd() + "/Phase3/InterstageBuffers/IB1.txt", "r")
+            fileIB1_content = fileIB1.readline()
+            fileIB1.close()
+            if(fileIB1_content==""):
+                return True
+        else:
+            return False
+    elif(pipelining_status==1):
+        for i in range(1, 5):
+            filePath = os.getcwd() + "/Phase3/InterstageBuffers/IB"+str(i)+".txt"
+            filePointer = open(filePath, "r")
+            fileData = filePointer.readline()
+            if(fileData!=""):
+                allIBEmpty = False
+                break
+        if(allIBEmpty==True and allEmpty==False):
+            allEmpty = True
+            return False
+        if(allIBEmpty==True and allEmpty==True):
+            return True
+        if(allIBEmpty==False):
+            return False
+
+
 def instr_stat_init():
     file = open(os.getcwd() + "/Phase3/Files/instruction_Details.txt", "w")
     file.write("X 0\n")
@@ -201,6 +233,13 @@ def getPC_History():
     return pcVal
 
 def Phase3():
+    # Total Number of Cycle, Total Instruction Executed, CPI, Number of Data Transfer, Number of ALU
+    # Number of Control Instructions Executed, Number of Stalls/Bubbles
+    # Number of Data Hazard, Number of Control Hazard
+    # Number of Branch MissPredicton
+    # Number of Stalls due to dataHazard
+    # Number of Stalls due to controlHazard
+    Stats = [0, 0, 0, 0, -1, 0, -1, -1, 0, 0, -1, 0]
     Initi_dec_his()
     instr_stat_init()
     reset()
@@ -228,7 +267,10 @@ def Phase3():
     knob = int(pref[1])
     updateStatus(pipelining_status)
     StoreInstructionsInFile()
-    while(clockCycle!=600):
+    cycleEndStatus = detectEnd(pipelining_status, clockCycle)
+    while(cycleEndStatus==False):
+        Stats[0] = clockCycle
+        print("Cycle End Status = ", cycleEndStatus)
         # if(RegisterTable.registers[31].value!=0):
         #     print(RegisterTable.registers[31].value)
         #     break
@@ -247,10 +289,14 @@ def Phase3():
             print("Source IB\t\tDestination IB")
             if(ib3_To_ib2==True):
                 print("IB3 \t\t IB2")
+                # Stats[7] = Stats[7] + 1
             if(ib4_To_ib2==True):
+                # Stats[7] = Stats[7] + 1
                 print("IB4 \t\t IB2")
             if(ib4_to_ib3==True):
+                # Stats[7] = Stats[7] + 1
                 print("IB4 \t\t IB3")
+            # Stats[7] = Stats[7] + 1
         print("-------------------------------------------------\n")
         #------------------------------------------------------------------------
         print("Write Back - - - - - - - - - - - - - ")
@@ -266,17 +312,22 @@ def Phase3():
             updateIndex(3)
         print("Execute - - - - - - -  - - -- -")
         if(readIndex(2)==0):
-            flush, TargetAddress = execute(btb_object)
+            flush, TargetAddress, branchType = execute(btb_object)
+            if(branchType==True):
+                Stats[5] = Stats[5] + 1
         elif(pipelining_status==1):
             updateIndex(2)
         print("Decode -- - - - - -- - - ")
         if(readIndex(1)==0):
-            main()
+            loadStoreType = main()
+            if(loadStoreType==True):
+                Stats[3] = Stats[3] + 1
         elif(pipelining_status==1):
             updateIndex(1)
         print("Fetch - - - -  - - - -  -")
         if(readIndex(0)==0):
-            FetchInstruction(pipelining_status, btb_object)
+            instructionFetch = FetchInstruction(pipelining_status, btb_object)
+            Stats[1] = Stats[1] + instructionFetch
             decodeStallValue = readIndex(1)
             if(pipelining_status==1):
                 updateIndex(0, decodeStallValue)
@@ -301,6 +352,8 @@ def Phase3():
             flushIB()
             updatePC(TargetAddress)
             Initi_dec_his()
+            Stats[9] = Stats[9] + 1
+            Stats[11] = Stats[11] + 2
         elif(flush==False and TargetAddress!=None):
             updatePC(TargetAddress)
         SnapShotAfterCycleCompletion(clockCycle)
@@ -323,7 +376,10 @@ def Phase3():
             filePointer = open(fileAdress, "w")
             filePointer.write(linepipe)
             filePointer.close()
-        buffer = input("Waiting...")
+        cycleEndStatus = detectEnd(pipelining_status, clockCycle)
+        # buffer = input("Waiting...")
+    Stats[2] = Stats[0]/Stats[1]
+    print(Stats)
         
 Phase3()
     

@@ -63,7 +63,7 @@ def FetchInstruction(pipelining_Status, btb_Object=None):
     if(getInstruction=="Invalid"):
         print("Reached The End Of the File While Parsing...")
         print("No Instruction Fetched!!!")
-        return
+        return 0
     Branch = Taken_NotTaken = False
     TargetLineNumber = -1
     if(pipelining_Status==1):
@@ -74,5 +74,6 @@ def FetchInstruction(pipelining_Status, btb_Object=None):
     updatePC(Branch, Taken_NotTaken, TargetLineNumber, currentLineNumber)
     updateIB1(getInstruction, Branch, Taken_NotTaken, currentLineNumber, currentPC)
     print("Instruction Fetch Completed")
+    return 1
 
 # FetchInstruction()
