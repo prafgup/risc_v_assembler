@@ -211,7 +211,7 @@ class Ui_MainWindow(object):
 		self.pipeTable.setObjectName("pipeTable")
 		self.pipeTable.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
 		self.pipeTable.setColumnCount(1)
-		self.pipeTable.setRowCount(10)
+		self.pipeTable.setRowCount(20)
 		item = QtWidgets.QTableWidgetItem()
 		self.pipeTable.setVerticalHeaderItem(0, item)
 		item = QtWidgets.QTableWidgetItem()
@@ -234,6 +234,26 @@ class Ui_MainWindow(object):
 		self.pipeTable.setVerticalHeaderItem(9, item)
 		item = QtWidgets.QTableWidgetItem()
 		self.pipeTable.setVerticalHeaderItem(10, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(11, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(12, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(13, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(14, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(15, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(16, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(17, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(18, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(19, item)
+		item = QtWidgets.QTableWidgetItem()
+		self.pipeTable.setVerticalHeaderItem(20, item)
 		item = QtWidgets.QTableWidgetItem()
 		self.pipeTable.setHorizontalHeaderItem(0, item)
 		item = QtWidgets.QTableWidgetItem()
@@ -395,10 +415,12 @@ class Ui_MainWindow(object):
 
 
 		self.temp1 = QtWidgets.QLabel("")
-		self.cb1 = QtWidgets.QCheckBox('Text 1')
+		self.cb1 = QtWidgets.QCheckBox('Enable Pipelining')
 		self.cb1.toggle()
-		self.cb2 = QtWidgets.QCheckBox('Text 2')
+		self.cb1.toggled.connect(lambda : self.knobs(self.cb1,0))
+		self.cb2 = QtWidgets.QCheckBox('Enable Data Forwarding')
 		self.cb2.toggle()
+		self.cb2.toggled.connect(lambda : self.knobs(self.cb2,1))
 		#cb.stateChanged.connect(self.changeTitle) #TODO
 		self.pushButton1 = QtWidgets.QPushButton("PyQt5 button")
 		self.tab_3.layout.addWidget(self.cb1,1,1)
@@ -471,15 +493,31 @@ class Ui_MainWindow(object):
 		item = self.pipeTable.verticalHeaderItem(4)
 		item.setText(_translate("MainWindow", "Writeback"))
 		item = self.pipeTable.verticalHeaderItem(5)
-		item.setText(_translate("MainWindow", "f"))
+		item.setText(_translate("MainWindow", "Total number of cycles"))
 		item = self.pipeTable.verticalHeaderItem(6)
-		item.setText(_translate("MainWindow", "g"))
+		item.setText(_translate("MainWindow", "Total instructions executed"))
 		item = self.pipeTable.verticalHeaderItem(7)
-		item.setText(_translate("MainWindow", "h"))
+		item.setText(_translate("MainWindow", "CPI"))
 		item = self.pipeTable.verticalHeaderItem(8)
-		item.setText(_translate("MainWindow", "i"))
+		item.setText(_translate("MainWindow", "Number of Data-transfer"))
 		item = self.pipeTable.verticalHeaderItem(9)
-		item.setText(_translate("MainWindow", "j"))
+		item.setText(_translate("MainWindow", "ALU instructions executed"))
+		item = self.pipeTable.verticalHeaderItem(10)
+		item.setText(_translate("MainWindow", "Control instructions executed"))
+		item = self.pipeTable.verticalHeaderItem(11)
+		item.setText(_translate("MainWindow", "Number of stalls/bubbles"))
+		item = self.pipeTable.verticalHeaderItem(12)
+		item.setText(_translate("MainWindow", "Number of data hazards"))
+		item = self.pipeTable.verticalHeaderItem(13)
+		item.setText(_translate("MainWindow", "Number of control hazards"))
+		item = self.pipeTable.verticalHeaderItem(14)
+		item.setText(_translate("MainWindow", "Number of branch mispredictions"))
+		item = self.pipeTable.verticalHeaderItem(15)
+		item.setText(_translate("MainWindow", "Number of stalls due to data hazards"))
+		item = self.pipeTable.verticalHeaderItem(16)
+		item.setText(_translate("MainWindow", "Number of stalls due to control hazards"))
+
+
 
 		item = self.pipeTable.horizontalHeaderItem(0)
 		item.setText(_translate("MainWindow", "Status / Values"))
@@ -646,6 +684,7 @@ class Ui_MainWindow(object):
 			RegisterTable.Initialize(file_path="../lib/Phase2/")
 			self.doRegisterUpdate()
 			self.doPipeUpdate()
+			self.allInfo()
 		
 			
 	def showProcessedCode(self):
@@ -695,6 +734,7 @@ class Ui_MainWindow(object):
 		self.doRegisterUpdate()
 		self.doMemoryUpdate()
 		self.doPipeUpdate()
+		self.allInfo()
 	def memoryTypeChange(self,i):
 		self.doMemoryUpdate()
 	
@@ -769,7 +809,6 @@ class Ui_MainWindow(object):
 		rt=[]
 		if self.currentPC == 0 or self.currentPC>self.maxPC:
 			rt = ["0"]*10
-			rt[2]="2147483632"
 		else:
 			rt=open('../lib/Phase3/Snapshot/Files/instruction_details_after_cycle'+str(self.currentPC)+'.txt','r+')
 			rt=rt.readlines()
@@ -779,6 +818,41 @@ class Ui_MainWindow(object):
 			val = self.getVal(val)
 			item.setText(str(val))
 			self.pipeTable.setItem(ind,0,item)
+
+	def allInfo(self):
+		rt=[]
+		if self.currentPC == 0:
+			rt = ["0"]*10
+		else:
+			rt=open('../lib/Phase3/Snapshot/TODO.txt','w+')
+			rt=rt.readlines()
+		for ind in range(len(rt)):
+			item=QtWidgets.QTableWidgetItem()
+			val=int(rt[ind].strip(),16)
+			val = self.getVal(val)
+			item.setText(str(val))
+			self.pipeTable.setItem(4+ind,0,item)
+		
+
+
+
+	def knobs(self,but,ind):
+		rt=open('../lib/Phase3/Files/knobs.txt','r+')
+		rt=rt.readlines()
+		if(len(rt)==0):
+			rt = ['1 1']
+		lis = rt[0].strip().split()
+		
+		if but.isChecked() == True:
+			lis[ind] = '1'
+		else:
+			lis[ind] = '0'
+
+		rt=open('../lib/Phase3/Files/knobs.txt','w')
+		rt.write(" ".join(lis))
+
+		print(lis)
+		
 
 
 	def tableReColor(self):
@@ -840,6 +914,11 @@ class Ui_MainWindow(object):
 		self.doRegisterUpdate()
 		self.doPipeUpdate()
 		self.doMemoryUpdate()
+		self.allInfo()
+
+	def init(self):
+		self.knobs(self.cb1,0)
+		self.knobs(self.cb2,1)
 
 from codeeditor import CodeEditor
 
@@ -849,6 +928,9 @@ if __name__ == "__main__":
 	MainWindow = QtWidgets.QMainWindow()
 	ui = Ui_MainWindow()
 	ui.setupUi(MainWindow)
+	
+	ui.init()
+
 	MainWindow.show()
 	sys.exit(app.exec_())
 
