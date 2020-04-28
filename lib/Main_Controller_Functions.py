@@ -13,6 +13,41 @@ from Phase3 import update_from_IB2, update_from_IB3
 import shutil
 from Phase2.InstructionDecode import *
 
+# Global Variable To Mark All Empty IB Previous Cycle
+allEmpty = False
+
+
+def detectEnd(pipelining_status, clockCycle):
+    global allEmpty
+    allIBEmpty = True
+    if(pipelining_status == 0):
+        if((clockCycle-1) % 5 == 0):
+            fileIB1 = open(
+                os.getcwd() + "/Phase3/InterstageBuffers/IB1.txt", "r")
+            fileIB1_content = fileIB1.readline()
+            fileIB1.close()
+            if(fileIB1_content == ""):
+                return True
+        else:
+            return False
+    elif(pipelining_status == 1):
+        for i in range(1, 5):
+            filePath = os.getcwd() + "/Phase3/InterstageBuffers/IB"+str(i)+".txt"
+            filePointer = open(filePath, "r")
+            fileData = filePointer.readline()
+            if(fileData != ""):
+                allIBEmpty = False
+                break
+        if(allIBEmpty == True and allEmpty == False):
+            allEmpty = True
+            return False
+        if(allIBEmpty == True and allEmpty == True):
+            return True
+        if(allIBEmpty == False):
+            return False
+
+
+
 def instr_stat_init():
     file = open(os.getcwd() + "/Phase3/Files/instruction_Details.txt", "w")
     file.write("X 0\n")
@@ -236,7 +271,8 @@ def Phase3():
     knob = int(pref[1])
     updateStatus(pipelining_status)
     StoreInstructionsInFile()
-    while(clockCycle!=400):
+    cycleEndStatus = detectEnd(pipelining_status, clockCycle)
+    while(cycleEndStatus == False):
         # if(RegisterTable.registers[31].value!=0):
         #     print(RegisterTable.registers[31].value)
         #     break
@@ -330,6 +366,7 @@ def Phase3():
             filePointer = open(fileAdress, "w")
             filePointer.write(linepipe)
             filePointer.close()
-        buffer = input("Waiting...")
+        cycleEndStatus = detectEnd(pipelining_status, clockCycle)
+        # buffer = input("Waiting...")
         
 

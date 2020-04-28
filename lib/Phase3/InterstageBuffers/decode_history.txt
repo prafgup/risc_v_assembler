@@ -1,3 +1,2 @@
-S sw None 3 0 4 0 0 False 3 0x0000000c
-I lw 4 1 0 None -1 0 False 2 0x00000008
-
+X X -2 -2 -2 -2 -2 -2
+X X -2 -2 -2 -2 -2 -2

@@ -1,5 +1,3 @@
-.data
-var: .word 56
 .text
 addi x3,x0,0 #seed1
 addi x4,x0,1 #seed2
@@ -29,18 +27,3 @@ addi sp,sp,4
 jalr x0,0(x1)
 
 fallthru:
-=======
-<<<<<<< HEAD
-.text
-lui x1 65536
-lw x3 0(x1)
-lw x4 0(x1)
-<<<<<<< HEAD
-sw x4 0(x3)
-=======
-lw x3 0(x5)
-sw x3 0(x4)
-=======
->>>>>>> e3c91d00af1a4263ab7995f1d2bf7a4fb037d467
->>>>>>> 5ebaaaca95607044ac9788ab43cf36c61c246395
->>>>>>> c91d416cfc77ca324a89bd2295257d898486fcad
