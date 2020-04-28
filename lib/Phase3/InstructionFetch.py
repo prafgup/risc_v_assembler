@@ -11,7 +11,7 @@ def fetchPC():
     fileCurrent = open(os.getcwd() + '/Phase3/InterstageBuffers/PC_Current.txt', 'r+')
     fileHistory = open(os.getcwd() + '/Phase3/InterstageBuffers/PC_History.txt', 'w')
     currentContent = fileCurrent.readline()
-    print("Current PC = ", currentContent)
+    # print("Current PC = ", currentContent)
     fileHistory.write(currentContent)
     fileCurrent.close()
     fileHistory.close()
@@ -40,8 +40,8 @@ def updatePC(Branch, Taken_NotTaken, TargetLineNumber, currentLineNumber):
 
 def updateIB1(getInstruction, Branch, Taken_NotTaken, currentLineNumber, currentPC):
     file = open(os.getcwd() + '/Phase3/InterstageBuffers/IB1.txt', 'w')
-    print("Updating IB1")
-    print(getInstruction)
+    # print("Updating IB1")
+    # print(getInstruction)
     file.write(getInstruction)
     file.write(" ")
     if(Branch==True):
@@ -57,22 +57,27 @@ def updateIB1(getInstruction, Branch, Taken_NotTaken, currentLineNumber, current
 
 
 def FetchInstruction(pipelining_Status, btb_Object=None):
-    print("Instruction Fetch Currently in Execution...", end='')
+    # print("Instruction Fetch Currently in Execution...", end='')
     currentLineNumber, currentPC = fetchPC()
     getInstruction = instruction(currentLineNumber)
+    print("FETCH*******************************************************************")
+    print("LineNumber\tcurrentPC\tFoundInBTB\tT_NT\tTargetLineNumber")
     if(getInstruction=="Invalid"):
-        print("Reached The End Of the File While Parsing...")
-        print("No Instruction Fetched!!!")
+        # print("Reached The End Of the File While Parsing...")
+        # print("No Instruction Fetched!!!")
+        print("-1\t-1\t-1\t-1\t-1")
         return 0
     Branch = Taken_NotTaken = False
     TargetLineNumber = -1
     if(pipelining_Status==1):
         [Branch, Taken_NotTaken, TargetLineNumber] = btb_Object.checkInstruction(currentLineNumber)
-    print("Found in BTB?", Branch)
-    print("Taken Not Taken?", Taken_NotTaken)
-    print("Target Line NUmber = ", TargetLineNumber)
+    # print("Found in BTB?", Branch)
+    # print("Taken Not Taken?", Taken_NotTaken)
+    # print("Target Line NUmber = ", TargetLineNumber)
     updatePC(Branch, Taken_NotTaken, TargetLineNumber, currentLineNumber)
     updateIB1(getInstruction, Branch, Taken_NotTaken, currentLineNumber, currentPC)
-    print("Instruction Fetch Completed")
+    # print("Instruction Fetch Completed")
+    print(str(currentLineNumber)+"\t\t"+str(currentPC)+"\t"+str(Branch)+"\t\t"+str(Taken_NotTaken)+"\t"+str(TargetLineNumber))
+    print("************************************************************************\n\n")
     return 1
 # FetchInstruction()

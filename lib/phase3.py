@@ -53,7 +53,6 @@ def detectEnd(pipelining_status, clockCycle):
             return False
 
 
-
 def instr_stat_init():
     file = open(os.getcwd() + "/Phase3/Files/instruction_Details.txt", "w")
     file.write("X 0\n")
@@ -63,7 +62,8 @@ def instr_stat_init():
     file.write("X 0\n")
     file.close()
 
-def instr_stat_update(s,ps):
+
+def instr_stat_update(s, ps):
     file = open(os.getcwd() + "/Phase3/Files/instruction_Details.txt", "r")
     line1 = file.readline()  # F
     line2 = file.readline()  # D
@@ -75,7 +75,7 @@ def instr_stat_update(s,ps):
     curr_stat = statusfile.read()
     statusfile.close()
     curr_stat = curr_stat.split(" ")
-    if ps==1:
+    if ps == 1:
         line5 = line4
         if curr_stat[2] == "0":
             line4 = line3
@@ -94,12 +94,12 @@ def instr_stat_update(s,ps):
 
         line1 = s
 
-    if ps==0:
-        line5=line4
-        line4=line3
-        line3=line2
-        line2=line1
-        line1=s
+    if ps == 0:
+        line5 = line4
+        line4 = line3
+        line3 = line2
+        line2 = line1
+        line1 = s
 
     file = open(os.getcwd() + "/Phase3/Files/instruction_Details.txt", "w")
     file.write(line1)
@@ -127,6 +127,7 @@ def update_dec_his(s):
     file.close()
     return (l1, l2)
 
+
 def SnapShotAfterCycleCompletion(cycle_count):
     MemoryTable.StoreInFile(False, "memory_after_cycle" +
                             str(cycle_count)+".txt", os.getcwd()+"/Phase3/Snapshot/")
@@ -138,7 +139,7 @@ def SnapShotAfterCycleCompletion(cycle_count):
     file = open(os.getcwd()+"/Phase3/Snapshot/Files/" +
                 "pcs_after_each_cycle.txt", 'a')
     pc = open(os.getcwd()+"/Phase3/InterstageBuffers/PC_History.txt", 'r')
-    file.write(str(int(pc.read(),16))+"\n")
+    file.write(str(int(pc.read(), 16))+"\n")
     pc.close()
     file.close()
     instructionDetails = open(
@@ -154,10 +155,12 @@ def SnapShotAfterCycleCompletion(cycle_count):
         file.write(d[1])
     file.close()
 
+
 def StoreInstructionsInFile():
     originalPath = os.getcwd()+"/Files/memory_text.txt"
     targetPath = os.getcwd()+"/Phase3/Snapshot/memory_instructions.txt"
     shutil.copyfile(originalPath, targetPath)
+
 
 def reset():
     d = os.getcwd()
@@ -169,6 +172,7 @@ def reset():
         pointer.write("")
         pointer.close()
 
+
 def Initi_dec_his():
     d = os.getcwd()+"/Phase3/InterstageBuffers/decode_history.txt"
     file = open(d, "w")
@@ -178,6 +182,7 @@ def Initi_dec_his():
     file.write(line2)
     file.close()
 
+
 def copyFiles():
     print("\n\nImporting Machine Code File From Phase 1 to Phase 3")
     getMachineCode()
@@ -185,7 +190,8 @@ def copyFiles():
     dataSource = open(d+"/Files/data_memory_table.txt", "r")
     data = dataSource.readlines()
     dataSource.close()
-    dataDestination = open(d+"/Phase3/MachineCodeFiles/data_memory_table.txt", "w+")
+    dataDestination = open(
+        d+"/Phase3/MachineCodeFiles/data_memory_table.txt", "w+")
     for line in data:
         dataDestination.write(line)
     dataDestination.close()
@@ -206,6 +212,7 @@ def updateStatus(b):
         filePointer.write("0 5 5 5 5")
         filePointer.close()
 
+
 def updateMemory():
     print("Updating Memory....")
     d = os.getcwd()
@@ -218,6 +225,7 @@ def updateMemory():
     print(MemoryTable.memory)
     print("Memory Update Completed!!!")
 
+
 def readIndex(index):
     fileAdress = os.getcwd() + "/Phase3/Files/status.txt"
     filePointer = open(fileAdress, "r")
@@ -226,12 +234,13 @@ def readIndex(index):
     filePointer.close()
     return int(data[index])
 
-def updateIndex(index, value = None):
+
+def updateIndex(index, value=None):
     fileAdress = os.getcwd() + "/Phase3/Files/status.txt"
     filePointer = open(fileAdress, "r")
     data = filePointer.readline()
     data = data.split()
-    if(value==None):
+    if(value == None):
         data[index] = str(int(data[index]) - 1)
     else:
         data[index] = str(value)
@@ -240,6 +249,7 @@ def updateIndex(index, value = None):
     filePointer = open(fileAdress, "w")
     filePointer.write(data)
     filePointer.close()
+
 
 def flushIB():
     filePointer = open("Phase3/InterstageBuffers/IB1.txt", "w")
@@ -256,7 +266,7 @@ def updatePC(valueInDec):
     filePointer = open(filePath, "w")
     filePointer.write(valueInHex)
     filePointer.close()
-    
+
 
 def getPC_History():
     pathToFile = os.getcwd() + "/Phase3/InterstageBuffers/PC_History.txt"
@@ -266,6 +276,7 @@ def getPC_History():
     filePointer.close()
     return pcVal
 
+
 def writeStats(Stats):
     path = os.getcwd() + "/Phase3/Files/summary.txt"
     pointer = open(path, "w")
@@ -273,13 +284,19 @@ def writeStats(Stats):
         pointer.write(str(i)+"\n")
     pointer.close()
 
+
 def Phase3():
     Stats = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     Initi_dec_his()
-    # pause = input("waiting...")
+    print("============================================================================================|")
+    print("--------------------------------------RISC-V SIMULATOR--------------------------------------|")
+    print("============================================================================================|\n")
+    print("|Note| Make Sure That the Assembly Code is the assemblyCode.asm file in lib/Files\n")
+    pause = input("Press Enter To Contiue")
+    followCycles = input("Enter Y to follow cycle else (N)")
     instr_stat_init()
     reset()
-    # - -- - -- - - -- - -- - - 
+    # - -- - -- - - -- - -- - -
     file = open(os.getcwd()+"/Phase3/Files/knobs.txt", "w")
     file.write("1 1 0 0")
     file.close()
@@ -306,7 +323,7 @@ def Phase3():
     updateStatus(pipelining_status)
     StoreInstructionsInFile()
     cycleEndStatus = False
-    if(pipelining_status==1):
+    if(pipelining_status == 1):
         cycleEndStatus = detectEnd(pipelining_status, clockCycle)
     while(cycleEndStatus == False):
         Stats[0] = clockCycle
@@ -316,89 +333,90 @@ def Phase3():
         flush = False
         TargetAddress = None
         print("\n=======================================================")
-        print("--------------------|Cycle #"+str(clockCycle)+"|-------------------------")
+        print("--------------------|Cycle #" +
+              str(clockCycle)+"|-------------------------")
         print("=======================================================\n")
         ib3_To_ib2, ib4_To_ib2 = update_from_IB2.update_from_IB2_file()
         ib4_to_ib3 = update_from_IB3.update_from_IB3_file()
         #------------------------------------------------------------------------
         print("Data Forwarding Performed------------------------\n")
-        if(ib3_To_ib2==False and ib4_To_ib2==False and ib4_to_ib3==False):
+        if(ib3_To_ib2 == False and ib4_To_ib2 == False and ib4_to_ib3 == False):
             print("\t~~~~~~No Data Forwarding~~~~~~\n")
         else:
             print("Source IB\t\tDestination IB")
-            if(ib3_To_ib2==True):
-                print("IB3 \t\t IB2")
+            if(ib3_To_ib2 == True):
+                print("  IB3 \t\t\t IB2")
                 Stats[6] = Stats[6] + 1
-            if(ib4_To_ib2==True):
-                print("IB4 \t\t IB2")
+            if(ib4_To_ib2 == True):
+                print("  IB4 \t\t\t IB2")
                 Stats[6] = Stats[6] + 1
-            if(ib4_to_ib3==True):
-                print("IB4 \t\t IB3")
+            if(ib4_to_ib3 == True):
+                print("  IB4 \t\t\t IB3")
                 Stats[6] = Stats[6] + 1
         print("-------------------------------------------------\n")
         #------------------------------------------------------------------------
-        print("Write Back - - - - - - - - - - - - - ")
-        if(readIndex(4)==0):
+        # print("Write Back")
+        if(readIndex(4) == 0):
             wb_Register, wb_Data = mainWB()
-        elif(pipelining_status==1):
+        elif(pipelining_status == 1):
             updateIndex(4)
-        print("- - - - - - - - - - - - - - - -")
-        print("Memory Access - - - - - - -- - - - - - - -")
-        if(readIndex(3)==0):
+        # print("- - - - - - - - - - - - - - - -")
+        # print("Memory Access - - - - - - -- - - - - - - -")
+        if(readIndex(3) == 0):
             mainMA()
-        elif(pipelining_status==1):
+        elif(pipelining_status == 1):
             updateIndex(3)
-        print("Execute - - - - - - -  - - -- -")
-        if(readIndex(2)==0):
+        # print("Execute - - - - - - -  - - -- -")
+        if(readIndex(2) == 0):
             Stats[4] = Stats[4] + 1
             flush, TargetAddress, branchType = execute(btb_object)
             if(branchType == True):
                 Stats[5] = Stats[5] + 1
-        elif(pipelining_status==1):
+        elif(pipelining_status == 1):
             updateIndex(2)
-        print("Decode -- - - - - -- - - ")
-        if(readIndex(1)==0):
+        # print("Decode -- - - - - -- - - ")
+        if(readIndex(1) == 0):
             loadStoreType, dataHazardBool, hazard, stalls = main(knob)
-            if(hazard==True):
+            if(hazard == True):
                 Stats[7] += 1
             Stats[11] = Stats[11] + stalls
             if(loadStoreType == True):
                 Stats[3] = Stats[3] + 1
-        elif(pipelining_status==1):
-            if(knob==0):
+        elif(pipelining_status == 1):
+            if(knob == 0):
                 update_dec_his("X X -2 -2 -2 -2 -2 -2")
             updateIndex(1)
-        print("Fetch - - - -  - - - -  -")
-        if(readIndex(0)==0):
+        # print("Fetch - - - -  - - - -  -")
+        if(readIndex(0) == 0):
             instructionFetch = FetchInstruction(pipelining_status, btb_object)
             Stats[1] = Stats[1] + instructionFetch
             decodeStallValue = readIndex(1)
-            if(pipelining_status==1):
+            if(pipelining_status == 1):
                 updateIndex(0, decodeStallValue)
-        elif(pipelining_status==1):
+        elif(pipelining_status == 1):
             updateIndex(0)
-        
+
         getPC_Hist_Value = getPC_History()
         d = os.getcwd() + "/Phase3/InterstageBuffers/IB1.txt"
-        instr_update=open(d, "r")
+        instr_update = open(d, "r")
         l = instr_update.readline()
-        if(len(l)!=0):
+        if(len(l) != 0):
             l = l.split(" ")
             instr_info = normalDecodePhase2(l[0])
             instr_info = str(instr_info[1])
             instr_info = instr_info+" "+str(getPC_Hist_Value)+"\n"
-            instr_stat_update(instr_info,pipelining_status)
+            instr_stat_update(instr_info, pipelining_status)
         else:
-            instr_stat_update("X 0\n",pipelining_status)
+            instr_stat_update("X 0\n", pipelining_status)
 
-        if(flush==True):
+        if(flush == True):
             Stats[6] = Stats[6] + 2
             flushIB()
             updatePC(TargetAddress)
             Initi_dec_his()
             Stats[9] = Stats[9] + 1
             Stats[11] = Stats[11] + 2
-        elif(flush==False and TargetAddress!=None):
+        elif(flush == False and TargetAddress != None):
             updatePC(TargetAddress)
         SnapShotAfterCycleCompletion(clockCycle)
         clockCycle = clockCycle + 1
@@ -466,8 +484,8 @@ def Phase3():
             print(
                 "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
             print("\n\n")
-        # if(clockCycle>20):
-        #     buffer = input("Waiting...")
+        if(followCycles=='Y'):
+            buffer = input("Press Enter For The Next Cycle")
     Stats[2] = Stats[0]/Stats[1]
     writeStats(Stats)
     global allEmpty
@@ -475,3 +493,4 @@ def Phase3():
     # print(MemoryTable.memory)
     # print(Stats)
 
+Phase3()
